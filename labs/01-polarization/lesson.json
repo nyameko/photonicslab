@@ -1,0 +1,46 @@
+{
+  "id": "photonics.polarization.01",
+  "version": 1,
+  "status": "development",
+  "title": "Your first virtual photonics table",
+  "audience": [
+    "undergraduate optics",
+    "research onboarding"
+  ],
+  "prerequisites": [
+    "complex arithmetic",
+    "vectors",
+    "basic Python"
+  ],
+  "outcomes": [
+    "Jones polarization",
+    "Malus law",
+    "Gaussian diffraction",
+    "ideal SLM steering",
+    "result provenance"
+  ],
+  "notebook": "lesson.ipynb",
+  "environment": {
+    "project": "../../pyproject.toml",
+    "lockfile": "../../uv.lock",
+    "python": "3.14",
+    "executor": "numpy-cpu"
+  },
+  "resources": {
+    "gpu_required": false,
+    "credentials_required": false,
+    "maximum_grid_samples": [
+      256,
+      256
+    ]
+  },
+  "randomness": "none; deterministic",
+  "assessment": "notebook numerical assertions and tests/test_physics.py",
+  "license": "GPL-3.0-only",
+  "limitations": [
+    "coherent monochromatic transverse fields",
+    "ideal thin elements",
+    "periodic FFT window",
+    "no quantum states or hardware validation"
+  ]
+}

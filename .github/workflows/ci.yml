@@ -1,0 +1,29 @@
+name: Optics reference models
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  physics:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.23'
+          python-version: ${{ matrix.python }}
+      - run: uv sync --frozen --extra dev --extra notebooks --python '${{ matrix.python }}'
+      - run: uv run --no-sync ruff check src tests examples
+      - run: uv run --no-sync ruff format --check src tests examples
+      - run: uv run --no-sync pytest --cov=photonicslab
+      - run: uv run --no-sync python examples/execute_lesson.py
+        env:
+          MPLBACKEND: Agg
+      - run: uv build
