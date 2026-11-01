@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.heateqn.HeatEqn3D.plot_source_profile &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params" href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html" />
+    <link rel="prev" title="photonicslab.heateqn.HeatEqn3D.remove_sources" href="photonicslab.heateqn.HeatEqn3D.remove_sources.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html" title="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.remove_sources.html" title="photonicslab.heateqn.HeatEqn3D.remove_sources"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-heateqn-heateqn3d-plot-source-profile">
+<h1>photonicslab.heateqn.HeatEqn3D.plot_source_profile<a class="headerlink" href="#photonicslab-heateqn-heateqn3d-plot-source-profile" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.heateqn.HeatEqn3D.plot_source_profile">
+<code class="sig-prename descclassname">HeatEqn3D.</code><code class="sig-name descname">plot_source_profile</code><span class="sig-paren">(</span><em class="sig-param">savepath='images/Q_init3d.png'</em>, <em class="sig-param">z_ind=-1</em>, <em class="sig-param">time_step=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/heateqn.html#HeatEqn3D.plot_source_profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.plot_source_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the current cross-sectional source profile from the heat load object.</p>
+<p>This method calls the parent / ancestor / super method to do the actual plotting of figures,
+at the desired z-axial point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>savepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Filename to save image file to.</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Source attenuation distance along axial direction and within crystal, <span class="math notranslate nohighlight">\(z=0\)</span> is the pump end-face.</p></li>
+<li><p><strong>time_step</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Integer placeholder of temporal indices.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D._tempQinit">
+<code class="sig-name descname">_tempQinit</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D._tempQinit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Private member function for storing Qinit while it is</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>exponentially attenuated by distance z.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Verify whether we really need 3D meshgrid profiles or if 2D ones will suffice.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn3D.remove_sources.html"
+                        title="previous chapter">photonicslab.heateqn.HeatEqn3D.remove_sources</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html"
+                        title="next chapter">photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html" title="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.remove_sources.html" title="photonicslab.heateqn.HeatEqn3D.remove_sources"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.fdsolver.FDSolver2D &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.fdsolver.FDSolver2D.explicit_method" href="photonicslab.fdsolver.FDSolver2D.explicit_method.html" />
+    <link rel="prev" title="photonicslab.fdsolver" href="photonicslab.fdsolver.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver2D.explicit_method.html" title="photonicslab.fdsolver.FDSolver2D.explicit_method"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.html" title="photonicslab.fdsolver"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-fdsolver-fdsolver2d">
+<h1>photonicslab.fdsolver.FDSolver2D<a class="headerlink" href="#photonicslab-fdsolver-fdsolver2d" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.fdsolver.FDSolver2D">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.fdsolver.</code><code class="sig-name descname">FDSolver2D</code><span class="sig-paren">(</span><em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">hdf5table='temperature'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/fdsolver.html#FDSolver2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.fdsolver.FDSolver2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional finite-difference solver object.</p>
+<p>This employs a simple forward time, central step approximation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of time steps for temporal evolution.</p></li>
+<li><p><strong>finit</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – Cross-sectional profile of initial system solution / state.</p></li>
+<li><p><strong>Fdrive</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a>) – Cross-sectional profile of initial system driving / damping force.</p></li>
+<li><p><strong>sx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Coefficient for approximation to forward-time, central step along x-direction.</p></li>
+<li><p><strong>sy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Coefficient for approximation to forward-time, central step along y-direction.</p></li>
+<li><p><strong>hdf5filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Filename of the HDF5 file object to be created or read from / appended to.</p></li>
+<li><p><strong>hdf5table</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Dataset name of the HDF5 group/dataset object to apply the FD to.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www-udc.ig.utexas.edu/external/becker/teaching-557.html">Lecture notes from GEOL557 Numerical Modelling of Earth Systems by Becker and Kaus (2016)</a></p></li>
+</ul>
+<dl class="method">
+<dt id="photonicslab.fdsolver.FDSolver2D.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">hdf5table='temperature'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/fdsolver.html#FDSolver2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.fdsolver.FDSolver2D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.fdsolver.FDSolver2D.__init__" title="photonicslab.fdsolver.FDSolver2D.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([hdf5filename, hdf5grp, hdf5table])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda_adi_method</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda_implicit_method</span></code>()</p></td>
+<td><p>Tri-diagonal matrix solver using NVIDIA CUDA gpu-array elements objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method.html#photonicslab.fdsolver.FDSolver2D.explicit_method" title="photonicslab.fdsolver.FDSolver2D.explicit_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">explicit_method</span></code></a>([tol_clock])</p></td>
+<td><p>Explicit forward-time, central step finite-difference method.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method_hdf.html#photonicslab.fdsolver.FDSolver2D.explicit_method_hdf" title="photonicslab.fdsolver.FDSolver2D.explicit_method_hdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">explicit_method_hdf</span></code></a>([tol_clock])</p></td>
+<td><p>Explicit forward-time, central step finite-difference method directly using HDF5.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.fdsolver.html"
+                        title="previous chapter">photonicslab.fdsolver</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.fdsolver.FDSolver2D.explicit_method.html"
+                        title="next chapter">photonicslab.fdsolver.FDSolver2D.explicit_method</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver2D.explicit_method.html" title="photonicslab.fdsolver.FDSolver2D.explicit_method"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.html" title="photonicslab.fdsolver"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,934 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>About &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Application Programming Interface" href="methods.html" />
+    <link rel="prev" title="Quick Start" href="quickstart.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="methods.html" title="Application Programming Interface"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick Start"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="about">
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<p>Photonics LABoratory: Software for the simulation, analysis, design,
+interface and control of optical hardware and photonics components.</p>
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Where possible to development and simulation ecosystem will strive to be
+as <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Pythonic</a> as possible.
+However, we do accommodate MatLab appliances and interfaces in many
+instances.</p>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>This package was built using and tested against these versions of</p>
+<ul class="simple">
+<li><p>Python: <a class="reference external" href="https://www.python.org/">3.6.3</a>,</p></li>
+<li><p>Numerical Python: <a class="reference external" href="http://www.numpy.org/">NumPy 1.13.3dev1</a>,</p></li>
+<li><p>Scientific Python: <a class="reference external" href="https://www.scipy.org/">SciPy 1.0.0-1</a>,</p></li>
+<li><p>Hierarchical Binary Data Format: <a class="reference external" href="https://support.hdfgroup.org/HDF5/">HDF5
+1.10.1-1</a>,</p></li>
+<li><p>Python Bindings for HDF5: <a class="reference external" href="http://www.h5py.org/">H5Py 2.7.1-1</a>,</p></li>
+<li><p>Matplotlib: <a class="reference external" href="https://matplotlib.org/">2.1.0-1</a>,</p></li>
+<li><p>Specialised image processing routines for SciPy: <a class="reference external" href="http://scikit-image.org/">Scikit-Image
+0.13.1-1</a>,</p></li>
+<li><p>Python Testing Framework: <a class="reference external" href="https://docs.pytest.org/en/latest/">PyTest
+3.4.0-1</a>,</p></li>
+<li><p>PyTest Distributed Testing Plugin: <a class="reference external" href="https://docs.pytest.org/en/3.0.0/xdist.html">PyTest-XDist
+1.22.0-1</a>,</p></li>
+<li><p>PyTest fixture for benchmarking code: <a class="reference external" href="https://pypi.python.org/pypi/pytest-benchmark">PyTest-Benchmark
+3.1.1-1</a>,</p></li>
+<li><p>Python Code Coverage Measurement: <a class="reference external" href="http://pytest-cov.readthedocs.io/en/latest/">PyTest-Cov
+2.5.1-1</a>, and</p></li>
+<li><p>Universal document converter: <a class="reference external" href="https://pandoc.org">Pandoc 2.0.6</a>,</p></li>
+<li><p>Open-source, production-grade container orchestration system for
+automating application deployment, scaling, and management:
+<a class="reference external" href="https://kubernetes.io/">Kubernetes</a>,</p></li>
+<li><p>Local Kubernetes cluster implementation:
+<a class="reference external" href="https://github.com/kubernetes/minikube">minikube</a>,</p></li>
+<li><p>Open-source monitoring system with a dimensional data model, flexible
+query language, efficient time series database and modern alerting
+approach: <a class="reference external" href="https://prometheus.io/">Prometheus</a>,</p></li>
+<li><p>Open platform for analytics and monitoring:
+<a class="reference external" href="https://grafana.com/">Grafana</a>,</p></li>
+<li><p>NVIDIA parallel computing platform and API: <a class="reference external" href="http://docs.nvidia.com/cuda/">CUDA
+9.1.85.3-5</a>,</p></li>
+<li><p>NumPy aware dynamic Python compiler: <a class="reference external" href="https://numba.pydata.org/">Numba
+0.38.0-1</a>,</p></li>
+<li><p>NVIDIA CUDA Toolkit provides a development environment for creating
+high performance GPU-accelerated applications:
+<a class="reference external" href="https://developer.nvidia.com/cuda-toolkit">CUDAToolkit</a>,</p></li>
+<li><p>Python wrapper for Nvidia CUDA: <a class="reference external" href="https://wiki.tiker.net/PyCuda">PyCUDA
+2017.1.1-5</a>,</p></li>
+<li><p>Python interface to many of the functions in the CUDA device/runtime
+(e.g. CUBLAS, CUFFT and CUSOLVER) <a class="reference external" href="http://scikit-cuda.readthedocs.io/en/latest/index.html">Scikit-CUDA
+0.5.2</a>,</p></li>
+<li><p>NVIDIA Collective Communications Library to perform collective
+multi-GPU / multi-node computations <a class="reference external" href="https://developer.nvidia.com/nccl">NCCL
+2.1.15</a> (NVIDIA Developer
+Programme Registration Required),</p></li>
+<li><p>NumPy-like API accelerated with CUDA
+<a class="reference external" href="https://github.com/cupy/cupy">CUPY</a>.</p></li>
+</ul>
+<p>Add <code class="docutils literal notranslate"><span class="pre">/opt/cuda/bin</span></code> to <code class="docutils literal notranslate"><span class="pre">/etc/profile</span></code> for access to the NVIDIA
+compiler and bindings.</p>
+<div class="section" id="anaconda">
+<h3>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h3>
+<p>Most of the above dependencies can be satisfied by installing the Python
+3.6. version of <a class="reference external" href="https://conda.io/docs/user-guide/install/download.html">Anaconda
+5.0.1</a>.
+However with regards to the Python Bindings for HDF5, imaging routines
+from scikit, the testing framework and Pandoc, you’ll need to run the
+following within your Anaconda environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install h5py
+$ conda install scikit-image
+$ conda install pytest
+$ conda install pytest-cov
+$ conda install pytest-xdist
+$ conda install pytest-benchmark
+$ conda install pandoc
+$ conda install cupy-cuda91
+# $ conda install cudatoolkit
+# $ conda install numba
+$ conda install scikit-cuda
+</pre></div>
+</div>
+</div>
+<div class="section" id="future-dependencies">
+<h3>Future dependencies<a class="headerlink" href="#future-dependencies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="http://pandas.pydata.org/">Pandas</a>: High performance data
+analysis,</p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/">Scikit-Learn</a> and
+<a class="reference external" href="https://www.tensorflow.org/">TensorFlow</a>: Specialised tools for
+machine learning, data mining and data analysis,</p>
+<ul>
+<li><p><a class="reference external" href="https://www.nvidia.com/en-us/data-center/gpu-accelerated-applications/tensorflow/">Tensorflow-CUDA</a>:
+GPU-Accelerated TensorFlow, <em>(see python-tensorflow-opt-cuda)</em>,</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://developer.nvidia.com/cudnn">CUDNN</a>: Nvidia CUDA Deep
+Neural Network Library,</p>
+<ul>
+<li><p><a class="reference external" href="http://pytorch.org/">PyTorch</a>: Tensors and Dynamic neural
+networks in python with strong GPU acceleration,</p></li>
+<li><p><a class="reference external" href="http://pytorch.org/docs/master/cuda.html">PyTorch-CUDA</a>:
+Support for CUDA tensor types, <em>(see python-pytorch-cuda)</em>,</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://opencv.org/">OpenCV</a>: Open Source Computer Vision
+Library,</p></li>
+<li><p><a class="reference external" href="https://www.khronos.org/opencl/">OpenCL</a>: (Open Computing
+Language) is the open, royalty-free standard for cross-platform,
+parallel programming of diverse processors found in personal
+computers, servers, mobile devices and embedded platforms,</p>
+<ul>
+<li><p><a class="reference external" href="https://mathema.tician.de/software/pyopencl/">PyOpenCL</a>:
+Python wrapper for OpenCL,</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/rossumai/keras-multi-gpu/blob/master/blog/docs/algorithms-and-techniques.md">Keras Multi GPU
+Blog</a>,</p></li>
+<li><p><a class="reference external" href="https://blog.rescale.com/deep-learning-with-multiple-gpus-on-rescale-tensorflow/">ReScale
+TensorFlow</a>:
+Deep learning with multiple, distributed GPUs,</p></li>
+<li><p><a class="reference external" href="https://mapr.com/blog/deep-learning-qss-1/">MapR and Kuberbetes</a>:
+Deploy distributed Deep Learning QSS on GPU Cluster.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>A good resource and basic introduction to the scientific Python stack
+and it’s uses is <a class="reference external" href="https://github.com/tjfulle/fem-with-python">Tim Fuller’s FEM with
+Python</a>.</p>
+<div class="section" id="use-git-to-get-source-code">
+<h2>Use Git to get source-code<a class="headerlink" href="#use-git-to-get-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve <a class="reference external" href="https://bitbucket.org/account/signup/">Created your Bitbucket
+Account</a> and added your
+<a class="reference external" href="https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html">public
+ssh-key</a>
+to the private <a class="reference external" href="https://bitbucket.org/account/user/nlcnl/ssh-keys/">Bitbucket NLC Novel
+Lasers</a>
+repository by emailing it to the <a class="reference external" href="mailto:Nlisa&#37;&#52;&#48;csir&#46;co&#46;za">admin</a>,
+you can get access to the source by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd your_desired_working_folder
+$ git clone git@bitbucket.org:NLisa/photonicslab.git your_desired_checkout_name
+
+# Or without ssh-keys
+$ git clone https://bitbucket.org/NLisa/photonicslab.git your_desired_checkout_name
+</pre></div>
+</div>
+<p>To actively contribute to development of the project, <a class="reference external" href="https://confluence.atlassian.com/bitbucket/forking-a-repository-221449527.html">Create a
+Fork</a>
+on your Bitbucket account and use it <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">Locally
+Edit</a>
+your local checkout of the source code, then <a class="reference external" href="https://git-scm.com/docs/git-pull">Pull
+Changes</a> from the original
+Photonicslab repository, and <a class="reference external" href="https://help.github.com/articles/pushing-to-a-remote/">Push Your
+Changes</a> back
+to your remote Bitbucket account:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd your_desired_working_folder
+$ git remote add &lt;your_desired_fork_name&gt; &lt;url_to_your_bitbucket_fork&gt;
+$ git pull origin
+$ git push &lt;your_desired_fork_name&gt;
+</pre></div>
+</div>
+<p>Finally from your Bitbucket account web page, you can then <a class="reference external" href="https://confluence.atlassian.com/bitbucket/create-a-pull-request-774243413.html">Submit Pull
+Requests</a>,
+see the <a class="reference external" href="https://confluence.atlassian.com/bitbucket/tutorial-learn-about-pull-requests-in-bitbucket-cloud-774243385.html">Bitbucket
+Tutorial</a>
+or <a class="reference external" href="https://www.atlassian.com/git/tutorials/syncing">Atlassian Git Syncing
+Tutorial</a> should you
+have any difficulties.</p>
+</div>
+<div class="section" id="jupyter-notebooks">
+<h2>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>The developer or end-user can learn to use the software through a series
+of <a class="reference external" href="http://ipython.org/notebook.html">Jupyter Notebooks</a>, which are
+included with the <a class="reference external" href="https://bitbucket.org/nlcnl/varoptic/src">src</a>.
+These lessons provide a set of interactive literate programming tools
+that are <a class="reference external" href="https://drivendata.github.io/cookiecutter-data-science/">very
+effective</a>
+for exploratory data analysis. The sub-folder <code class="docutils literal notranslate"><span class="pre">notebooks/reports</span></code>
+contains more polished work that is <em>`near-publication-ready’</em>.
+Generally speaking these serve as high level functional, systems or
+acceptance tests.</p>
+<div class="figure align-default" id="id1">
+<img alt="img" src="_images/usage.png" />
+<p class="caption"><span class="caption-text">img</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>First change directory into the notebooks folder and then start the
+notebook server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd notebooks
+$ jupyter notebook
+</pre></div>
+</div>
+<p>This will start the interactive Python session in your browser and from
+there you can start the Lessons.</p>
+</div>
+<div class="section" id="project-layout-and-documentation">
+<h2>Project Layout and Documentation<a class="headerlink" href="#project-layout-and-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── docs
+│   ├── conf.py
+│   ├── html
+│   │   ├── index.html
+│   ├── index.rst
+│   ├── methods.rst
+│   └── README.rst
+├── index.html
+├── LICENSE
+├── Makefile
+├── Manifest.in
+├── notebooks
+│   ├── Lesson 00. Introduction to Git, Anaconda (Python), Kubenetes (Docker), Prometheus, Grafana and CUDA.ipynb
+│   ├── Lesson 01. Introduction to PhotonicsLAB (2D Gaussian heat source pair).ipynb
+│   ├── Lesson 02. Demonstration of 2D phase modulated (VarOptic) Gaussian beam generation and propagation.ipynb
+│   ├── Lesson 03. Demonstration of 2D phase modulated (VarOptic) LG-mode generation and propagation.ipynb
+│   ├── Lesson 04. Demonstration of 2D source addition from an image file.ipynb
+│   ├── Lesson 05. Demonstration of 2D dynamic and temporal heat source.ipynb
+│   ├── Lesson 06. Demonstration of 2D sequential thermal lensing of a beam through consecutive elements.ipynb
+│   ├── Lesson 07. Demonstration of 2D thermal lensing based shaping using pixelated (addressable) VarOptic.ipynb
+│   ├── Lesson 08. Demonstration of 3D LG-Mode collamation, imaging and M-Squared measurements.ipynb
+│   ├── Lesson 09. Demonstration of 3D transient heat eqn and phase modulated (VarOptic) Gaussian beam generation and propagation.ipynb
+│   ├── Lesson 10. Demonstration of 3D (VarOptic) quad-source phase modulated LG mode.ipynb
+│   ├── Lesson 11a. Demonstration of 3D (VarOptic) 4mm flat-top pump, focusing thermal lens.ipynb
+│   ├── Lesson 11b. Demonstration of 3D (VarOptic) 2mm flat-top pump, focusing thermal lens.ipynb
+│   ├── Lesson 12. Demonstration of 3D (VarOptic) Gaussian to Bessel Beam to Doughnut Transformation.ipynb
+│   ├── Lesson 13. Demonstration of 3D (VarOptic) Gaussian to Flat-top Transformation.ipynb
+│   ├── Lesson 14. Demonstration of 3D fully vectorial single pass focusing of TEM00 Gaussian mode by GRIN Lens-like medium.ipynb
+│   ├── Lesson 15. Demonstration of 3D fully vectorial single pass through two laser rods with Faraday rotator in-between.ipynb
+│   ├── Lesson 16. Demonstration of 3D fully vectorial stress induced (pinched optics) birefringent distortions.ipynb
+│   ├── Lesson 17. Demonstration of 3D fully vectorial single pass addressable gain amplifier.ipynb
+│   ├── Lesson 18. Demonstration of 3D fully vectorial single pass amplification with thermal lensing and birefringence.ipynb
+│   ├── Lesson 19. Demonstration of 3D fully vectorial single transeverse mode Yb-YAG disk statble resonator with thermal lensing and birefringence.ipynb
+│   ├── Lesson 20. Demonstration of 3D fully vectorial pixelated gain (addressable) diode laser.ipynb
+│   ├── Lesson 21. Report - Demonstration of 3D thermal lensing effects of different coatings on glass and saffire.ipynb
+│   ├── Lesson 22. Report - Benchmarking various GPU-accelerated frameworks.ipynb
+│   ├── Lesson 23. Report - Convolutional neural network for fully vectorial output beam prediction from arbitrary pump - seed configuration.ipynb
+│   ├── Lesson 24. Acceptance Tests for Supervised Machine Learning of Conjugate Phase and Polarization Profiles.ipynb
+│   ├── Lesson 24. Acceptance Tests for Wavefront Reconstruction using SLM CGHs.ipynb
+│   ├── hdf5db
+│   │   └── storage.hdf5
+│   ├── images
+│   ├── reports
+│   │   ├── Experimental validation of 3D Flat-Top Thermal Lensing Simulation.ipynb
+│   │   └── Comparrison of Thermal Lensing Abberrations Between Fused Silica and Saphire.ipynb
+│   ├── storage.hdf5
+│   └── videos
+├── README.md
+├── README.org
+├── requirements.py
+├── setup.py
+├── tests
+│   ├── conftest.py
+│   ├── beamprop
+│   │   ├── conftest.py
+│   │   └── test_beamprop.py
+│   ├── fdsolver
+│   │   ├── conftest.py
+│   │   └── test_fdsolver.py
+│   ├── gaussian_heat_source
+│   │   ├── conftest.py
+│   │   └── test_gaussian_heat_source.py
+│   ├── heateqn
+│   │   ├── conftest.py
+│   │   └── test_heateqn.py
+│   ├── phasemod
+│   │   ├── conftest.py
+│   │   └── test_phasemod.py
+│   ├── visualize
+│   │   ├── conftest.py
+│   │   └── test_visualize.py
+├── pytest.ini
+├── usage.png
+└── photonicslab
+    ├── __init__.py
+    ├── amplifier.py
+    ├── beamprop.py
+    ├── beamqual.py
+    ├── config.py
+    ├── fdsolver.py
+    ├── gaineqn.py
+    ├── heateqn.py
+    ├── maxwelleqn.py
+    ├── phasemod.py
+    ├── resonator.py
+    ├── anisotropy.py
+    └── visualize.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="application-programming-interface">
+<h2>Application Programming Interface<a class="headerlink" href="#application-programming-interface" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://docs.python.org/3/c-api/intro.html">API</a> and developer
+documentation was built using <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx
+1.6.5-2</a>, and generated
+automatically and directly from the source-code and is available to be
+viewed in a browser as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ firefox docs/html/index.html
+</pre></div>
+</div>
+<div class="section" id="configuring-sphinx">
+<h3>Configuring Sphinx<a class="headerlink" href="#configuring-sphinx" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sphinx-quickstart
+</pre></div>
+</div>
+<p>After <a class="reference external" href="http://www.sphinx-doc.org/en/stable/tutorial.html">configuring
+Sphinx</a> to build
+the documentation, enable
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/napoleon.html">Napoleon</a>
+which is a <a class="reference external" href="http://www.sphinx-doc.org/en/stable/extensions.html">Sphinx
+Extension</a>
+allowing one to use either
+<a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google</a> or
+<a class="reference external" href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt">NumPy</a>
+style <a class="reference external" href="https://www.python.org/dev/peps/pep-0287/">docstrings</a>, and
+change the theme. Note that this project subscribes to the <a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/example_google.html">Google
+docstring
+convention</a>.
+Also, ensure that the
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/math.html#module-sphinx.ext.mathjax">MathJax</a>
+extension is also enabled as this JavaScript package is used to
+transform the as-is LaTeX markup to readable math live in the HTML
+browser. Make sure to also enable the
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/autodoc.html#module-sphinx.ext.autodoc">AutoDoc</a>
+and
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/autosummary.html">AutoSummary</a>
+extensions to enable automatic documentation generation directly from
+the source code’s doctstrings. Configure support for <a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/todo.html">todo
+items</a>. Configure
+support for <a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/inheritance.html">inheritance
+diagrams</a>.
+In addition, the <code class="docutils literal notranslate"><span class="pre">html_sidebars</span></code> directive add documentation traversal
+links to all the source pages, <em>see</em> &lt;./docs/methods.rst&gt; for automatic
+generation of single page function definitions. Finally configure
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/intersphinx.html">Intersphinx</a>
+to link to other project’s documentation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ./docs/conf.py</span>
+<span class="c1">#---------------</span>
+
+<span class="c1"># Add napoleon to the extensions list</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sphinx.ext.autosummary&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.intersphinx&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.etx.todo&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sphinx.ext.inheritance_diagram&#39;</span><span class="o">...</span><span class="p">]</span>
+<span class="c1"># ...</span>
+<span class="n">autosummary_generate</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Make _autosummary files and include them</span>
+<span class="n">napoleon_numpy_docstring</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">napolean_use_rtype</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">todo_include_todos</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">inheritance_graph_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">rankdir</span><span class="o">=</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;&quot;&quot;&#39;</span><span class="p">)</span>
+<span class="c1"># ...</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;classic&#39;</span>
+<span class="c1"># ...</span>
+<span class="n">html_sidebars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;**&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;localtoc.html&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;relations.html&#39;</span><span class="p">,</span>  <span class="c1"># needs &#39;show_related&#39;: True theme option to display</span>
+        <span class="s1">&#39;searchbox.html&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="c1"># ...</span>
+<span class="n">intersphinx_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;python&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://docs.python.org/3/&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                       <span class="s1">&#39;numpy&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;http://docs.scipy.org/doc/numpy/&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                       <span class="s1">&#39;scipy&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;http://docs.scipy.org/doc/scipy/reference&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                       <span class="s1">&#39;matplotlib&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;http://matplotlib.sourceforge.net&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                       <span class="s1">&#39;h5py&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s1">&#39;http://docs.h5py.org/en/latest/&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                       <span class="s1">&#39;sklearn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;http://scikit-learn.org/stable/&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>To render mathematics in web pages using LaTeX, ensure that you have
+MathJax installed on your system, see <a class="reference external" href="http://docs.mathjax.org/en/latest/start.html">Getting Started with
+MathJax</a>.</p>
+<p>To render the inheritance diagrams for the application programming
+interface, ensure that you have <a class="reference external" href="https://www.graphviz.org">Graphviz</a>
+installed on your system.</p>
+<p>One is encouraged to refer to the following resources with regards to
+the docstring conventions and constructs:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">reStructuredText
+Primer</a>: Brief
+introduction to reStructuredText(reST) concepts and syntax.</p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/math.html">Math support in
+Sphinx</a>: Keep
+in mind that when you put math markup in <strong>Python doc-strings</strong> read
+by
+<a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/autodoc.html#module-sphinx.ext.autodoc">autodoc</a>,
+you either have to double all backslashes, or use Python raw strings
+(r“raw”). The convention in this project is to double all
+backslashes.</p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/markup/inline.html">Inline
+markup</a>:
+Sphinx uses interpreted text roles to insert semantic markup into
+documents.</p></li>
+<li><p><a class="reference external" href="https://pythonhosted.org/an_example_pypi_project/sphinx.html">Documenting Your Project Using
+Sphinx</a>:
+This covers a few of the many, many commands available via sphinx.</p></li>
+</ul>
+</div>
+<div class="section" id="configuring-api-landing-page">
+<h3>Configuring API landing page<a class="headerlink" href="#configuring-api-landing-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#./docs/index.rst
+#-------------------------
+.. photonicslab documentation master file, created by
+   sphinx-quickstart on Thu Dec  7 15:55:26 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive. Check indentation of indices and tables.
+
+Quick Start
+===========
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Getting Started Guide
+
+   quickstart
+
+Documentation
+=============
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Photonicslab&#39;s Documentation:
+
+   README
+
+API
+===
+
+.. inheritance-diagram::
+   photonicslab.isotropy
+   photonicslab.heateqn
+   photonicslab.fdsolver
+   photonicslab.phasemod
+   photonicslab.beamprop
+   photonicslab.anisotropy
+   photonicslab.gaineqn
+   photonicslab.optomech
+   photonicslab.amplifier
+   photonicslab.resonator
+   photonicslab.beamqual
+   photonicslab.geometry
+   photonicslab.adaptopt
+   photonicslab.demultiplex
+   photonicslab.aberration
+   photonicslab.visualize
+   :parts: 2
+
+.. toctree::
+   :maxdepth: 2
+
+   methods
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`search`
+
+TODO List
+=========
+
+.. todolist::
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-api-function-definitions">
+<h3>Configure API Function Definitions<a class="headerlink" href="#configure-api-function-definitions" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#./docs/methods.rst</span>
+<span class="c1">#---------------------------</span>
+<span class="n">Application</span> <span class="n">Programming</span> <span class="n">Interface</span>
+<span class="o">=================================</span>
+
+<span class="o">..</span> <span class="n">currentmodule</span><span class="p">::</span> <span class="n">photonicslab</span>
+
+<span class="o">..</span> <span class="n">autosummary</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">toctree</span><span class="p">:</span>
+
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">index_distr</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">get_GRIN_focal_len</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">remove_strain</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">remove_stress</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">add_supergaussian_displacement_field</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">plot_source_fields</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">thermal_stress</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">linear_displacement_strain</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">isotropy</span><span class="o">.</span><span class="n">GRINLens</span><span class="o">.</span><span class="n">effective_strain</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_supergaussian</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_supergaussian_ring</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_supergaussian_block</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_source_from_image</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_source_from_hdf5</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_gaussian</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_flattop</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_flattop_ring</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">add_flattop_block</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">remove_sources</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">plot_source_profile</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">get_explicit_fd_params</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn2D</span><span class="o">.</span><span class="n">get_cn_fd_params</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span><span class="o">.</span><span class="n">add_normalized_pump_gaussian</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span><span class="o">.</span><span class="n">remove_sources</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span><span class="o">.</span><span class="n">plot_source_profile</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span><span class="o">.</span><span class="n">get_explicit_fd_params</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">heateqn</span><span class="o">.</span><span class="n">HeatEqn3D</span><span class="o">.</span><span class="n">get_cn_fd_params</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver2D</span><span class="o">.</span><span class="n">explicit_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver2D</span><span class="o">.</span><span class="n">explicit_method_hdf</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">vectorize</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">implicit_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">implicit_cupy_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">implicit_pycuda_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">implicit_tf_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">adi_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">tdma_solver</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">fdsolver</span><span class="o">.</span><span class="n">FDSolver3D</span><span class="o">.</span><span class="n">explicit_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">ThermalLens</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">ThermalLens</span><span class="o">.</span><span class="n">parabolic_fit</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">ThermalLens</span><span class="o">.</span><span class="n">phase</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">ThermalLens3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">ThermalLens3D</span><span class="o">.</span><span class="n">phase_heat</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">OptoMechLens3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">OptoMechLens3D</span><span class="o">.</span><span class="n">phase_stress</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">OptoMechLens3D</span><span class="o">.</span><span class="n">phase_strain</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">SLM</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">SLM</span><span class="o">.</span><span class="n">generate_screen</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">phasemod</span><span class="o">.</span><span class="n">DM</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp2D</span><span class="o">.</span><span class="n">lg_mode</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp2D</span><span class="o">.</span><span class="n">convolve</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp2D</span><span class="o">.</span><span class="n">modulate</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamprop</span><span class="o">.</span><span class="n">BeamProp3D</span><span class="o">.</span><span class="n">convolve</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">measure_focal_length</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">measure_waist_first_null</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">measure_waist_variance</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">measure_waist_fwhm</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">measure_quality</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">lens_func</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">convolve</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">plot_quality_profile</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">plot_second_focal_plane</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">MSquared</span><span class="o">.</span><span class="n">plot_fourth_focal_plane</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">ModalDecomp</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">beamqual</span><span class="o">.</span><span class="n">VQF</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">lg_mode</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">convolve</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">modulate</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">vectorize</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">implicit_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">adi_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">convolve</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">mirror_phase_factor</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">surface_deformation_phase_factor</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">free_space_implicit</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">free_space_adi_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">ParaxialWaveEqn</span><span class="o">.</span><span class="n">tdma_solver</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">optomech</span><span class="o">.</span><span class="n">NonParaxialWaveEqn</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">anisotropy</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">anisotropy</span><span class="o">.</span><span class="n">Birefringence</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">anisotropy</span><span class="o">.</span><span class="n">MechStress</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">anisotropy</span><span class="o">.</span><span class="n">ThermalStress</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">geometry</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">ThermalExpansion</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">FractureAnalysis</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">gaineqn</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">gaineqn</span><span class="o">.</span><span class="n">ScalarGainCoeff</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">gaineqn</span><span class="o">.</span><span class="n">VectorGainCoeff</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">gaineqn</span><span class="o">.</span><span class="n">DynamicRateEqn</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">EndPumped</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">EndPumped</span><span class="o">.</span><span class="n">vectorize</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">EndPumped</span><span class="o">.</span><span class="n">implicit_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">EndPumped</span><span class="o">.</span><span class="n">adi_method</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">EndPumped</span><span class="o">.</span><span class="n">tdma_solver</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">SidePumped</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">amplifier</span><span class="o">.</span><span class="n">MultiMode</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">resonator</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">resonator</span><span class="o">.</span><span class="n">SingleMode</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">resonator</span><span class="o">.</span><span class="n">SingleModeSide</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">demultiplex</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">demultiplex</span><span class="o">.</span><span class="n">OAMDeMux</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">demultiplex</span><span class="o">.</span><span class="n">WavlenDeMux</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">demultiplex</span><span class="o">.</span><span class="n">PolDeMux</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span><span class="o">.</span><span class="n">Propagation</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span><span class="o">.</span><span class="n">FeaturePrediction</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span><span class="o">.</span><span class="n">PreserveGaussian</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span><span class="o">.</span><span class="n">PreserveSuperGaussian</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">adaptopt</span><span class="o">.</span><span class="n">PreserveLGMode</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">aberration</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">aberration</span><span class="o">.</span><span class="n">Monochromatic</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">aberration</span><span class="o">.</span><span class="n">Chromatic</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">aberration</span><span class="o">.</span><span class="n">ZernickePoly</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize2D</span><span class="o">.</span><span class="n">steadystate_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize2D</span><span class="o">.</span><span class="n">transient_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizePhase2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizePhase2D</span><span class="o">.</span><span class="n">steadystate_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizePhase2D</span><span class="o">.</span><span class="n">transient_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam2D</span><span class="o">.</span><span class="n">add_filter_circular</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam2D</span><span class="o">.</span><span class="n">add_filter_rectangular</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam2D</span><span class="o">.</span><span class="n">steadystate_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam2D</span><span class="o">.</span><span class="n">transient_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeSelfLensBeam2D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeSelfLensBeam2D</span><span class="o">.</span><span class="n">steadystate_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeSelfLensBeam2D</span><span class="o">.</span><span class="n">transient_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize3D</span><span class="o">.</span><span class="n">steadystate_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize3D</span><span class="o">.</span><span class="n">steadystate_source_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">Visualize3D</span><span class="o">.</span><span class="n">transient_profiles</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizePhase3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeam3D</span>
+   <span class="n">photonicslab</span><span class="o">.</span><span class="n">visualize</span><span class="o">.</span><span class="n">VisualizeBeamProp3D</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-api">
+<h3>Building API<a class="headerlink" href="#building-api" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Create <a class="reference external" href="https://linux.die.net/man/1/ln">symbolic links</a> to any
+images that are to be used in the developer documentation,
+specifically if there’s been any changes to said images.</p></li>
+<li><p>Use Pandoc to convert the markdown README file to the reST format.</p></li>
+<li><p>Use Sphinx to generate the API documentation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ln -sf usage.png ./docs/usage.png
+$ pandoc --from=markdown --to=rst --output=./docs/quickstart.rst quickstart.md
+$ pandoc --from=markdown --to=rst --output=./docs/README.rst README.md
+$ sphinx-build -b html ./docs ./docs/html
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<p>To actively contribute to the project, email your <a class="reference external" href="https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html">public
+ssh-key</a>
+to the repository <a class="reference external" href="mailto:Nlisa&#37;&#52;&#48;csir&#46;co&#46;za">admin</a> and you will then
+be free to check-out the source and submit pull requests using at least
+<a class="reference external" href="https://git-scm.com/">Git 2.15.0</a>. <em>See the</em> <a class="reference external" href="https://confluence.atlassian.com/bitbucket/work-on-a-repository-675189337.html">Bitbucket
+Support</a>
+documentation for guides on howto:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/clone-a-repository-223217891.html">Cloning a
+repository</a>,</p></li>
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/forking-a-repository-221449527.html">Forking a
+repository</a>,</p></li>
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/work-on-local-source-files-223217905.html">Working on local source
+files</a>,</p></li>
+<li><p><a class="reference external" href="https://help.github.com/articles/configuring-a-remote-for-a-fork/">Configuring a remote for a
+fork</a>,</p></li>
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/push-updates-to-a-repo-221449525.html">Pushing updates to remote
+fork</a>,</p></li>
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/work-with-pull-requests-223220593.html">Working with pull
+requests</a>,
+and</p></li>
+<li><p><a class="reference external" href="https://confluence.atlassian.com/bitbucket/get-started-with-bitbucket-pipelines-792298921.html">Getting started with Bitbucket
+Pipelines</a>.</p></li>
+</ol>
+<div class="section" id="use-git-to-modify-source-code">
+<h2>Use Git to modify source-code<a class="headerlink" href="#use-git-to-modify-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Ensure that your
+<a class="reference external" href="https://www.atlassian.com/git/tutorials/comparing-workflows">Workflow</a>
+is consistent withe the following <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches">Remote Branch
+Structure</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git remote -v
+origin  git@bitbucket.org/CMabena/photonicslab.git (fetch)
+origin  git@bitbucket.org/CMabena/photonicslab.git (push)
+upstream    git@bitbucket.org:NLisa/photonicslab.git (fetch)
+upsteram    git@bitbucket.org:NLisa/photonicslab.git (push)
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-framework">
+<h2>Testing Framework<a class="headerlink" href="#testing-framework" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://docs.pytest.org/en/latest/">PyTest</a> is used to implement
+<a class="reference external" href="https://sites.google.com/site/agilepatterns/home/inspect-and-adapt">Inspect and Adapt - Agile
+Patterns</a>
+or <a class="reference external" href="https://martinfowler.com/bliki/TestDrivenDevelopment.html">TDD by Martin
+Fowler</a>.
+Configure your <code class="docutils literal notranslate"><span class="pre">.rc</span></code> file to ensure <code class="docutils literal notranslate"><span class="pre">pytest</span></code> includes the source
+folder on invocation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ~/.zshrc</span>
+<span class="n">alias</span> <span class="n">pytest</span><span class="o">=</span><span class="s1">&#39;PYTHONPATH=. pytest&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="continuous-integration-and-deployment">
+<h2>Continuous Integration and Deployment<a class="headerlink" href="#continuous-integration-and-deployment" title="Permalink to this headline">¶</a></h2>
+<p>By providing a remote, virtual environment, continuous integration
+practices permit the building, testing and merging of small code changes
+frequently, as opposed to merging in a large change only at the end of
+the development cycle.</p>
+<p>Ensure that you’ve correctly configured your requirements file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span>
+<span class="n">scipy</span>
+<span class="n">matplotlib</span>
+<span class="n">h5py</span>
+<span class="n">pytest</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">cov</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">xdist</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">benchmark</span>
+</pre></div>
+</div>
+<p>For repositories hosted on BitBucket,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#bitbucket-pipelines.yml</span>
+<span class="n">image</span><span class="p">:</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.6</span><span class="o">.</span><span class="mi">4</span>
+<span class="n">pipelines</span><span class="p">:</span>
+  <span class="n">default</span><span class="p">:</span>
+    <span class="o">-</span> <span class="n">step</span><span class="p">:</span>
+        <span class="n">caches</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">pip</span>
+        <span class="n">script</span><span class="p">:</span>
+          <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+          <span class="o">-</span> <span class="n">PYTHONPATH</span><span class="o">=.</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">photonicslab</span> <span class="o">-</span><span class="n">vv</span>
+</pre></div>
+</div>
+<p>For repositories hosted on Github,
+<a class="reference external" href="https://travis-ci.org/">Travis-CI</a> is the tool of choice, ensure the
+configuration file is prepared as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># .travis.yml</span>
+<span class="n">language</span><span class="p">:</span> <span class="n">python</span>
+<span class="n">python</span><span class="p">:</span>
+  <span class="o">-</span> <span class="s2">&quot;3.6&quot;</span>
+<span class="n">install</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="n">script</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">PYTHONPATH</span><span class="o">=.</span> <span class="n">pytest</span> <span class="o">--</span><span class="n">cov</span><span class="o">=</span><span class="n">photonicslab</span> <span class="o">-</span><span class="n">vv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="mailto:NLisa&#37;&#52;&#48;csir&#46;co&#46;za">Nyameko Lisa</a></p></li>
+<li><p><a class="reference external" href="mailto:CMabena&#37;&#52;&#48;csir&#46;co&#46;za">Chemist Mabena</a></p></li>
+<li><p><a class="reference external" href="mailto:dnaidoo3&#37;&#52;&#48;csir&#46;co&#46;za">Dr Darryl Naidoo</a></p></li>
+<li><p><a class="reference external" href="mailto:HStrauss&#37;&#52;&#48;csir&#46;co&#46;za">Dr Hencharl Strauss</a></p></li>
+<li><p><a class="reference external" href="mailto:ASharma&#37;&#52;&#48;csir&#46;co&#46;za">Ameeth Sharma</a></p></li>
+</ul>
+</div>
+<div class="section" id="task-list">
+<h2>Task List<a class="headerlink" href="#task-list" title="Permalink to this headline">¶</a></h2>
+<p>This is the current list of outstanding tasks as of Wednesday
+2019-03-07.</p>
+<ul class="simple">
+<li><p><strong>TODO</strong>: Refactor all numerical operations, eg: np.sum(a*a) -&gt;
+a.dot(a) etc.</p></li>
+<li><p><strong>TODO</strong>: Raise exception / warning everytime hdf5 object is resized
+as this is very expensive and inefficient.</p></li>
+<li><p><strong>TODO</strong>: Exception chaining for all methods, documentation with
+images, and testing entire codebase.</p></li>
+<li><p><strong>TODO</strong>: Parallel hdf5 processing. (Need to rebuild h5py with mpi)
+Or switch to Hadoop / Hive</p>
+<ul>
+<li><p><strong>TODO</strong>: Using multiple MPI threads to read/write to multiple
+datasets concurrently</p></li>
+<li><p><strong>TODO</strong> Setup HDFS (Hadoop File System) and Hive</p></li>
+</ul>
+</li>
+<li><p><strong>BUSY</strong>: Visualization class cleanup</p>
+<ul>
+<li><p><em>FIXME</em>: Source projection onto non-rectangular crystal faces</p></li>
+<li><p><em>FIXME</em>: Closure/DRYness for plotting and animation initialization
+/ private members</p></li>
+<li><p><strong>FIXME</strong>: Major refactor required for all visualize classes
+_initcanvas, _initanim, and _stepanim functions</p></li>
+<li><p><strong>TODO</strong>: Visualization class, &#64;propaerty, initanimproperty
+&#64;initanimproperty.setter etc</p></li>
+</ul>
+</li>
+<li><p><strong>BUSY</strong>: Update documentation examples for each function</p></li>
+<li><p><strong>TODO</strong>: Thermal Lensing - Experimental verification of incident and
+emergent power meter readings, beam diameters, focal lengths and
+thermal imaging of window/crystal/lens end-faces.</p></li>
+<li><p><strong>TODO</strong>: Minor refactor to standardise naming conventions for
+private members,2 camelCase and underscores etc -<em>TODO</em>: More
+sensible exception handling for post processing previously generated
+data (images/hdf5).</p></li>
+<li><p><em>TODO</em>: Incorporate Pythonic Phase Screen Generation and SLM
+Interface</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">About</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li><a class="reference internal" href="#future-dependencies">Future dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#use-git-to-get-source-code">Use Git to get source-code</a></li>
+<li><a class="reference internal" href="#jupyter-notebooks">Jupyter Notebooks</a></li>
+<li><a class="reference internal" href="#project-layout-and-documentation">Project Layout and Documentation</a></li>
+<li><a class="reference internal" href="#application-programming-interface">Application Programming Interface</a><ul>
+<li><a class="reference internal" href="#configuring-sphinx">Configuring Sphinx</a></li>
+<li><a class="reference internal" href="#configuring-api-landing-page">Configuring API landing page</a></li>
+<li><a class="reference internal" href="#configure-api-function-definitions">Configure API Function Definitions</a></li>
+<li><a class="reference internal" href="#building-api">Building API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#development">Development</a><ul>
+<li><a class="reference internal" href="#use-git-to-modify-source-code">Use Git to modify source-code</a></li>
+<li><a class="reference internal" href="#testing-framework">Testing Framework</a></li>
+<li><a class="reference internal" href="#continuous-integration-and-deployment">Continuous Integration and Deployment</a></li>
+<li><a class="reference internal" href="#contributors">Contributors</a></li>
+<li><a class="reference internal" href="#task-list">Task List</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="previous chapter">Quick Start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="methods.html"
+                        title="next chapter">Application Programming Interface</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="methods.html" title="Application Programming Interface"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick Start"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.beamprop.BeamProp2D.lg_mode &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.beamprop.BeamProp2D.convolve" href="photonicslab.beamprop.BeamProp2D.convolve.html" />
+    <link rel="prev" title="photonicslab.beamprop.BeamProp2D" href="photonicslab.beamprop.BeamProp2D.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamprop.BeamProp2D.convolve.html" title="photonicslab.beamprop.BeamProp2D.convolve"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamprop.BeamProp2D.html" title="photonicslab.beamprop.BeamProp2D"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-beamprop-beamprop2d-lg-mode">
+<h1>photonicslab.beamprop.BeamProp2D.lg_mode<a class="headerlink" href="#photonicslab-beamprop-beamprop2d-lg-mode" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.beamprop.BeamProp2D.lg_mode">
+<code class="sig-prename descclassname">BeamProp2D.</code><code class="sig-name descname">lg_mode</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">l</em>, <em class="sig-param">z</em>, <em class="sig-param">phi</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/beamprop.html#BeamProp2D.lg_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.beamprop.BeamProp2D.lg_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate amplitude for initial Laguerre-Gauss mode seed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>p&gt;=0</em>) – Radial mode index denoting number of radial nodes.</p></li>
+<li><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Azimuthal mode index denoting number of intertwined helices.</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation distance along optical axis [cm].</p></li>
+<li><p><strong>phi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Vortex phase term [rad].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a> of <span class="math notranslate nohighlight">\(LG_p^l\)</span> modes, normalised <span class="math notranslate nohighlight">\(LG_p^l\)</span> modes and normalized intensity distributions <span class="math notranslate nohighlight">\(I\)</span>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a></p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.beamprop.BeamProp2D.zR">
+<code class="sig-name descname">zR</code><a class="headerlink" href="#photonicslab.beamprop.BeamProp2D.zR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rayleigh range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamprop.width">
+<code class="sig-prename descclassname">photonicslab.beamprop.</code><code class="sig-name descname">width</code><a class="headerlink" href="#photonicslab.beamprop.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Beam width <span class="math notranslate nohighlight">\(w(z) = \omega_{0}\sqrt{1+\left(\frac{z}{z_R}\right)}\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamprop.LG">
+<code class="sig-prename descclassname">photonicslab.beamprop.</code><code class="sig-name descname">LG</code><a class="headerlink" href="#photonicslab.beamprop.LG" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D cross-sectional profile for Laguerre-Gauss mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamprop.normalized_LG">
+<code class="sig-prename descclassname">photonicslab.beamprop.</code><code class="sig-name descname">normalized_LG</code><a class="headerlink" href="#photonicslab.beamprop.normalized_LG" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D cross-sectional profile for normalized Laguerre-Gauss mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamprop.normalized_I">
+<code class="sig-prename descclassname">photonicslab.beamprop.</code><code class="sig-name descname">normalized_I</code><a class="headerlink" href="#photonicslab.beamprop.normalized_I" title="Permalink to this definition">¶</a></dt>
+<dd><p>2D cross-sectional profile for normalized intensity distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Try / Except blocks for zerodivision or valueerror if waist=0 and for p and l indices.</p></li>
+<li><p>Normalise variables using sklearn.</p></li>
+<li><p>FIXME: Wavelength dependency of index of refraction <span class="math notranslate nohighlight">\(n(\lambda)\)</span></p></li>
+</ul>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/journal/00304018/184/1-4">L. Allen, M.J. Padgett Optics Communications 184 (2000) 67-71</a></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p>method <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html#sklearn.preprocessing.normalize" title="(in scikit-learn v0.21.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.preprocessing.normalize()</span></code></a></p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.beamprop.BeamProp2D.html"
+                        title="previous chapter">photonicslab.beamprop.BeamProp2D</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.beamprop.BeamProp2D.convolve.html"
+                        title="next chapter">photonicslab.beamprop.BeamProp2D.convolve</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamprop.BeamProp2D.convolve.html" title="photonicslab.beamprop.BeamProp2D.convolve"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamprop.BeamProp2D.html" title="photonicslab.beamprop.BeamProp2D"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

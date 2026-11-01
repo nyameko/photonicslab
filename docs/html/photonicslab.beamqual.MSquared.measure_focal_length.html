@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.beamqual.MSquared.measure_focal_length &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.beamqual.MSquared.measure_waist_first_null" href="photonicslab.beamqual.MSquared.measure_waist_first_null.html" />
+    <link rel="prev" title="photonicslab.beamqual.MSquared" href="photonicslab.beamqual.MSquared.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_first_null.html" title="photonicslab.beamqual.MSquared.measure_waist_first_null"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.html" title="photonicslab.beamqual.MSquared"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-beamqual-msquared-measure-focal-length">
+<h1>photonicslab.beamqual.MSquared.measure_focal_length<a class="headerlink" href="#photonicslab-beamqual-msquared-measure-focal-length" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.beamqual.MSquared.measure_focal_length">
+<code class="sig-prename descclassname">MSquared.</code><code class="sig-name descname">measure_focal_length</code><span class="sig-paren">(</span><em class="sig-param">z_start</em>, <em class="sig-param">z_end</em>, <em class="sig-param">z_start_y=None</em>, <em class="sig-param">z_end_y=None</em>, <em class="sig-param">x_centroid=0.0</em>, <em class="sig-param">y_centroid=0.0</em>, <em class="sig-param">max_iter=250</em>, <em class="sig-param">atol=0.1</em>, <em class="sig-param">debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/beamqual.html#MSquared.measure_focal_length"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.beamqual.MSquared.measure_focal_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use binary / bisection search to determine <cite>z_{0x}</cite> and <cite>z_{0y}</cite> i.e. axial focal lengths in both x and y for astigmatic beam profiles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation start range for measurements.</p></li>
+<li><p><strong>z_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation stop range for measurements.</p></li>
+<li><p><strong>z_start_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation start range for measurements.</p></li>
+<li><p><strong>z_end_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation stop range for measurements.</p></li>
+<li><p><strong>y_centroid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – y value corresponding to peak transverse intensity along x</p></li>
+<li><p><strong>x_centroid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – x value corresponding to peak transverse intensity along y</p></li>
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Maximum number of convolutions.</p></li>
+<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Absolute tolerance, determines stopping condition when z_start and z_end frames are sufficiently close.</p></li>
+<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Prints debugging information during execution.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.beamqual.MSquared.parentgrp">
+<code class="sig-name descname">parentgrp</code><a class="headerlink" href="#photonicslab.beamqual.MSquared.parentgrp" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 group object with amplification / gain thermal-opto-mechanical lensing / phase modulation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://docs.h5py.org/en/latest/high/group.html#Group" title="(in h5py v2.9)"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.grp">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">grp</code><a class="headerlink" href="#photonicslab.beamqual.grp" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 subgroup object for beam properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://docs.h5py.org/en/latest/high/group.html#Group" title="(in h5py v2.9)"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.count">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">count</code><a class="headerlink" href="#photonicslab.beamqual.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search loop iteration counter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.z_mid">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">z_mid</code><a class="headerlink" href="#photonicslab.beamqual.z_mid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagation midrange for binary search bisection method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.fseed_mod_z_start">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">fseed_mod_z_start</code><a class="headerlink" href="#photonicslab.beamqual.fseed_mod_z_start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search boundary for transverse intensity profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.fseed_mod_z_mid">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">fseed_mod_z_mid</code><a class="headerlink" href="#photonicslab.beamqual.fseed_mod_z_mid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search boundary for transverse intensity profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.fseed_mod_z_endface">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">fseed_mod_z_endface</code><a class="headerlink" href="#photonicslab.beamqual.fseed_mod_z_endface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search boundary for transverse intensity profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Focal lengths <cite>z_{0x}</cite> and <cite>z_{0y}</cite>, and the corresponding field and intensity profiles are stored in HDF5 database for calculating <cite>M^2</cite> beam quality measure.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a>)</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Generalize logic to find 2 peaks independently in x and y. (Double the searches though)</p></li>
+<li><p>TODO: Exception handling.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.html"
+                        title="previous chapter">photonicslab.beamqual.MSquared</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.measure_waist_first_null.html"
+                        title="next chapter">photonicslab.beamqual.MSquared.measure_waist_first_null</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_first_null.html" title="photonicslab.beamqual.MSquared.measure_waist_first_null"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.html" title="photonicslab.beamqual.MSquared"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

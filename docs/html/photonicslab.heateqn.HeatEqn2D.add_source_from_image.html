@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.heateqn.HeatEqn2D.add_source_from_image &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5" href="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5.html" />
+    <link rel="prev" title="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block" href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5.html" title="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block.html" title="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-heateqn-heateqn2d-add-source-from-image">
+<h1>photonicslab.heateqn.HeatEqn2D.add_source_from_image<a class="headerlink" href="#photonicslab-heateqn-heateqn2d-add-source-from-image" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.heateqn.HeatEqn2D.add_source_from_image">
+<code class="sig-prename descclassname">HeatEqn2D.</code><code class="sig-name descname">add_source_from_image</code><span class="sig-paren">(</span><em class="sig-param">savepath='images/Q_image.png', center_x=None, center_y=None, q=None, nt_start=0, nt_end=None, w_rgb=[0.8554, 0.0525, 0.0921]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/heateqn.html#HeatEqn2D.add_source_from_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.heateqn.HeatEqn2D.add_source_from_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a heat source to the current instance of the heateqn2D object from an image file.</p>
+<p>Reads in an arbitrary image file, converts this to greyscale with user
+adjustable rgb weightings. Background subtraction is done automatically
+and the weighted center of mass is used to center the image, unless
+center_x and center_y values are provided in which case the source
+image in centered on those user values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>savepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Image filename savepath.</p></li>
+<li><p><strong>center_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – X co-ordinate of the center of mass of the profile of the heat source [cm].</p></li>
+<li><p><strong>center_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Y co-ordinate of the center of mass of the profile of the heat source [cm].</p></li>
+<li><p><strong>q</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Amplitude of Gaussian heat source. Uses class constructor default <a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.html#photonicslab.heateqn.HeatEqn2D.Qinit" title="photonicslab.heateqn.HeatEqn2D.Qinit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Qinit</span></code></a>.</p></li>
+<li><p><strong>nt_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Starting time-step from which to add source.</p></li>
+<li><p><strong>nt_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Ending time-step after which source no longer contributes to solver.</p></li>
+<li><p><strong>w_rgb</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><em>ndarray</em></a>) – Red, Green and Blue weighting factors for grayscale conversion.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn2D.imageRGB">
+<code class="sig-name descname">imageRGB</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn2D.imageRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw RGB image resized to [Nx, Ny].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.image">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">image</code><a class="headerlink" href="#photonicslab.heateqn.image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Greyscale version of imageRGB converted using w_rgb weightings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.threshold_value">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">threshold_value</code><a class="headerlink" href="#photonicslab.heateqn.threshold_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return threshold value based on Otsu’s method,                                            for background subtraction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.labeled_foreground">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">labeled_foreground</code><a class="headerlink" href="#photonicslab.heateqn.labeled_foreground" title="Permalink to this definition">¶</a></dt>
+<dd><p>Boolean array, for integer values above background                                                        threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.properties">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">properties</code><a class="headerlink" href="#photonicslab.heateqn.properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure properties of labeled image regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.weighted_center_of_mass">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">weighted_center_of_mass</code><a class="headerlink" href="#photonicslab.heateqn.weighted_center_of_mass" title="Permalink to this definition">¶</a></dt>
+<dd><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a>): Centroid coordinate tuple [nx, ny] weighted with                                                    intensity image.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.shift_x">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">shift_x</code><a class="headerlink" href="#photonicslab.heateqn.shift_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index value used to adjust x center value of image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.shift_y">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">shift_y</code><a class="headerlink" href="#photonicslab.heateqn.shift_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index value used to adjust y center value of image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If too much power is provided.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If the coordinates of the position of the heat source are out of bounds
+    of crystal face.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="simple">
+<dt>..seealso::</dt><dd><ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">rgb2gray()</span></code></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Otsu%27s_method">Wikipedia Otsu’s Method</a></p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/48888239/finding-the-center-of-mass-in-an-image">SO Using skimage.measure.regionprops</a></p></li>
+</ul>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Check for rollover/wraparound/reflect, and make that section zero.</p></li>
+<li><p>Exception handling and testing.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block.html"
+                        title="previous chapter">photonicslab.heateqn.HeatEqn2D.add_supergaussian_block</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5.html"
+                        title="next chapter">photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5.html" title="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block.html" title="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

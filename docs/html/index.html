@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quick Start &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Start" href="quickstart.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick Start"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Getting Started Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#anaconda">Anaconda</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#use-git-to-get-source-code-and-explore-jupyter-notebooks">Use Git to get source-code and Explore Jupyter Notebooks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Photonicslab's Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#anaconda">Anaconda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#future-dependencies">Future dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#use-git-to-get-source-code">Use Git to get source-code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#jupyter-notebooks">Jupyter Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#project-layout-and-documentation">Project Layout and Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#application-programming-interface">Application Programming Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README.html#configuring-sphinx">Configuring Sphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#configuring-api-landing-page">Configuring API landing page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#configure-api-function-definitions">Configure API Function Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README.html#building-api">Building API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#development">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README.html#use-git-to-modify-source-code">Use Git to modify source-code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#testing-framework">Testing Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#continuous-integration-and-deployment">Continuous Integration and Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#contributors">Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="README.html#task-list">Task List</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
+<div class="graphviz"><img src="_images/inheritance-5eb057ac3bc6bf6fa13ed3c6486e73725178f984.png" alt="Inheritance diagram of photonicslab.isotropy, photonicslab.heateqn, photonicslab.fdsolver, photonicslab.phasemod, photonicslab.beamprop, photonicslab.anisotropy, photonicslab.gaineqn, photonicslab.optomech, photonicslab.amplifier, photonicslab.resonator, photonicslab.beamqual, photonicslab.geometry, photonicslab.demultiplex, photonicslab.adaptopt, photonicslab.aberration, photonicslab.visualize" usemap="#inheritance6842335e46" class="inheritance graphviz" /></div>
+<map id="inheritance6842335e46" name="inheritance6842335e46">
+<area shape="rect" id="node1" href="photonicslab.aberration.Chromatic.html#photonicslab.aberration.Chromatic" target="_top" title="aberration.Chromatic" alt="" coords="395,592,555,617"/>
+<area shape="rect" id="node2" href="photonicslab.aberration.Monochromatic.html#photonicslab.aberration.Monochromatic" target="_top" title="aberration.Monochromatic" alt="" coords="475,519,668,544"/>
+<area shape="rect" id="node4" href="photonicslab.aberration.ZernickePoly.html#photonicslab.aberration.ZernickePoly" target="_top" title="aberration.ZernickePoly" alt="" coords="579,592,758,617"/>
+<area shape="rect" id="node3" href="photonicslab.demultiplex.WavlenDeMux.html#photonicslab.demultiplex.WavlenDeMux" target="_top" title="demultiplex.WavlenDeMux" alt="" coords="473,445,670,471"/>
+<area shape="rect" id="node5" href="photonicslab.adaptopt.FeaturePrediction.html#photonicslab.adaptopt.FeaturePrediction" target="_top" title="Analytical prediction of output seed propagated to an arbitrary plane." alt="" coords="1121,79,1318,104"/>
+<area shape="rect" id="node7" href="photonicslab.adaptopt.PreserveGaussian.html#photonicslab.adaptopt.PreserveGaussian" target="_top" title="adaptopt.PreserveGaussian" alt="" coords="1119,152,1320,177"/>
+<area shape="rect" id="node6" href="photonicslab.adaptopt.Propagation.html#photonicslab.adaptopt.Propagation" target="_top" title="adaptopt.Propagation" alt="" coords="1138,5,1301,31"/>
+<area shape="rect" id="node8" href="photonicslab.adaptopt.PreserveLGMode.html#photonicslab.adaptopt.PreserveLGMode" target="_top" title="adaptopt.PreserveLGMode" alt="" coords="1003,225,1196,251"/>
+<area shape="rect" id="node9" href="photonicslab.adaptopt.PreserveSuperGaussian.html#photonicslab.adaptopt.PreserveSuperGaussian" target="_top" title="adaptopt.PreserveSuperGaussian" alt="" coords="1220,225,1459,251"/>
+<area shape="rect" id="node10" href="photonicslab.amplifier.EndPumped.html#photonicslab.amplifier.EndPumped" target="_top" title="Paraxial Wave Equations in laser gain medium with pump on." alt="" coords="182,225,342,251"/>
+<area shape="rect" id="node12" href="photonicslab.amplifier.MultiMode.html#photonicslab.amplifier.MultiMode" target="_top" title="amplifier.MultiMode" alt="" coords="5,299,156,324"/>
+<area shape="rect" id="node40" href="photonicslab.resonator.SingleMode.html#photonicslab.resonator.SingleMode" target="_top" title="Paraxial Wave Equations in laser gain medium with pump on." alt="" coords="181,299,343,324"/>
+<area shape="rect" id="node11" href="photonicslab.optomech.ParaxialWaveEqn.html#photonicslab.optomech.ParaxialWaveEqn" target="_top" title="Paraxial Wave Equations in lenslike &#160;media." alt="" coords="454,152,657,177"/>
+<area shape="rect" id="node13" href="photonicslab.amplifier.SidePumped.html#photonicslab.amplifier.SidePumped" target="_top" title="amplifier.SidePumped" alt="" coords="381,225,545,251"/>
+<area shape="rect" id="node20" href="photonicslab.beamqual.MSquared.html#photonicslab.beamqual.MSquared" target="_top" title="Determine the :math:`M^2` beam quality factor from simulated or experimental propagation data." alt="" coords="570,225,725,251"/>
+<area shape="rect" id="node34" href="photonicslab.optomech.NonParaxialWaveEqn.html#photonicslab.optomech.NonParaxialWaveEqn" target="_top" title="optomech.NonParaxialWaveEqn" alt="" coords="749,225,978,251"/>
+<area shape="rect" id="node41" href="photonicslab.resonator.SingleModeSide.html#photonicslab.resonator.SingleModeSide" target="_top" title="resonator.SingleModeSide" alt="" coords="368,299,559,324"/>
+<area shape="rect" id="node14" href="photonicslab.anisotropy.Birefringence.html#photonicslab.anisotropy.Birefringence" target="_top" title="Naturally occurring birefringence effects." alt="" coords="1477,79,1657,104"/>
+<area shape="rect" id="node17" href="photonicslab.anisotropy.ThermalStress.html#photonicslab.anisotropy.ThermalStress" target="_top" title="Physically stress&#45;strain (eg Pinched Optics)induced birefringent deformations." alt="" coords="1473,152,1659,177"/>
+<area shape="rect" id="node15" href="photonicslab.isotropy.GRINLens.html#photonicslab.isotropy.GRINLens" target="_top" title="Graded Index lenslike medium where the refractive index varies with pace coordinates." alt="" coords="1689,5,1829,31"/>
+<area shape="rect" id="node32" href="photonicslab.heateqn.HeatEqn2D.html#photonicslab.heateqn.HeatEqn2D" target="_top" title="Two&#45;dimensional heat equation initialisation object." alt="" coords="1683,79,1835,104"/>
+<area shape="rect" id="node39" href="photonicslab.phasemod.ThermalLens.html#photonicslab.phasemod.ThermalLens" target="_top" title="Used in parabolic thermal lensing analysis of heat loads." alt="" coords="1865,79,2043,104"/>
+<area shape="rect" id="node16" href="photonicslab.anisotropy.MechStress.html#photonicslab.anisotropy.MechStress" target="_top" title="anisotropy.MechStress" alt="" coords="1483,225,1649,251"/>
+<area shape="rect" id="node31" href="photonicslab.geometry.ThermalExpansion.html#photonicslab.geometry.ThermalExpansion" target="_top" title="Linear expansion due to change in temperature used to model end&#45;face bulging effects." alt="" coords="1462,299,1670,324"/>
+<area shape="rect" id="node18" href="photonicslab.beamprop.BeamProp2D.html#photonicslab.beamprop.BeamProp2D" target="_top" title="Two&#45;dimensional electromagnetic beam propagation code." alt="" coords="669,79,847,104"/>
+<area shape="rect" id="node19" href="photonicslab.beamprop.BeamProp3D.html#photonicslab.beamprop.BeamProp3D" target="_top" title="Three&#45;dimensional electromagnetic beam propagation code." alt="" coords="681,152,859,177"/>
+<area shape="rect" id="node21" href="photonicslab.beamqual.ModalDecomp.html#photonicslab.beamqual.ModalDecomp" target="_top" title="Modal decomposition and phase de/multiplexing class." alt="" coords="583,299,767,324"/>
+<area shape="rect" id="node24" href="photonicslab.demultiplex.OAMDeMux.html#photonicslab.demultiplex.OAMDeMux" target="_top" title="demultiplex.OAMDeMux" alt="" coords="586,372,765,397"/>
+<area shape="rect" id="node22" href="photonicslab.beamqual.VQF.html#photonicslab.beamqual.VQF" target="_top" title="Determine the :math:`VQF` or vector quality factor from simulated or experimental propagation data." alt="" coords="721,519,838,544"/>
+<area shape="rect" id="node23" href="photonicslab.demultiplex.PolDeMux.html#photonicslab.demultiplex.PolDeMux" target="_top" title="demultiplex.PolDeMux" alt="" coords="695,445,864,471"/>
+<area shape="rect" id="node25" href="photonicslab.fdsolver.FDSolver2D.html#photonicslab.fdsolver.FDSolver2D" target="_top" title="Two&#45;dimensional finite&#45;difference solver object." alt="" coords="478,5,633,31"/>
+<area shape="rect" id="node26" href="photonicslab.fdsolver.FDSolver3D.html#photonicslab.fdsolver.FDSolver3D" target="_top" title="Three&#45;dimensional finite&#45;difference solver object." alt="" coords="478,79,633,104"/>
+<area shape="rect" id="node27" href="photonicslab.gaineqn.DynamicRateEqn.html#photonicslab.gaineqn.DynamicRateEqn" target="_top" title="gaineqn.DynamicRateEqn" alt="" coords="2080,152,2271,177"/>
+<area shape="rect" id="node28" href="photonicslab.gaineqn.VectorGainCoeff.html#photonicslab.gaineqn.VectorGainCoeff" target="_top" title="gaineqn.VectorGainCoeff" alt="" coords="2084,79,2267,104"/>
+<area shape="rect" id="node29" href="photonicslab.gaineqn.ScalarGainCoeff.html#photonicslab.gaineqn.ScalarGainCoeff" target="_top" title="gaineqn.ScalarGainCoeff" alt="" coords="2084,5,2267,31"/>
+<area shape="rect" id="node30" href="photonicslab.geometry.FractureAnalysis.html#photonicslab.geometry.FractureAnalysis" target="_top" title="geometry.FractureAnalysis" alt="" coords="1469,372,1663,397"/>
+<area shape="rect" id="node33" href="photonicslab.heateqn.HeatEqn3D.html#photonicslab.heateqn.HeatEqn3D" target="_top" title="Three&#45;dimensional heat equation initialisation object." alt="" coords="1683,152,1835,177"/>
+<area shape="rect" id="node35" href="photonicslab.phasemod.DM.html#photonicslab.phasemod.DM" target="_top" title="Deformable Mirror" alt="" coords="1830,299,1945,324"/>
+<area shape="rect" id="node36" href="photonicslab.phasemod.OptoMechLens3D.html#photonicslab.phasemod.OptoMechLens3D" target="_top" title="Three&#45;dimensional stress and strain lensing analysis of restricted thermal expansion or contraction and applied physically deforming torques forces." alt="" coords="1855,225,2061,251"/>
+<area shape="rect" id="node38" href="photonicslab.phasemod.SLM.html#photonicslab.phasemod.SLM" target="_top" title="Generate Spatial Light Modulator Phase Screen" alt="" coords="1969,299,2089,324"/>
+<area shape="rect" id="node37" href="photonicslab.phasemod.ThermalLens3D.html#photonicslab.phasemod.ThermalLens3D" target="_top" title="Three&#45;dimensional thermal lensing analysis of heat loads." alt="" coords="1860,152,2056,177"/>
+<area shape="rect" id="node42" href="photonicslab.visualize.Visualize2D.html#photonicslab.visualize.Visualize2D" target="_top" title="Two&#45;dimensional temperature visualisation object." alt="" coords="2764,5,2925,31"/>
+<area shape="rect" id="node43" href="photonicslab.visualize.Visualize3D.html#photonicslab.visualize.Visualize3D" target="_top" title="Three&#45;dimensional slice&#45;by&#45;slice visualisations of heat source and temperature profiles." alt="" coords="2536,79,2697,104"/>
+<area shape="rect" id="node44" href="photonicslab.visualize.VisualizeBeam2D.html#photonicslab.visualize.VisualizeBeam2D" target="_top" title="Two&#45;dimensional beam visualisation object." alt="" coords="2745,79,2944,104"/>
+<area shape="rect" id="node47" href="photonicslab.visualize.VisualizePhase2D.html#photonicslab.visualize.VisualizePhase2D" target="_top" title="Two&#45;dimensional phase visualisation object." alt="" coords="2967,79,3167,104"/>
+<area shape="rect" id="node45" href="photonicslab.visualize.VisualizeBeam3D.html#photonicslab.visualize.VisualizeBeam3D" target="_top" title="Three&#45;dimensional intra&#45;crystal (gain medium) beam generation and propagation class." alt="" coords="2295,152,2493,177"/>
+<area shape="rect" id="node48" href="photonicslab.visualize.VisualizePhase3D.html#photonicslab.visualize.VisualizePhase3D" target="_top" title="Three&#45;dimensional phase visualisation object." alt="" coords="2517,152,2717,177"/>
+<area shape="rect" id="node49" href="photonicslab.visualize.VisualizeSelfLensBeam2D.html#photonicslab.visualize.VisualizeSelfLensBeam2D" target="_top" title="Two&#45;dimensional beam visualisation object for sequential self thermal lensing." alt="" coords="2741,152,2996,177"/>
+<area shape="rect" id="node46" href="photonicslab.visualize.VisualizeBeamProp3D.html#photonicslab.visualize.VisualizeBeamProp3D" target="_top" title="Three&#45;dimensional extra&#45;crystal (gain medium) beam propagation class." alt="" coords="2280,225,2508,251"/>
+</map><div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">Application Programming Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.html">photonicslab.isotropy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.html">photonicslab.isotropy.GRINLens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.index_distr.html">photonicslab.isotropy.GRINLens.index_distr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html">photonicslab.isotropy.GRINLens.get_GRIN_focal_len</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.remove_strain.html">photonicslab.isotropy.GRINLens.remove_strain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.remove_stress.html">photonicslab.isotropy.GRINLens.remove_stress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field.html">photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.plot_source_fields.html">photonicslab.isotropy.GRINLens.plot_source_fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.thermal_stress.html">photonicslab.isotropy.GRINLens.thermal_stress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.linear_displacement_strain.html">photonicslab.isotropy.GRINLens.linear_displacement_strain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.isotropy.GRINLens.effective_strain.html">photonicslab.isotropy.GRINLens.effective_strain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.html">photonicslab.heateqn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.html">photonicslab.heateqn.HeatEqn2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_supergaussian.html">photonicslab.heateqn.HeatEqn2D.add_supergaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_ring.html">photonicslab.heateqn.HeatEqn2D.add_supergaussian_ring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_supergaussian_block.html">photonicslab.heateqn.HeatEqn2D.add_supergaussian_block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_source_from_image.html">photonicslab.heateqn.HeatEqn2D.add_source_from_image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5.html">photonicslab.heateqn.HeatEqn2D.add_source_from_hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_gaussian.html">photonicslab.heateqn.HeatEqn2D.add_gaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_flattop.html">photonicslab.heateqn.HeatEqn2D.add_flattop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_flattop_ring.html">photonicslab.heateqn.HeatEqn2D.add_flattop_ring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_flattop_block.html">photonicslab.heateqn.HeatEqn2D.add_flattop_block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.remove_sources.html">photonicslab.heateqn.HeatEqn2D.remove_sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.plot_source_profile.html">photonicslab.heateqn.HeatEqn2D.plot_source_profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html">photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params.html">photonicslab.heateqn.HeatEqn2D.get_cn_fd_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.html">photonicslab.heateqn.HeatEqn3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html">photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.remove_sources.html">photonicslab.heateqn.HeatEqn3D.remove_sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.plot_source_profile.html">photonicslab.heateqn.HeatEqn3D.plot_source_profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html">photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.get_cn_fd_params.html">photonicslab.heateqn.HeatEqn3D.get_cn_fd_params</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.html">photonicslab.fdsolver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.html">photonicslab.fdsolver.FDSolver2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method.html">photonicslab.fdsolver.FDSolver2D.explicit_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method_hdf.html">photonicslab.fdsolver.FDSolver2D.explicit_method_hdf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.html">photonicslab.fdsolver.FDSolver3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.vectorize.html">photonicslab.fdsolver.FDSolver3D.vectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.implicit_method.html">photonicslab.fdsolver.FDSolver3D.implicit_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.implicit_cupy_method.html">photonicslab.fdsolver.FDSolver3D.implicit_cupy_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.implicit_pycuda_method.html">photonicslab.fdsolver.FDSolver3D.implicit_pycuda_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.implicit_tf_method.html">photonicslab.fdsolver.FDSolver3D.implicit_tf_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.adi_method.html">photonicslab.fdsolver.FDSolver3D.adi_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.tdma_solver.html">photonicslab.fdsolver.FDSolver3D.tdma_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.explicit_method.html">photonicslab.fdsolver.FDSolver3D.explicit_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.html">photonicslab.phasemod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.ThermalLens.html">photonicslab.phasemod.ThermalLens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.ThermalLens.parabolic_fit.html">photonicslab.phasemod.ThermalLens.parabolic_fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.ThermalLens.phase.html">photonicslab.phasemod.ThermalLens.phase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.ThermalLens3D.html">photonicslab.phasemod.ThermalLens3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.ThermalLens3D.phase_heat.html">photonicslab.phasemod.ThermalLens3D.phase_heat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.OptoMechLens3D.html">photonicslab.phasemod.OptoMechLens3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.OptoMechLens3D.phase_stress.html">photonicslab.phasemod.OptoMechLens3D.phase_stress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.OptoMechLens3D.phase_strain.html">photonicslab.phasemod.OptoMechLens3D.phase_strain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.SLM.html">photonicslab.phasemod.SLM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.SLM.generate_screen.html">photonicslab.phasemod.SLM.generate_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.phasemod.DM.html">photonicslab.phasemod.DM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.html">photonicslab.beamprop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp2D.html">photonicslab.beamprop.BeamProp2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp2D.lg_mode.html">photonicslab.beamprop.BeamProp2D.lg_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp2D.convolve.html">photonicslab.beamprop.BeamProp2D.convolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp2D.modulate.html">photonicslab.beamprop.BeamProp2D.modulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp3D.html">photonicslab.beamprop.BeamProp3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamprop.BeamProp3D.convolve.html">photonicslab.beamprop.BeamProp3D.convolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.html">photonicslab.beamqual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.html">photonicslab.beamqual.MSquared</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.measure_focal_length.html">photonicslab.beamqual.MSquared.measure_focal_length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.measure_waist_first_null.html">photonicslab.beamqual.MSquared.measure_waist_first_null</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.measure_waist_variance.html">photonicslab.beamqual.MSquared.measure_waist_variance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.measure_waist_fwhm.html">photonicslab.beamqual.MSquared.measure_waist_fwhm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.measure_quality.html">photonicslab.beamqual.MSquared.measure_quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.lens_func.html">photonicslab.beamqual.MSquared.lens_func</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.convolve.html">photonicslab.beamqual.MSquared.convolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.plot_quality_profile.html">photonicslab.beamqual.MSquared.plot_quality_profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.plot_second_focal_plane.html">photonicslab.beamqual.MSquared.plot_second_focal_plane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.MSquared.plot_fourth_focal_plane.html">photonicslab.beamqual.MSquared.plot_fourth_focal_plane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.ModalDecomp.html">photonicslab.beamqual.ModalDecomp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.beamqual.VQF.html">photonicslab.beamqual.VQF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.html">photonicslab.optomech</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.html">photonicslab.optomech.ParaxialWaveEqn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html">photonicslab.optomech.ParaxialWaveEqn.lg_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.convolve.html">photonicslab.optomech.ParaxialWaveEqn.convolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.modulate.html">photonicslab.optomech.ParaxialWaveEqn.modulate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.vectorize.html">photonicslab.optomech.ParaxialWaveEqn.vectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.implicit_method.html">photonicslab.optomech.ParaxialWaveEqn.implicit_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.adi_method.html">photonicslab.optomech.ParaxialWaveEqn.adi_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.convolve.html">photonicslab.optomech.ParaxialWaveEqn.convolve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.mirror_phase_factor.html">photonicslab.optomech.ParaxialWaveEqn.mirror_phase_factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.surface_deformation_phase_factor.html">photonicslab.optomech.ParaxialWaveEqn.surface_deformation_phase_factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.free_space_implicit.html">photonicslab.optomech.ParaxialWaveEqn.free_space_implicit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.free_space_adi_method.html">photonicslab.optomech.ParaxialWaveEqn.free_space_adi_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.tdma_solver.html">photonicslab.optomech.ParaxialWaveEqn.tdma_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.optomech.NonParaxialWaveEqn.html">photonicslab.optomech.NonParaxialWaveEqn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.anisotropy.html">photonicslab.anisotropy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.anisotropy.Birefringence.html">photonicslab.anisotropy.Birefringence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.anisotropy.MechStress.html">photonicslab.anisotropy.MechStress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.anisotropy.ThermalStress.html">photonicslab.anisotropy.ThermalStress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.geometry.html">photonicslab.geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.geometry.ThermalExpansion.html">photonicslab.geometry.ThermalExpansion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.geometry.FractureAnalysis.html">photonicslab.geometry.FractureAnalysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.gaineqn.html">photonicslab.gaineqn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.gaineqn.ScalarGainCoeff.html">photonicslab.gaineqn.ScalarGainCoeff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.gaineqn.VectorGainCoeff.html">photonicslab.gaineqn.VectorGainCoeff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.gaineqn.DynamicRateEqn.html">photonicslab.gaineqn.DynamicRateEqn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.html">photonicslab.amplifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.EndPumped.html">photonicslab.amplifier.EndPumped</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.EndPumped.vectorize.html">photonicslab.amplifier.EndPumped.vectorize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.EndPumped.implicit_method.html">photonicslab.amplifier.EndPumped.implicit_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.EndPumped.adi_method.html">photonicslab.amplifier.EndPumped.adi_method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.EndPumped.tdma_solver.html">photonicslab.amplifier.EndPumped.tdma_solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.SidePumped.html">photonicslab.amplifier.SidePumped</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.amplifier.MultiMode.html">photonicslab.amplifier.MultiMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.resonator.html">photonicslab.resonator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.resonator.SingleMode.html">photonicslab.resonator.SingleMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.resonator.SingleModeSide.html">photonicslab.resonator.SingleModeSide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.demultiplex.html">photonicslab.demultiplex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.demultiplex.OAMDeMux.html">photonicslab.demultiplex.OAMDeMux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.demultiplex.WavlenDeMux.html">photonicslab.demultiplex.WavlenDeMux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.demultiplex.PolDeMux.html">photonicslab.demultiplex.PolDeMux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.html">photonicslab.adaptopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.Propagation.html">photonicslab.adaptopt.Propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.FeaturePrediction.html">photonicslab.adaptopt.FeaturePrediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.PreserveGaussian.html">photonicslab.adaptopt.PreserveGaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.PreserveSuperGaussian.html">photonicslab.adaptopt.PreserveSuperGaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.adaptopt.PreserveLGMode.html">photonicslab.adaptopt.PreserveLGMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.aberration.html">photonicslab.aberration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.aberration.Monochromatic.html">photonicslab.aberration.Monochromatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.aberration.Chromatic.html">photonicslab.aberration.Chromatic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.aberration.ZernickePoly.html">photonicslab.aberration.ZernickePoly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.html">photonicslab.visualize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize2D.html">photonicslab.visualize.Visualize2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize2D.steadystate_profiles.html">photonicslab.visualize.Visualize2D.steadystate_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize2D.transient_profiles.html">photonicslab.visualize.Visualize2D.transient_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizePhase2D.html">photonicslab.visualize.VisualizePhase2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizePhase2D.steadystate_profiles.html">photonicslab.visualize.VisualizePhase2D.steadystate_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizePhase2D.transient_profiles.html">photonicslab.visualize.VisualizePhase2D.transient_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.html">photonicslab.visualize.VisualizeBeam2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html">photonicslab.visualize.VisualizeBeam2D.add_filter_circular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.add_filter_rectangular.html">photonicslab.visualize.VisualizeBeam2D.add_filter_rectangular</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.steadystate_profiles.html">photonicslab.visualize.VisualizeBeam2D.steadystate_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.transient_profiles.html">photonicslab.visualize.VisualizeBeam2D.transient_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeSelfLensBeam2D.html">photonicslab.visualize.VisualizeSelfLensBeam2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeSelfLensBeam2D.steadystate_profiles.html">photonicslab.visualize.VisualizeSelfLensBeam2D.steadystate_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeSelfLensBeam2D.transient_profiles.html">photonicslab.visualize.VisualizeSelfLensBeam2D.transient_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize3D.html">photonicslab.visualize.Visualize3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize3D.steadystate_profiles.html">photonicslab.visualize.Visualize3D.steadystate_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize3D.steadystate_source_profiles.html">photonicslab.visualize.Visualize3D.steadystate_source_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.Visualize3D.transient_profiles.html">photonicslab.visualize.Visualize3D.transient_profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizePhase3D.html">photonicslab.visualize.VisualizePhase3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeam3D.html">photonicslab.visualize.VisualizeBeam3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="photonicslab.visualize.VisualizeBeamProp3D.html">photonicslab.visualize.VisualizeBeamProp3D</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="todo-list">
+<h1>TODO List<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Generate phase profiles.</p></li>
+<li><p>Extend to 3D case.</p></li>
+<li><p>Consider effects of thermal expansion and thermal diffusivity.</p></li>
+<li><p>Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.
+Or write get method here.</p></li>
+<li><p>Consolidate gain media properties into materials database.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.amplifier.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/amplifier.py:docstring of photonicslab.amplifier, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all __init__ method.</p></li>
+<li><p>TODO: Need to incorporate this into the resonator model.</p></li>
+<li><p>TODO: Registering material variables k0 and n0</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.amplifier.EndPumped.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/amplifier.py:docstring of photonicslab.amplifier.EndPumped, line 49.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Compare <a class="reference external" href="https://stackoverflow.com/questions/23120164/optimize-ax-b-solution-for-a-tridiagonal-coefficient-matrix">SO Solve TDM using solve banded</a></p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.amplifier.EndPumped.tdma_solver.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.amplifier.EndPumped.tdma_solver, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Accelerate this with <a class="reference external" href="http://numba.pydata.org/numba-doc/latest/reference/jit-compilation.html#numba.jit" title="(in Numba v0.44)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numba.jit</span></code></a>.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.amplifier.EndPumped.vectorize.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/amplifier.py:docstring of photonicslab.amplifier.EndPumped.vectorize, line 13.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Generate phase profiles.</p></li>
+<li><p>Extend to 3D case.</p></li>
+<li><p>Consider effects of thermal expansion and thermal diffusivity.</p></li>
+<li><p>Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.
+Or write get method here.</p></li>
+<li><p>Consolidate gain media properties into materials database.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.anisotropy.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/anisotropy.py:docstring of photonicslab.anisotropy, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add hg and other modes</p></li>
+<li><p>Overload addition operator for object oriented superposition and interaction of modes.</p></li>
+<li><p>Write propagation output to hdf5</p></li>
+<li><p>Consolidate units to SI or some other standard.</p></li>
+<li><p>Seed to become a class instance variable, i.e. <cite>self.seed = gen_LG</cite></p></li>
+<li><p>Use decorator function &#64;property to set and retrieve values</p></li>
+<li><p>Consolidate focal lengths, Rayleigh range and focus due to lens.</p></li>
+<li><p>Instantiate seed and seed_area class objects</p></li>
+<li><p>TODO: Note that everything’s been made relative to cm</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp2D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp2D, line 43.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Consolidate class function return values into instance variables using setter
+and getter decorators.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp2D.convolve.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp2D.convolve, line 32.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Try / Except blocks for zerodivision or valueerror if waist=0 and for p and l indices.</p></li>
+<li><p>Normalise variables using sklearn.</p></li>
+<li><p>FIXME: Wavelength dependency of index of refraction <span class="math notranslate nohighlight">\(n(\lambda)\)</span></p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp2D.lg_mode.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp2D.lg_mode, line 45.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Define seed as class instance variable <cite>self.seed = gen_LG()</cite>.</p></li>
+<li><p>FIXME: Test if e0 is 3-dimensional i.e. [t,x,y]</p></li>
+<li><p>TODO: Fix ordering of indices [x, y, t]</p></li>
+<li><p>TODO: Fix for 2D vs 3D invariant</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp2D.modulate.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp2D.modulate, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Add functions for mirrors and output couplers etc.</p></li>
+<li><p>TODO: Note that everything’s been made relative to cm</p></li>
+<li><p>TODO: 3D Propagation means having beam properties across crystal.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp3D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp3D, line 5.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Consolidate class function return values into instance variables using setter
+and getter decorators.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamprop.BeamProp3D.convolve.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.beamprop.BeamProp3D.convolve, line 32.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: This class should inherit from optomech.ParaxialWaveEqn</p></li>
+<li><p>TODO: Additionally there’s the convolution based beam propagation, and then the fem-bpm</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared, line 52.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Consolidate class function return values into instance variables using setter
+and getter decorators.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.convolve.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared.convolve, line 32.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Generalize logic to find 2 peaks independently in x and y. (Double the searches though)</p></li>
+<li><p>TODO: Exception handling.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.measure_focal_length.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared.measure_focal_length, line 67.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Calculate beam centroid for xbar/x0 and ybar/y0, for off axis beams, maybe.</p></li>
+<li><p>TODO: Add exception handling for focal length and waist detection.</p></li>
+<li><p>TODO: Debug  1D array side h5py dataset</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.measure_quality.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared.measure_quality, line 16.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Frame images for zy0 and wy0 as well in title.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.plot_quality_profile.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared.plot_quality_profile, line 8.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Figure out a way to consolidate visualizations</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.MSquared.plot_second_focal_plane.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.MSquared.plot_second_focal_plane, line 53.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>set __getter__ to return CGH</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.beamqual.ModalDecomp.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamqual.py:docstring of photonicslab.beamqual.ModalDecomp, line 3.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Separate out terms into <span class="math notranslate nohighlight">\(u, u_{t}, u_{x}, u_{xx}, u_{y}, u_{yy}\)</span> etc for readability</p></li>
+<li><p>Add implicit method</p></li>
+<li><p>Extend to 3D</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver, line 7.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add check for convergence and reshape fsol</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver.FDSolver2D.explicit_method, line 8.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add check for convergence and reshape fsol</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.FDSolver2D.explicit_method_hdf.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver.FDSolver2D.explicit_method_hdf, line 8.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Document “book-keeping” issues, mapping 3D temperature array to 1D vector.</p></li>
+<li><p>Need to move hdf5 databases to group format and manage their creation / deletion in base and child constructors.</p></li>
+<li><p>Dereference hdf5 as variable: i.e. dset2 =grp.create_dataset(“qinit”) or Tsol = hf[fdsol/temperature]</p></li>
+<li><p>Implement stopping condition when working in region with a source / temperature change.</p></li>
+<li><p>Need to verify order and arrangement of indices, CHECK shape assignments.</p></li>
+<li><p>Resolve circular generation and dependencies of Fdrive, meshgrids, ranges and linspaces.</p></li>
+<li><p>Current configuration does not easily permit implementation of time-dependent sources.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver.FDSolver3D, line 20.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Compare <a class="reference external" href="https://stackoverflow.com/questions/23120164/optimize-ax-b-solution-for-a-tridiagonal-coefficient-matrix">SO Solve TDM using solve banded</a></p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.tdma_solver.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver.FDSolver3D.tdma_solver, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Accelerate this with <a class="reference external" href="http://numba.pydata.org/numba-doc/latest/reference/jit-compilation.html#numba.jit" title="(in Numba v0.44)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numba.jit</span></code></a>.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.fdsolver.FDSolver3D.vectorize.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.fdsolver.FDSolver3D.vectorize, line 10.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Generate phase profiles.</p></li>
+<li><p>Extend to 3D case.</p></li>
+<li><p>Consider effects of thermal expansion and thermal diffusivity.</p></li>
+<li><p>Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.
+Or write get method here.</p></li>
+<li><p>Consolidate gain media properties into materials database.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Test meshgrid creation with sparse matrices.</p></li>
+<li><p>Make sure to catch things like nd:ylf etc, don’t want to pass on nd alone in exceptions.</p></li>
+<li><p>Consider using kwargs for methods with more than6 parameters, eg see numpy.meshgrid docs.</p></li>
+<li><p>Complete add_supergaussian() and replace add_gaussian and add_flattop with calls to add_supergaussian in their respective limits.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn2D, line 118.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Check for rollover/wraparound/reflect, and make that section zero.</p></li>
+<li><p>Exception handling and testing.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.add_source_from_image.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn2D.add_source_from_image, line 81.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Replace maxshape numbers with class constants.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params, line 35.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>FIXME: Exception handling and warnings for bad nt_plot values</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn2D.plot_source_profile.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn2D.plot_source_profile, line 8.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Consider using <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> to reduce the fugly number of params in constructor. (Purely aesthetic / Pythonic)</p></li>
+<li><p>Consider using sparse keyword in meshgrid creation</p></li>
+<li><p>TODO: Go back to old style 3d source creation with 2d, and z decay</p></li>
+<li><p>TODO: Overload and inherit all methods for shape construction in 3d with decay.</p></li>
+<li><p>TODO: Setup self.num_q variables, and make sure each beam is parameterised.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn3D, line 43.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Add conditionals / separate private member functions to check validity of assignments, i.e. waist less than Lx, Ly etc</p></li>
+<li><p>Normalise Qinit3d</p></li>
+<li><p>Need to keep a tab of the number of sources and allocate them individually.</p></li>
+<li><p>Each pump source will be a list of lists, and structure will be stored i hdf5 db.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian, line 10.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Instead of 2D and 3D versions of Qload and Tinit, rather overload <em>(Solved?)</em></p></li>
+<li><p>Need to move generation of meshgrids to hdf5 and only pass nt, nx, ny, nz etc.</p></li>
+<li><p>Watch out for memory overflow with 2D -&gt; 3D casting.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params, line 33.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Verify whether we really need 3D meshgrid profiles or if 2D ones will suffice.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.plot_source_profile.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/heateqn.py:docstring of photonicslab.heateqn.HeatEqn3D.plot_source_profile, line 21.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Generate phase profiles.</p></li>
+<li><p>Extend to 3D case.</p></li>
+<li><p>Consider effects of thermal expansion and thermal diffusivity.</p></li>
+<li><p>Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.
+Or write get method here.</p></li>
+<li><p>Consolidate gain media properties into materials database.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all the various classes and methods (i.e. only have a single visualization abstraction)</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.GRINLens.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy.GRINLens, line 62.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Dirt like function or example as well.</p></li>
+<li><p>TODO: Add torsional / rotating initial fields</p></li>
+<li><p>TODO: Differential geometry / continuum mechanics to solve equations of motion for rigorous treatment of deformation / .</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field, line 3.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Add tests from literature as unit tests.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy.GRINLens.get_GRIN_focal_len, line 15.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Unique n0x and n0y formulation for natural birefringence.</p></li>
+<li><p>TODO: For the entire class need to consider placing material properties / constants in subgrps.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.GRINLens.index_distr.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy.GRINLens.index_distr, line 14.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Vector drawing of displacement fields on particular planes.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.isotropy.GRINLens.plot_source_fields.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/isotropy.py:docstring of photonicslab.isotropy.GRINLens.plot_source_fields, line 12.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Extend to 3D beamProp case for axially varying beams.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/optomech.py:docstring of photonicslab.optomech, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all __init__ method.</p></li>
+<li><p>TODO: Need to incorporate this into the resonator model.</p></li>
+<li><p>TODO: Registering material variables k0 and n0 and vector case n0x and n0y</p></li>
+<li><p>TODO: Induced stress and strain, in the same way the gain depends on the field.</p></li>
+<li><p>TODO: Double check and verify generation of initializer for Ax and Ay</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/optomech.py:docstring of photonicslab.optomech.ParaxialWaveEqn, line 49.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Try / Except blocks for zerodivision or valueerror if waist=0 and for p and l indices.</p></li>
+<li><p>Normalise variables using sklearn.</p></li>
+<li><p>FIXME: Wavelength dependency of index of refraction <span class="math notranslate nohighlight">\(n(\lambda)\)</span></p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.optomech.ParaxialWaveEqn.lg_mode, line 45.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Define seed as class instance variable <cite>self.seed = gen_LG()</cite>.</p></li>
+<li><p>FIXME: Test if e0 is 3-dimensional i.e. [t,x,y]</p></li>
+<li><p>TODO: Fix ordering of indices [x, y, t]</p></li>
+<li><p>TODO: Fix for 2D vs 3D invariant</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.modulate.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/beamprop.py:docstring of photonicslab.optomech.ParaxialWaveEqn.modulate, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Compare <a class="reference external" href="https://stackoverflow.com/questions/23120164/optimize-ax-b-solution-for-a-tridiagonal-coefficient-matrix">SO Solve TDM using solve banded</a></p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.tdma_solver.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/fdsolver.py:docstring of photonicslab.optomech.ParaxialWaveEqn.tdma_solver, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Accelerate this with <a class="reference external" href="http://numba.pydata.org/numba-doc/latest/reference/jit-compilation.html#numba.jit" title="(in Numba v0.44)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numba.jit</span></code></a>.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.vectorize.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/optomech.py:docstring of photonicslab.optomech.ParaxialWaveEqn.vectorize, line 13.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Exception handling tests for limits etc…</p></li>
+<li><p>Size tests for MAXSHAPE in create_dataset and deg size restrictions</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.phasemod.ThermalLens.parabolic_fit.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/phasemod.py:docstring of photonicslab.phasemod.ThermalLens.parabolic_fit, line 14.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Test integration constant. Test sign of dndt</p></li>
+<li><p>TODO: Change in index of refraction per time. i.e. dndt -&gt; at boundaries or recalculate relative to previous time</p></li>
+<li><p>Refactor phase / index of refraction definitions and where to pass wavelength.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.phasemod.ThermalLens.phase.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/phasemod.py:docstring of photonicslab.phasemod.ThermalLens.phase, line 14.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Test integration constant.</p></li>
+<li><p>Refactor phase / index of refraction definitions and where to pass wavelength.</p></li>
+<li><p>TODO: Check phase calculation.</p></li>
+<li><p>TODO: Need to keep this DRY - only MAX_NZ gets appended to hdf5_create_dataset</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.phasemod.ThermalLens3D.phase_heat.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/phasemod.py:docstring of photonicslab.phasemod.ThermalLens3D.phase_heat, line 14.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Generate phase profiles.</p></li>
+<li><p>Extend to 3D case.</p></li>
+<li><p>Consider effects of thermal expansion and thermal diffusivity.</p></li>
+<li><p>Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.
+Or write get method here.</p></li>
+<li><p>Consolidate gain media properties into materials database.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.resonator.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/resonator.py:docstring of photonicslab.resonator, line 6.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all __init__ method.</p></li>
+<li><p>TODO: Need to incorporate this into the resonator model.</p></li>
+<li><p>TODO: Registering material variables k0 and n0</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.resonator.SingleMode.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/resonator.py:docstring of photonicslab.resonator.SingleMode, line 5.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Refactor: Each cross-sectional plane should be read in and processed slice by slice not as a whole at once.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.visualize.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/visualize.py:docstring of photonicslab.visualize, line 15.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Document private internal attributes for quadrant plotting / animation.</p></li>
+<li><p>DRY Methods for quadrant assignments.</p></li>
+<li><p>See <a class="reference external" href="https://stackoverflow.com/questions/23311466/using-matplotlib-and-point-to-specific-value-on-the-x-axis">SO arrow on axis</a> for highlighting temporal evolution of focal length</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.visualize.Visualize2D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/visualize.py:docstring of photonicslab.visualize.Visualize2D, line 50.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Use rectangles and cylinders from <a class="reference external" href="https://stackoverflow.com/questions/6600579/colorbar-for-matplotlib-plot-surface-command">SO Colorbar for Plot Surface Sphere</a></p></li>
+<li><p>Test mpl_toolkits.mplot3d Axes3D and Axes3d functions, and link path to mpl_toolkits docs.</p></li>
+<li><p>Test the generation of a single colorbar for all for quadrants.</p></li>
+<li><p>Need to go back and eliminate fsource parameter from 2d initializer</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.visualize.Visualize3D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/visualize.py:docstring of photonicslab.visualize.Visualize3D, line 9.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Big decision to make, will this class import or inherit beamprop?</p></li>
+<li><p>Check test to ensure polyfit profiles exist</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.visualize.VisualizePhase2D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/visualize.py:docstring of photonicslab.visualize.VisualizePhase2D, line 3.)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Source / seed limits (normalization) when dealing with tight focusing. I.e. peak will be greater than 1.</p></li>
+<li><p>Tidy up and restructure this, convolve and modulate.</p></li>
+</ul>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="photonicslab.visualize.VisualizeSelfLensBeam2D.html#id1"><em>original entry</em></a> is located in /home/nlisa/course/photonicslab/photonicslab/visualize.py:docstring of photonicslab.visualize.VisualizeSelfLensBeam2D, line 20.)</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quick Start</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#todo-list">TODO List</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="quickstart.html"
+                        title="next chapter">Quick Start</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="quickstart.html" title="Quick Start"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

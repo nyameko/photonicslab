@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.anisotropy.MechStress &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.anisotropy.ThermalStress" href="photonicslab.anisotropy.ThermalStress.html" />
+    <link rel="prev" title="photonicslab.anisotropy.Birefringence" href="photonicslab.anisotropy.Birefringence.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.anisotropy.ThermalStress.html" title="photonicslab.anisotropy.ThermalStress"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.anisotropy.Birefringence.html" title="photonicslab.anisotropy.Birefringence"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-anisotropy-mechstress">
+<h1>photonicslab.anisotropy.MechStress<a class="headerlink" href="#photonicslab-anisotropy-mechstress" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.anisotropy.MechStress">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.anisotropy.</code><code class="sig-name descname">MechStress</code><a class="reference internal" href="_modules/photonicslab/anisotropy.html#MechStress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.anisotropy.MechStress" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="photonicslab.anisotropy.MechStress.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/anisotropy.html#MechStress.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.anisotropy.MechStress.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.anisotropy.MechStress.__init__" title="photonicslab.anisotropy.MechStress.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian_displacement_field</span></code>([…])</p></td>
+<td><p>Adds exponentially decaying, normally distributed or Gaussian displacement field vector for generation and calculation of non-zero infinitesimal strain tensor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">effective_strain</span></code>(E, v)</p></td>
+<td><p>Apply generalized Hook’s law to determine overall effect of all stress and strain contributions for isotropic materials in terms of Young’s modulus and Poisson’s ratio fro the material.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_GRIN_focal_len</span></code>()</p></td>
+<td><p>Analytical calculation for the focal length and distance from the medium to the closet principal plane.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_distr</span></code>([n0, b])</p></td>
+<td><p>Add the index distribution of the GRaded-INdex of refraction lens.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_displacement_strain</span></code>()</p></td>
+<td><p>Generate infinitesimal or Cauchy’s strain tensor from deformations involving displacement vectors and displacement gradients much much smaller than unity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_source_fields</span></code>([projection, plane, savepath])</p></td>
+<td><p>Plot the source fields impinging on gain / lens material directed in a particular projection, cut along a specific plane.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_strain</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_stress</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal_stress</span></code>(E, aplha)</p></td>
+<td><p>Generate stress tensor due to thermal expansion or the restriction thereof.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.anisotropy.Birefringence.html"
+                        title="previous chapter">photonicslab.anisotropy.Birefringence</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.anisotropy.ThermalStress.html"
+                        title="next chapter">photonicslab.anisotropy.ThermalStress</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.anisotropy.ThermalStress.html" title="photonicslab.anisotropy.ThermalStress"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.anisotropy.Birefringence.html" title="photonicslab.anisotropy.Birefringence"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

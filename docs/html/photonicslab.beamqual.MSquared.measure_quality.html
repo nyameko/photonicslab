@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.beamqual.MSquared.measure_quality &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.beamqual.MSquared.lens_func" href="photonicslab.beamqual.MSquared.lens_func.html" />
+    <link rel="prev" title="photonicslab.beamqual.MSquared.measure_waist_fwhm" href="photonicslab.beamqual.MSquared.measure_waist_fwhm.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.lens_func.html" title="photonicslab.beamqual.MSquared.lens_func"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_fwhm.html" title="photonicslab.beamqual.MSquared.measure_waist_fwhm"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-beamqual-msquared-measure-quality">
+<h1>photonicslab.beamqual.MSquared.measure_quality<a class="headerlink" href="#photonicslab-beamqual-msquared-measure-quality" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.beamqual.MSquared.measure_quality">
+<code class="sig-prename descclassname">MSquared.</code><code class="sig-name descname">measure_quality</code><span class="sig-paren">(</span><em class="sig-param">z_start=80</em>, <em class="sig-param">z_end=200</em>, <em class="sig-param">num_measurements=12</em>, <em class="sig-param">x_centroid=0.0</em>, <em class="sig-param">y_centroid=0.0</em>, <em class="sig-param">deg=2</em>, <em class="sig-param">debug=False</em>, <em class="sig-param">z0x=None</em>, <em class="sig-param">z0y=None</em>, <em class="sig-param">w0x=None</em>, <em class="sig-param">w0y=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/beamqual.html#MSquared.measure_quality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.beamqual.MSquared.measure_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the field, intensity, variance and finally M-Squared of the beam between the given ranges.</p>
+<p>The beam can also be astigmatic</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation start range for measurements.</p></li>
+<li><p><strong>z_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation stop range for measurements.</p></li>
+<li><p><strong>num_measurements</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of measurements to integrate over.</p></li>
+<li><p><strong>x0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – </p></li>
+<li><p><strong>y0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Calculate beam centroid for xbar/x0 and ybar/y0, for off axis beams, maybe.</p></li>
+<li><p>TODO: Add exception handling for focal length and waist detection.</p></li>
+<li><p>TODO: Debug  1D array side h5py dataset</p></li>
+</ul>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.archive.org/web/20110604095354/http://www.stanford.edu/~siegman/beams_and_resonators/beam_quality_tutorial_osa.pdf">A. E. Siegman, “Howto (maybe) measure laser beam quality” OSA Annual Meeting, 1997</a></p></li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.measure_waist_fwhm.html"
+                        title="previous chapter">photonicslab.beamqual.MSquared.measure_waist_fwhm</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.lens_func.html"
+                        title="next chapter">photonicslab.beamqual.MSquared.lens_func</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.lens_func.html" title="photonicslab.beamqual.MSquared.lens_func"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_fwhm.html" title="photonicslab.beamqual.MSquared.measure_waist_fwhm"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

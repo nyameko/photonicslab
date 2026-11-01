@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.heateqn.HeatEqn2D.get_cn_fd_params &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.heateqn.HeatEqn3D" href="photonicslab.heateqn.HeatEqn3D.html" />
+    <link rel="prev" title="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params" href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.html" title="photonicslab.heateqn.HeatEqn3D"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html" title="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-heateqn-heateqn2d-get-cn-fd-params">
+<h1>photonicslab.heateqn.HeatEqn2D.get_cn_fd_params<a class="headerlink" href="#photonicslab-heateqn-heateqn2d-get-cn-fd-params" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params">
+<code class="sig-prename descclassname">HeatEqn2D.</code><code class="sig-name descname">get_cn_fd_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/heateqn.html#HeatEqn2D.get_cn_fd_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.heateqn.HeatEqn2D.get_cn_fd_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return parameters and coefficients to the implicit finite difference approximation,
+implemented within a Crank-Nicolson Scheme.</p>
+<div class="math notranslate nohighlight">
+\[T_{i,j}^{n+1} - sx\left(T_{i-1,j}^{n+1} - 2T_{i,j}^{n+1} + T_{i+1,j}^{n+1}\right)
+- sy\left(T _{i,j-1}^{n+1} - 2T_{i,j}^{n+1} + T_{i,j+1}^{n+1}\right) = T_{i,j}^{n} + sx\left(T_{i-1,j}^{n} - 2T_{i,j}^{n} + T_{i+1,j}^{n}\right)
++ sy\left(T _{i,j-1}^{n} - 2T_{i,j}^{n} + T_{i,j+1}^{n}\right) + ss\times Q^{n}\]</div>
+<p>Where T is the solution to the differential equation
+<span class="math notranslate nohighlight">\(Q_\text{load} = ss\times Q^{n}\)</span> is the driving source term or heat     hermal load,
+<span class="math notranslate nohighlight">\(s_{x_{i}} = \frac{\Delta t}{2}\frac{\kappa_{x_{i}}}{(\Delta x_{i})^2} \text{ for } i \in [1,2,3]\)</span>, and
+<span class="math notranslate nohighlight">\(s_s = \frac{1}{\rho c_{p}}\)</span>, forming linear algebra system
+<span class="math notranslate nohighlight">\(Ax = b\)</span>.</p>
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn2D.sx">
+<code class="sig-name descname">sx</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn2D.sx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integration coefficient for second-order finite difference along x.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.sy">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">sy</code><a class="headerlink" href="#photonicslab.heateqn.sy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Integration coefficient for second-order finite difference along y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.Qload">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">Qload</code><a class="headerlink" href="#photonicslab.heateqn.Qload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalised 2D (unit-correct) system driving / damping  force.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.clock">
+<code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">clock</code><a class="headerlink" href="#photonicslab.heateqn.clock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time evolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html"
+                        title="previous chapter">photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn3D.html"
+                        title="next chapter">photonicslab.heateqn.HeatEqn3D</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.html" title="photonicslab.heateqn.HeatEqn3D"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params.html" title="photonicslab.heateqn.HeatEqn2D.get_explicit_fd_params"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.phasemod.ThermalLens.phase &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.phasemod.ThermalLens3D" href="photonicslab.phasemod.ThermalLens3D.html" />
+    <link rel="prev" title="photonicslab.phasemod.ThermalLens.parabolic_fit" href="photonicslab.phasemod.ThermalLens.parabolic_fit.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.phasemod.ThermalLens3D.html" title="photonicslab.phasemod.ThermalLens3D"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.phasemod.ThermalLens.parabolic_fit.html" title="photonicslab.phasemod.ThermalLens.parabolic_fit"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-phasemod-thermallens-phase">
+<h1>photonicslab.phasemod.ThermalLens.phase<a class="headerlink" href="#photonicslab-phasemod-thermallens-phase" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.phasemod.ThermalLens.phase">
+<code class="sig-prename descclassname">ThermalLens.</code><code class="sig-name descname">phase</code><span class="sig-paren">(</span><em class="sig-param">hdf5table='temperature'</em>, <em class="sig-param">hdf5dset_phase='phase'</em>, <em class="sig-param">hdf5dset_phase_collapsed='phase_test'</em>, <em class="sig-param">wavelen=0.0001064</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/phasemod.html#ThermalLens.phase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.phasemod.ThermalLens.phase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate transient cross-sectional phase profiles.</p>
+<p>Opens HDF5 database containing temporal temperature profiles and generates
+corresponding transient phase profiles. Phase profile dataset is only created
+if one does not already exist. Otherwise the values are simply overwritten.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdf5dset_temperature</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – <cite>/Path/to/</cite> HDF5 subgroup and dataset for temperature profiles.</p></li>
+<li><p><strong>hdf5dset_phase</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – /Path/to/ HDF5 subgroup and dataset for phase profiles.</p></li>
+<li><p><strong>wavelen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Beam wavelength [cm].</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Test integration constant. Test sign of dndt</p></li>
+<li><p>TODO: Change in index of refraction per time. i.e. dndt -&gt; at boundaries or recalculate relative to previous time</p></li>
+<li><p>Refactor phase / index of refraction definitions and where to pass wavelength.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.phasemod.ThermalLens.parabolic_fit.html"
+                        title="previous chapter">photonicslab.phasemod.ThermalLens.parabolic_fit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.phasemod.ThermalLens3D.html"
+                        title="next chapter">photonicslab.phasemod.ThermalLens3D</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.phasemod.ThermalLens3D.html" title="photonicslab.phasemod.ThermalLens3D"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.phasemod.ThermalLens.parabolic_fit.html" title="photonicslab.phasemod.ThermalLens.parabolic_fit"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.heateqn.HeatEqn3D &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian" href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html" />
+    <link rel="prev" title="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params" href="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html" title="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params.html" title="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-heateqn-heateqn3d">
+<h1>photonicslab.heateqn.HeatEqn3D<a class="headerlink" href="#photonicslab-heateqn-heateqn3d" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.heateqn.HeatEqn3D">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.heateqn.</code><code class="sig-name descname">HeatEqn3D</code><span class="sig-paren">(</span><em class="sig-param">nx=100</em>, <em class="sig-param">ny=100</em>, <em class="sig-param">nz=200</em>, <em class="sig-param">nt=50</em>, <em class="sig-param">Lx=0.4</em>, <em class="sig-param">Ly=0.4</em>, <em class="sig-param">Lz=2.0</em>, <em class="sig-param">Tbc=293.15</em>, <em class="sig-param">Qmax=1000</em>, <em class="sig-param">gain_medium='ybyag'</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">dt_stability_factor=0.99</em>, <em class="sig-param">alphamax=10</em>, <em class="sig-param">cavity_mode_waist=0.01915</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/heateqn.html#HeatEqn3D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Three-dimensional heat equation initialisation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of steps along z-direction of axial / cross-sectional profile [cm].</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Exponential decay factor representing heat absorption in gain medium.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D.nz">
+<code class="sig-name descname">nz</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.nz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of steps along z-direction of axial / cross-sectional profile [cm].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D.alphamax">
+<code class="sig-name descname">alphamax</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.alphamax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exponential decay factor representing heat absorption in gain medium [units?].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D.dz">
+<code class="sig-name descname">dz</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.dz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spacing along z-direction [cm].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D.kz">
+<code class="sig-name descname">kz</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.kz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thermal conductivity coefficient along z-direction [W/(cm K)].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.heateqn.HeatEqn3D.Qinit3d">
+<code class="sig-name descname">Qinit3d</code><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.Qinit3d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial heat source distribution for 3D solid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Be very careful here with the ordering of 3D meshgrid, :math:` [i,j,k] rightarrow [z,y,x]`.</p></li>
+<li><p>The Crank-Nicolson scheme should not require a stability factor.</p></li>
+</ul>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Consider using <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> to reduce the fugly number of params in constructor. (Purely aesthetic / Pythonic)</p></li>
+<li><p>Consider using sparse keyword in meshgrid creation</p></li>
+<li><p>TODO: Go back to old style 3d source creation with 2d, and z decay</p></li>
+<li><p>TODO: Overload and inherit all methods for shape construction in 3d with decay.</p></li>
+<li><p>TODO: Setup self.num_q variables, and make sure each beam is parameterised.</p></li>
+</ul>
+</div>
+<dl class="method">
+<dt id="photonicslab.heateqn.HeatEqn3D.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">nx=100</em>, <em class="sig-param">ny=100</em>, <em class="sig-param">nz=200</em>, <em class="sig-param">nt=50</em>, <em class="sig-param">Lx=0.4</em>, <em class="sig-param">Ly=0.4</em>, <em class="sig-param">Lz=2.0</em>, <em class="sig-param">Tbc=293.15</em>, <em class="sig-param">Qmax=1000</em>, <em class="sig-param">gain_medium='ybyag'</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">dt_stability_factor=0.99</em>, <em class="sig-param">alphamax=10</em>, <em class="sig-param">cavity_mode_waist=0.01915</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/heateqn.html#HeatEqn3D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.heateqn.HeatEqn3D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.heateqn.HeatEqn3D.__init__" title="photonicslab.heateqn.HeatEqn3D.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([nx, ny, nz, nt, Lx, Ly, Lz, Tbc, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_flattop</span></code>([center_x, center_y, center_r, …])</p></td>
+<td><p>Adds a step or top-hat like circular heat source to the current instance of the heateqn2D object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_flattop_block</span></code>([lower_left_x, …])</p></td>
+<td><p>Adds a step or top-hat like ring heat source to the current instance of the heateqn2D object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_flattop_ring</span></code>([center_x, center_y, …])</p></td>
+<td><p>Adds a step or top-hat like ring heat source to the current instance of the heateqn2D object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_gaussian</span></code>([center_x, center_y, q, …])</p></td>
+<td><p>Adds a Gaussian heat source to the current instance of the heateqn2D object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html#photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian" title="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_normalized_pump_gaussian</span></code></a>([center_x, …])</p></td>
+<td><p>End-pumped normalized pump distribution for gain medium treated as a four-level system.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_source_from_hdf5</span></code>([hdf5grp, hdf5table, …])</p></td>
+<td><p>Adds a heat source to the current instance of the heateqn2D object from an hdf5 file.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_source_from_image</span></code>([savepath, center_x, …])</p></td>
+<td><p>Adds a heat source to the current instance of the heateqn2D object from an image file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian</span></code>([center_x, center_y, q, …])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian_block</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian_displacement_field</span></code>([…])</p></td>
+<td><p>Adds exponentially decaying, normally distributed or Gaussian displacement field vector for generation and calculation of non-zero infinitesimal strain tensor.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian_ring</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">effective_strain</span></code>(E, v)</p></td>
+<td><p>Apply generalized Hook’s law to determine overall effect of all stress and strain contributions for isotropic materials in terms of Young’s modulus and Poisson’s ratio fro the material.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_GRIN_focal_len</span></code>()</p></td>
+<td><p>Analytical calculation for the focal length and distance from the medium to the closet principal plane.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.get_cn_fd_params.html#photonicslab.heateqn.HeatEqn3D.get_cn_fd_params" title="photonicslab.heateqn.HeatEqn3D.get_cn_fd_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cn_fd_params</span></code></a>()</p></td>
+<td><p>Return parameters and coefficients to the implicit finite difference approximation, implemented within a Crank-Nicolson Scheme.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params.html#photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params" title="photonicslab.heateqn.HeatEqn3D.get_explicit_fd_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_explicit_fd_params</span></code></a>()</p></td>
+<td><p>Return parameters and coefficients to the explicit 3D finite difference approximation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_distr</span></code>([n0, b])</p></td>
+<td><p>Add the index distribution of the GRaded-INdex of refraction lens.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_displacement_strain</span></code>()</p></td>
+<td><p>Generate infinitesimal or Cauchy’s strain tensor from deformations involving displacement vectors and displacement gradients much much smaller than unity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_source_fields</span></code>([projection, plane, savepath])</p></td>
+<td><p>Plot the source fields impinging on gain / lens material directed in a particular projection, cut along a specific plane.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.plot_source_profile.html#photonicslab.heateqn.HeatEqn3D.plot_source_profile" title="photonicslab.heateqn.HeatEqn3D.plot_source_profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_source_profile</span></code></a>([savepath, z_ind, time_step])</p></td>
+<td><p>Plot the current cross-sectional source profile from the heat load object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.heateqn.HeatEqn3D.remove_sources.html#photonicslab.heateqn.HeatEqn3D.remove_sources" title="photonicslab.heateqn.HeatEqn3D.remove_sources"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_sources</span></code></a>()</p></td>
+<td><p>Removes all of the initial heat sources, and resets plot limits.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_strain</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_stress</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal_stress</span></code>(E, aplha)</p></td>
+<td><p>Generate stress tensor due to thermal expansion or the restriction thereof.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params.html"
+                        title="previous chapter">photonicslab.heateqn.HeatEqn2D.get_cn_fd_params</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html"
+                        title="next chapter">photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian.html" title="photonicslab.heateqn.HeatEqn3D.add_normalized_pump_gaussian"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params.html" title="photonicslab.heateqn.HeatEqn2D.get_cn_fd_params"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

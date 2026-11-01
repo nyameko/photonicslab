@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.visualize.VisualizeBeam2D &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.visualize.VisualizeBeam2D.add_filter_circular" href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html" />
+    <link rel="prev" title="photonicslab.visualize.VisualizePhase2D.transient_profiles" href="photonicslab.visualize.VisualizePhase2D.transient_profiles.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html" title="photonicslab.visualize.VisualizeBeam2D.add_filter_circular"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.visualize.VisualizePhase2D.transient_profiles.html" title="photonicslab.visualize.VisualizePhase2D.transient_profiles"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-visualize-visualizebeam2d">
+<h1>photonicslab.visualize.VisualizeBeam2D<a class="headerlink" href="#photonicslab-visualize-visualizebeam2d" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.visualize.VisualizeBeam2D">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.visualize.</code><code class="sig-name descname">VisualizeBeam2D</code><span class="sig-paren">(</span><em class="sig-param">wavelen=0.0001064</em>, <em class="sig-param">waist=0.01915</em>, <em class="sig-param">p=0</em>, <em class="sig-param">l=0</em>, <em class="sig-param">z=0</em>, <em class="sig-param">phi=0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">hdf5set_phase='phase'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/visualize.html#VisualizeBeam2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional beam visualisation object.</p>
+<p>Uses the <a class="reference internal" href="photonicslab.beamprop.BeamProp2D.html#photonicslab.beamprop.BeamProp2D" title="photonicslab.beamprop.BeamProp2D"><code class="xref py py-class docutils literal notranslate"><span class="pre">BeamProp2D</span></code></a> class to the generate original
+and propagated seed beam profiles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>p&gt;=0</em>) – Radial mode index denoting number of radial nodes.</p></li>
+<li><p><strong>l</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Azimuthal mode index denoting number of intertwined helices.</p></li>
+<li><p><strong>z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Propagation distance along optical axis [cm].</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.visualize.VisualizeBeam2D.fseed">
+<code class="sig-name descname">fseed</code><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D.fseed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Incident seed beam profile. Default is a Gaussian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.visualize.VisualizeBeam2D.fseed_mod">
+<code class="sig-name descname">fseed_mod</code><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D.fseed_mod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Phase modulated incident seed beam profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.visualize.VisualizeBeam2D.fseed_convol">
+<code class="sig-name descname">fseed_convol</code><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D.fseed_convol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagation kernel convolution of incident seed beam profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.visualize.VisualizeBeam2D.fseed_mod_convol">
+<code class="sig-name descname">fseed_mod_convol</code><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D.fseed_mod_convol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Propagation kernel convolution of modulated incident seed beam profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="photonicslab.visualize.VisualizeBeam2D.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">wavelen=0.0001064</em>, <em class="sig-param">waist=0.01915</em>, <em class="sig-param">p=0</em>, <em class="sig-param">l=0</em>, <em class="sig-param">z=0</em>, <em class="sig-param">phi=0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb1'</em>, <em class="sig-param">hdf5set_phase='phase'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/visualize.html#VisualizeBeam2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.visualize.VisualizeBeam2D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.visualize.VisualizeBeam2D.__init__" title="photonicslab.visualize.VisualizeBeam2D.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([wavelen, waist, p, l, z, phi, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html#photonicslab.visualize.VisualizeBeam2D.add_filter_circular" title="photonicslab.visualize.VisualizeBeam2D.add_filter_circular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_filter_circular</span></code></a>([center_x, center_y, …])</p></td>
+<td><p>Adds a circular obstruction to the incident beam.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.add_filter_rectangular.html#photonicslab.visualize.VisualizeBeam2D.add_filter_rectangular" title="photonicslab.visualize.VisualizeBeam2D.add_filter_rectangular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_filter_rectangular</span></code></a>([lower_left_x, …])</p></td>
+<td><p>Adds a rectangular obstruction to the incident beam.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.steadystate_profiles.html#photonicslab.visualize.VisualizeBeam2D.steadystate_profiles" title="photonicslab.visualize.VisualizeBeam2D.steadystate_profiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">steadystate_profiles</span></code></a>(z_dist[, savepath])</p></td>
+<td><p>Generate and save steady-state profile as PNG file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.visualize.VisualizeBeam2D.transient_profiles.html#photonicslab.visualize.VisualizeBeam2D.transient_profiles" title="photonicslab.visualize.VisualizeBeam2D.transient_profiles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transient_profiles</span></code></a>(z_dist[, savepath, …])</p></td>
+<td><p>Generate and save transient profile as MP4 file.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.visualize.VisualizePhase2D.transient_profiles.html"
+                        title="previous chapter">photonicslab.visualize.VisualizePhase2D.transient_profiles</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html"
+                        title="next chapter">photonicslab.visualize.VisualizeBeam2D.add_filter_circular</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.visualize.VisualizeBeam2D.add_filter_circular.html" title="photonicslab.visualize.VisualizeBeam2D.add_filter_circular"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.visualize.VisualizePhase2D.transient_profiles.html" title="photonicslab.visualize.VisualizePhase2D.transient_profiles"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Quick Start &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="About" href="README.html" />
+    <link rel="prev" title="Quick Start" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="About"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Quick Start"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>The Photonics LABoratory project consists of the development of a
+framework to model and analyse the thermal, mechanical and optical
+properties of laser beams systems propagating through various optical
+media, in an effort to realise novel beam shaping strategies geared
+towards additive manufacturing technologies and applications.</p>
+<p>Both metal and polymer additive manufacturing (AM) technologies, have
+been identified by the South African government as not only disruptive
+but also enabling technologies, that form an integral part of the
+national strategic objectives to grow and diversify the economy and
+alleviate poverty. Recent forecasts predict an annual global market in
+excess of $50 billion by the year 2020 for the sale of AM products and
+services. Apart from the academic applications to modal decomposition,
+wavefront reconstruction, multimode and quality analysis, (laser
+physics…?) etc… and in line with the Republic’s strategic objectives, in
+efforts to secure a portion of this market share for sovereign benefit
+we intend to realise a real-time, inline device capable of not only
+identifying, classifying and categorising (AM) melt pool and laser beam
+profiles (and their thermal loads), but also pre-emptively predict and
+compensate for imperfections and potential build errors using a system
+of machine learning and adaptive optics.</p>
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Where possible to development and simulation ecosystem will strive to be
+as <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">Pythonic</a> as possible.
+However, we do accommodate MatLab appliances and interfaces in many
+instances.</p>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<p>Most of the above dependencies can be satisfied by installing the Python
+3.6. version of <a class="reference external" href="https://conda.io/docs/user-guide/install/download.html">Anaconda
+5.0.1</a>.
+However with regards to the Python Bindings for HDF5 and Pandoc, you’ll
+need to run the following within your Anaconda environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install h5py
+$ conda install scikit-image
+$ conda install scikit-cuda
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>A good resource and basic introduction to the scientific Python stack
+and it’s uses is <a class="reference external" href="https://github.com/tjfulle/fem-with-python">Tim Fuller’s FEM with
+Python</a>.</p>
+<div class="section" id="use-git-to-get-source-code-and-explore-jupyter-notebooks">
+<h2>Use Git to get source-code and Explore Jupyter Notebooks<a class="headerlink" href="#use-git-to-get-source-code-and-explore-jupyter-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve <a class="reference external" href="https://bitbucket.org/account/signup/">Created your Bitbucket
+Account</a> and added your
+<a class="reference external" href="https://confluence.atlassian.com/bitbucketserver/creating-ssh-keys-776639788.html">public
+ssh-key</a>
+to the private <a class="reference external" href="https://bitbucket.org/account/user/nlcnl/ssh-keys/">Bitbucket NLC Novel
+Lasers</a>
+repository by emailing it to the <a class="reference external" href="mailto:Nlisa&#37;&#52;&#48;csir&#46;co&#46;za">admin</a>,
+you can get access to the source by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd your_desired_working_folder
+$ git clone git@bitbucket.org:nlcnl/photonicslab.git your_desired_checkout_name
+
+# Or without ssh-keys
+$ git clone https://bitbucket.org/nlcnl/photonicslab.git your_desired_checkout_name
+</pre></div>
+</div>
+<p>The developer or end-user can learn to use the software through a series
+of <a class="reference external" href="http://ipython.org/notebook.html">Jupyter Notebooks</a>, which are
+included with the <a class="reference external" href="https://bitbucket.org/nlcnl/varoptic/src">src</a>.
+These lessons provide a set of interactive literate programming tools
+that are <a class="reference external" href="https://drivendata.github.io/cookiecutter-data-science/">very
+effective</a>
+for exploratory data analysis. The sub-folder <code class="docutils literal notranslate"><span class="pre">notebooks/reports</span></code>
+contains more polished work that is <em>`near-publication-ready’</em>.
+Generally speaking these serve as high level functional, systems or
+acceptance tests. First change directory into the notebooks folder and
+then start the notebook server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd notebooks
+$ jupyter notebook
+</pre></div>
+</div>
+<p>This will start the interactive Python session in your browser and from
+there you can start the Lessons.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quick Start</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#anaconda">Anaconda</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#use-git-to-get-source-code-and-explore-jupyter-notebooks">Use Git to get source-code and Explore Jupyter Notebooks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Quick Start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="README.html"
+                        title="next chapter">About</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="About"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Quick Start"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.fdsolver.FDSolver3D.tdma_solver &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.fdsolver.FDSolver3D.explicit_method" href="photonicslab.fdsolver.FDSolver3D.explicit_method.html" />
+    <link rel="prev" title="photonicslab.fdsolver.FDSolver3D.adi_method" href="photonicslab.fdsolver.FDSolver3D.adi_method.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver3D.explicit_method.html" title="photonicslab.fdsolver.FDSolver3D.explicit_method"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver3D.adi_method.html" title="photonicslab.fdsolver.FDSolver3D.adi_method"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-fdsolver-fdsolver3d-tdma-solver">
+<h1>photonicslab.fdsolver.FDSolver3D.tdma_solver<a class="headerlink" href="#photonicslab-fdsolver-fdsolver3d-tdma-solver" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.fdsolver.FDSolver3D.tdma_solver">
+<code class="sig-prename descclassname">FDSolver3D.</code><code class="sig-name descname">tdma_solver</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em>, <em class="sig-param">c</em>, <em class="sig-param">d</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/fdsolver.html#FDSolver3D.tdma_solver"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.fdsolver.FDSolver3D.tdma_solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>TDMA solver, a b c d can be NumPy array type or Python list type.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gist.github.com/TheoChristiaanse/d168b7e57dd30342a81aa1dc4eb3e469">TheoChristiaanse Numba Accelerated Gist</a></p></li>
+<li><p><a class="reference external" href="http://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm">Wikipedia TriDiagonal Matrix Algorithm</a></p></li>
+<li><p><a class="reference external" href="http://www.cfd-online.com/Wiki/Tridiagonal_matrix_algorithm_-_TDMA_(Thomas_algorithm)">Wikipedia TDMA (Thomas Algorithm)</a></p></li>
+</ul>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>Compare <a class="reference external" href="https://stackoverflow.com/questions/23120164/optimize-ax-b-solution-for-a-tridiagonal-coefficient-matrix">SO Solve TDM using solve banded</a></p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.fdsolver.FDSolver3D.adi_method.html"
+                        title="previous chapter">photonicslab.fdsolver.FDSolver3D.adi_method</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.fdsolver.FDSolver3D.explicit_method.html"
+                        title="next chapter">photonicslab.fdsolver.FDSolver3D.explicit_method</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver3D.explicit_method.html" title="photonicslab.fdsolver.FDSolver3D.explicit_method"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.fdsolver.FDSolver3D.adi_method.html" title="photonicslab.fdsolver.FDSolver3D.adi_method"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

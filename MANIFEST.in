@@ -1,0 +1,5 @@
+include README.rst
+include quickstart.rst
+include *.txt
+recursive-include photonicslab *.txt
+recursive-include photonicslab *.py

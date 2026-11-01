@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.beamqual.MSquared.measure_waist_first_null &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.beamqual.MSquared.measure_waist_variance" href="photonicslab.beamqual.MSquared.measure_waist_variance.html" />
+    <link rel="prev" title="photonicslab.beamqual.MSquared.measure_focal_length" href="photonicslab.beamqual.MSquared.measure_focal_length.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_variance.html" title="photonicslab.beamqual.MSquared.measure_waist_variance"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_focal_length.html" title="photonicslab.beamqual.MSquared.measure_focal_length"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-beamqual-msquared-measure-waist-first-null">
+<h1>photonicslab.beamqual.MSquared.measure_waist_first_null<a class="headerlink" href="#photonicslab-beamqual-msquared-measure-waist-first-null" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.beamqual.MSquared.measure_waist_first_null">
+<code class="sig-prename descclassname">MSquared.</code><code class="sig-name descname">measure_waist_first_null</code><span class="sig-paren">(</span><em class="sig-param">x_centroid=0.0</em>, <em class="sig-param">y_centroid=0.0</em>, <em class="sig-param">debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/beamqual.html#MSquared.measure_waist_first_null"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.beamqual.MSquared.measure_waist_first_null" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine <cite>w_{0x}</cite> and <cite>w_{0y}</cite> using first nulls i.e. transverse beam widths in both x and y for astigmatic beam profiles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_centroid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – y value corresponding to peak transverse intensity along x.</p></li>
+<li><p><strong>x_centroid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – x value corresponding to peak transverse intensity along y.</p></li>
+<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Prints debugging information during execution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[w0x, w0y] Beam waists in x and y transverse planes.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a>)</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.7)"><strong>KeyError</strong></a> – HDF5 dataset for transverse intensity at focal length missing.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#UserWarning" title="(in Python v3.7)"><strong>UserWarning</strong></a> – Beam cross section intensity profile non-symmetrical about peak value.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.7)"><strong>IndexError</strong></a> – Unable to find beam waist. I.e. Search did not start near peak intensity.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#UserWarning" title="(in Python v3.7)"><strong>UserWarning</strong></a> – Warns of astigmatic beams widths.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.beamqual.MSquared.parentgrp">
+<code class="sig-name descname">parentgrp</code><a class="headerlink" href="#photonicslab.beamqual.MSquared.parentgrp" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 group object with amplification / gain thermal-opto-mechanical lensing / phase modulation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://docs.h5py.org/en/latest/high/group.html#Group" title="(in h5py v2.9)"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.beamqual.grp">
+<code class="sig-prename descclassname">photonicslab.beamqual.</code><code class="sig-name descname">grp</code><a class="headerlink" href="#photonicslab.beamqual.grp" title="Permalink to this definition">¶</a></dt>
+<dd><p>HDF5 subgroup object for beam properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="http://docs.h5py.org/en/latest/high/group.html#Group" title="(in h5py v2.9)"><code class="docutils literal notranslate"><span class="pre">Group</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0x</code></dt>
+<dd><p>(float): Beam radius in transverse x plane.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0x_peak_idx</code></dt>
+<dd><p>Index for peak intensity value along x transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0x_left_idx</code></dt>
+<dd><p>Index searching for intensity turning point value along x transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0x_right_idx</code></dt>
+<dd><p>Index searching for intensity turning point value along x transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0y</code></dt>
+<dd><p>(float): Beam radius in transverse y plane.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0y_peak_idx</code></dt>
+<dd><p>Index for peak intensity value along y transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0y_left_idx</code></dt>
+<dd><p>Index searching for intensity turning point value along y transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="sig-name descname">~w0y_right_idx</code></dt>
+<dd><p>Index searching for intensity turning point value along y transverse plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.measure_focal_length.html"
+                        title="previous chapter">photonicslab.beamqual.MSquared.measure_focal_length</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.beamqual.MSquared.measure_waist_variance.html"
+                        title="next chapter">photonicslab.beamqual.MSquared.measure_waist_variance</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_waist_variance.html" title="photonicslab.beamqual.MSquared.measure_waist_variance"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.beamqual.MSquared.measure_focal_length.html" title="photonicslab.beamqual.MSquared.measure_focal_length"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

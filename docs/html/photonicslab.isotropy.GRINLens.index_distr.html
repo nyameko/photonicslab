@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.isotropy.GRINLens.index_distr &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.isotropy.GRINLens.get_GRIN_focal_len" href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html" />
+    <link rel="prev" title="photonicslab.isotropy.GRINLens" href="photonicslab.isotropy.GRINLens.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html" title="photonicslab.isotropy.GRINLens.get_GRIN_focal_len"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.html" title="photonicslab.isotropy.GRINLens"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-isotropy-grinlens-index-distr">
+<h1>photonicslab.isotropy.GRINLens.index_distr<a class="headerlink" href="#photonicslab-isotropy-grinlens-index-distr" title="Permalink to this headline">¶</a></h1>
+<dl class="method">
+<dt id="photonicslab.isotropy.GRINLens.index_distr">
+<code class="sig-prename descclassname">GRINLens.</code><code class="sig-name descname">index_distr</code><span class="sig-paren">(</span><em class="sig-param">n0=1.82</em>, <em class="sig-param">b=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/isotropy.html#GRINLens.index_distr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.isotropy.GRINLens.index_distr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the index distribution of the GRaded-INdex of refraction lens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Original / natural refractive index with gain.</p></li>
+<li><p><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Numerical parameter used in calculation of GRaded INdex of refraction lens formulation. Use None for constant index <span class="math notranslate nohighlight">\(n_0\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.indexN">
+<code class="sig-name descname">indexN</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.indexN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional meshgrid array of graded index of refraction, (repeated along axial or z-coordinate).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Unique n0x and n0y formulation for natural birefringence.</p></li>
+<li><p>TODO: For the entire class need to consider placing material properties / constants in subgrps.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.isotropy.GRINLens.html"
+                        title="previous chapter">photonicslab.isotropy.GRINLens</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html"
+                        title="next chapter">photonicslab.isotropy.GRINLens.get_GRIN_focal_len</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html" title="photonicslab.isotropy.GRINLens.get_GRIN_focal_len"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.html" title="photonicslab.isotropy.GRINLens"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

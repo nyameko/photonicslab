@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.isotropy.GRINLens &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.isotropy.GRINLens.index_distr" href="photonicslab.isotropy.GRINLens.index_distr.html" />
+    <link rel="prev" title="photonicslab.isotropy" href="photonicslab.isotropy.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.index_distr.html" title="photonicslab.isotropy.GRINLens.index_distr"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.html" title="photonicslab.isotropy"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-isotropy-grinlens">
+<h1>photonicslab.isotropy.GRINLens<a class="headerlink" href="#photonicslab-isotropy-grinlens" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.isotropy.GRINLens">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.isotropy.</code><code class="sig-name descname">GRINLens</code><span class="sig-paren">(</span><em class="sig-param">nx=200</em>, <em class="sig-param">ny=200</em>, <em class="sig-param">nz=200</em>, <em class="sig-param">Lx=0.4</em>, <em class="sig-param">Ly=0.4</em>, <em class="sig-param">Lz=2.0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb14'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/isotropy.html#GRINLens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.isotropy.GRINLens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Graded Index lenslike medium where the refractive index varies with pace coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of steps along x-direction of cross-sectional profile.</p></li>
+<li><p><strong>ny</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of steps along y-direction of cross-sectional profile.</p></li>
+<li><p><strong>nz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of steps along z-direction of axial profile.</p></li>
+<li><p><strong>Lx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Cross-sectional length along x-direction [cm].</p></li>
+<li><p><strong>Ly</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Cross-sectional length along y-direction [cm].</p></li>
+<li><p><strong>Lz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Axial length along z-direction [cm].</p></li>
+<li><p><strong>hdf5filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Filename of the HDF5 data object.</p></li>
+<li><p><strong>hdf5grp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Group name of the HDF5 group object.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.dx">
+<code class="sig-name descname">dx</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.dx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spacing along the x-direction [cm].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.dy">
+<code class="sig-name descname">dy</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.dy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spacing along the y-direction [cm].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.xx">
+<code class="sig-name descname">xx</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.xx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional meshgrid array of x-coordinates used for plotting and calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.yy">
+<code class="sig-name descname">yy</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.yy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional meshgrid array of y-coordinates used for plotting and calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.xxx">
+<code class="sig-name descname">xxx</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.xxx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Three-dimensional meshgrid array of x-coordinates used for plotting and calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.yyy">
+<code class="sig-name descname">yyy</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.yyy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Three-dimensional meshgrid array of y-coordinates used for plotting and calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.isotropy.GRINLens.zzz">
+<code class="sig-name descname">zzz</code><a class="headerlink" href="#photonicslab.isotropy.GRINLens.zzz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Three-dimensional meshgrid array of z-coordinates used for plotting and calculations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all the various classes and methods (i.e. only have a single visualization abstraction)</p></li>
+</ul>
+</div>
+<dl class="method">
+<dt id="photonicslab.isotropy.GRINLens.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">nx=200</em>, <em class="sig-param">ny=200</em>, <em class="sig-param">nz=200</em>, <em class="sig-param">Lx=0.4</em>, <em class="sig-param">Ly=0.4</em>, <em class="sig-param">Lz=2.0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb14'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/isotropy.html#GRINLens.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.isotropy.GRINLens.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.isotropy.GRINLens.__init__" title="photonicslab.isotropy.GRINLens.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([nx, ny, nz, Lx, Ly, Lz, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field.html#photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field" title="photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_supergaussian_displacement_field</span></code></a>([…])</p></td>
+<td><p>Adds exponentially decaying, normally distributed or Gaussian displacement field vector for generation and calculation of non-zero infinitesimal strain tensor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.effective_strain.html#photonicslab.isotropy.GRINLens.effective_strain" title="photonicslab.isotropy.GRINLens.effective_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">effective_strain</span></code></a>(E, v)</p></td>
+<td><p>Apply generalized Hook’s law to determine overall effect of all stress and strain contributions for isotropic materials in terms of Young’s modulus and Poisson’s ratio fro the material.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html#photonicslab.isotropy.GRINLens.get_GRIN_focal_len" title="photonicslab.isotropy.GRINLens.get_GRIN_focal_len"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_GRIN_focal_len</span></code></a>()</p></td>
+<td><p>Analytical calculation for the focal length and distance from the medium to the closet principal plane.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.index_distr.html#photonicslab.isotropy.GRINLens.index_distr" title="photonicslab.isotropy.GRINLens.index_distr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_distr</span></code></a>([n0, b])</p></td>
+<td><p>Add the index distribution of the GRaded-INdex of refraction lens.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.linear_displacement_strain.html#photonicslab.isotropy.GRINLens.linear_displacement_strain" title="photonicslab.isotropy.GRINLens.linear_displacement_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_displacement_strain</span></code></a>()</p></td>
+<td><p>Generate infinitesimal or Cauchy’s strain tensor from deformations involving displacement vectors and displacement gradients much much smaller than unity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.plot_source_fields.html#photonicslab.isotropy.GRINLens.plot_source_fields" title="photonicslab.isotropy.GRINLens.plot_source_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_source_fields</span></code></a>([projection, plane, savepath])</p></td>
+<td><p>Plot the source fields impinging on gain / lens material directed in a particular projection, cut along a specific plane.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.remove_strain.html#photonicslab.isotropy.GRINLens.remove_strain" title="photonicslab.isotropy.GRINLens.remove_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_strain</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.remove_stress.html#photonicslab.isotropy.GRINLens.remove_stress" title="photonicslab.isotropy.GRINLens.remove_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_stress</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.isotropy.GRINLens.thermal_stress.html#photonicslab.isotropy.GRINLens.thermal_stress" title="photonicslab.isotropy.GRINLens.thermal_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thermal_stress</span></code></a>(E, aplha)</p></td>
+<td><p>Generate stress tensor due to thermal expansion or the restriction thereof.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.isotropy.html"
+                        title="previous chapter">photonicslab.isotropy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.isotropy.GRINLens.index_distr.html"
+                        title="next chapter">photonicslab.isotropy.GRINLens.index_distr</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.GRINLens.index_distr.html" title="photonicslab.isotropy.GRINLens.index_distr"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.isotropy.html" title="photonicslab.isotropy"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

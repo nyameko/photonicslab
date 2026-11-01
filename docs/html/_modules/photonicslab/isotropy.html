@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.isotropy &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for photonicslab.isotropy</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#!/usr/bin/env python3</span>
+
+<span class="sd">&quot;&quot;&quot;Stress-strain equations for calculating the off-diagonal electrical permittivity tensor components responsible for the induced birefringence effects.</span>
+
+<span class="sd">This serves as an initialisation class to generate the initial heat source configuration and to</span>
+<span class="sd">define the material properties of the element to be heated.</span>
+
+<span class="sd">Todo:</span>
+<span class="sd">    * Generate phase profiles.</span>
+<span class="sd">    * Extend to 3D case.</span>
+<span class="sd">    * Consider effects of thermal expansion and thermal diffusivity.</span>
+<span class="sd">    * Move constructor details of dndT, nbc seedwl=1064 etc to beamprop phase profile section.</span>
+<span class="sd">      Or write get method here.</span>
+<span class="sd">    * Consolidate gain media properties into materials database.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#import skimage</span>
+<span class="c1">#import imageio</span>
+
+<span class="kn">from</span> <span class="nn">photonicslab.config</span> <span class="k">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="GRINLens"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.html#photonicslab.isotropy.GRINLens">[docs]</a><span class="k">class</span> <span class="nc">GRINLens</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Graded Index lenslike medium where the refractive index varies with pace coordinates.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nx (int): Number of steps along x-direction of cross-sectional profile.</span>
+<span class="sd">        ny (int): Number of steps along y-direction of cross-sectional profile.</span>
+<span class="sd">        nz (int): Number of steps along z-direction of axial profile.</span>
+<span class="sd">        Lx (float): Cross-sectional length along x-direction [cm].</span>
+<span class="sd">        Ly (float): Cross-sectional length along y-direction [cm].</span>
+<span class="sd">        Lz (float): Axial length along z-direction [cm].</span>
+<span class="sd">        hdf5filename (str): Filename of the HDF5 data object.</span>
+<span class="sd">        hdf5grp (str): Group name of the HDF5 group object.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        dx (:obj:`float`): Spacing along the x-direction [cm].</span>
+<span class="sd">        dy (:obj:`float`): Spacing along the y-direction [cm].</span>
+<span class="sd">        xx (:obj:`~numpy.ndarray`): Two-dimensional meshgrid array of x-coordinates used for plotting and calculations.</span>
+<span class="sd">        yy (:obj:`~numpy.ndarray`): Two-dimensional meshgrid array of y-coordinates used for plotting and calculations.</span>
+<span class="sd">        xxx (:obj:`~numpy.ndarray`): Three-dimensional meshgrid array of x-coordinates used for plotting and calculations.</span>
+<span class="sd">        yyy (:obj:`~numpy.ndarray`): Three-dimensional meshgrid array of y-coordinates used for plotting and calculations.</span>
+<span class="sd">        zzz (:obj:`~numpy.ndarray`): Three-dimensional meshgrid array of z-coordinates used for plotting and calculations.</span>
+
+<span class="sd">    Todo:</span>
+<span class="sd">        * TODO: Consolidate all the various classes and methods (i.e. only have a single visualization abstraction)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="GRINLens.__init__"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.html#photonicslab.isotropy.GRINLens.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nx</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">nz</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">Lx</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">Ly</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">Lz</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">hdf5filename</span><span class="o">=</span><span class="s1">&#39;hdf5db/storage.hdf5&#39;</span><span class="p">,</span> <span class="n">hdf5grp</span><span class="o">=</span><span class="s1">&#39;nb14&#39;</span><span class="p">):</span>
+        <span class="c1">#super().__init__(nx, ny, nz, nt, Lx, Ly, Lz, Tbc, Qmax, gain_medium, hdf5filename, hdf5grp, dt_stability_factor)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ny</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">ny</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nz</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Lx</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Lx</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ly</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Ly</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Lz</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Lz</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lz</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">)</span>
+
+        <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">),</span>\
+                                    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">),</span>\
+                                    <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+
+        <span class="n">xxx</span><span class="p">,</span> <span class="n">yyy</span><span class="p">,</span> <span class="n">zzz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">),</span>\
+                                    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">),</span>\
+                                    <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lz</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5grp</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;nz&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Lx&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lx</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Ly&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ly</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;Lz&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Lz</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;dx&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;dy&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dy</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;dz&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dz</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="s1">&#39;xx&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;xx&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">xx</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xx&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">xx</span>
+
+            <span class="k">if</span> <span class="s1">&#39;yy&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;yy&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">yy</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yy&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">yy</span>
+
+            <span class="k">if</span> <span class="s1">&#39;xxx&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">xxx</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xxx&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xxx&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">xxx</span>
+
+            <span class="k">if</span> <span class="s1">&#39;yyy&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;yyy&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">yyy</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yyy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yyy&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">yyy</span>
+
+            <span class="k">if</span> <span class="s1">&#39;zzz&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;zzz&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">zzz</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;zzz&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;zzz&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">zzz</span>
+
+            <span class="c1"># Strain Tensor</span>
+            <span class="k">if</span> <span class="s1">&#39;eps&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;eps&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">]),</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">])</span>
+
+            <span class="c1"># Stress Tensor</span>
+            <span class="k">if</span> <span class="s1">&#39;sig&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;sig&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">]),</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="GRINLens.index_distr"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.index_distr.html#photonicslab.isotropy.GRINLens.index_distr">[docs]</a>    <span class="k">def</span> <span class="nf">index_distr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n0</span><span class="o">=</span><span class="mf">1.82</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add the index distribution of the GRaded-INdex of refraction lens.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n0 (float): Original / natural refractive index with gain.</span>
+<span class="sd">            b (float): Numerical parameter used in calculation of GRaded INdex of refraction lens formulation. Use None for constant index :math:`n_0`.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            indexN (:obj:`~numpy.ndarray`): Two-dimensional meshgrid array of graded index of refraction, (repeated along axial or z-coordinate).</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * TODO: Unique n0x and n0y formulation for natural birefringence.</span>
+<span class="sd">            * TODO: For the entire class need to consider placing material properties / constants in subgrps.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;n0&#39;</span><span class="p">,</span> <span class="n">n0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">indexN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">])</span>
+                <span class="n">indexN</span> <span class="o">=</span> <span class="n">n0</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xx&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yy&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">indexN</span> <span class="o">=</span> <span class="n">n0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">])</span>
+
+            <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">indexN</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">indexN</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+            <span class="n">indexN_3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">indexN</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;indexN&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">:</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;indexN&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> \
+                                   <span class="n">data</span><span class="o">=</span><span class="n">indexN_3D</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;indexN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">))</span>
+                <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;indexN&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">indexN_3D</span></div>
+
+<div class="viewcode-block" id="GRINLens.get_GRIN_focal_len"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.get_GRIN_focal_len.html#photonicslab.isotropy.GRINLens.get_GRIN_focal_len">[docs]</a>    <span class="k">def</span> <span class="nf">get_GRIN_focal_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Analytical calculation for the focal length and distance from the medium to the closet principal plane.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            f (float): Focal length.</span>
+<span class="sd">            h (float):</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * TODO: Add tests from literature as unit tests.</span>
+
+<span class="sd">        References:</span>
+<span class="sd">            * `H. Kogelnik: Imaging of Optical Modes - Resonators with Lenses &lt;https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=6773625&gt;`_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+
+            <span class="n">f</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n0&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Lz&#39;</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-2</span> <span class="o">/</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)))</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n0&#39;</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Lz&#39;</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-2</span> <span class="o">/</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span>
+
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">h</span></div>
+
+<div class="viewcode-block" id="GRINLens.remove_strain"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.remove_strain.html#photonicslab.isotropy.GRINLens.remove_strain">[docs]</a>    <span class="k">def</span> <span class="nf">remove_strain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="GRINLens.remove_stress"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.remove_stress.html#photonicslab.isotropy.GRINLens.remove_stress">[docs]</a>    <span class="k">def</span> <span class="nf">remove_stress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;sig&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="GRINLens.add_supergaussian_displacement_field"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field.html#photonicslab.isotropy.GRINLens.add_supergaussian_displacement_field">[docs]</a>    <span class="k">def</span> <span class="nf">add_supergaussian_displacement_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">center_i</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">center_j</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">plane_k</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">width_i</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">width_j</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">decay_k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> \
+                                             <span class="n">power_i</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">power_j</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">axis_k</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">axis_k_dir</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds exponentially decaying, normally distributed or Gaussian displacement field vector for generation and calculation of non-zero infinitesimal strain tensor.</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * TODO: Dirt like function or example as well.</span>
+<span class="sd">            * TODO: Add torsional / rotating initial fields</span>
+<span class="sd">            * TODO: Differential geometry / continuum mechanics to solve equations of motion for rigorous treatment of deformation / .</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="GRINLens.plot_source_fields"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.plot_source_fields.html#photonicslab.isotropy.GRINLens.plot_source_fields">[docs]</a>    <span class="k">def</span> <span class="nf">plot_source_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">plane</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">savepath</span><span class="o">=</span><span class="s1">&#39;images/source_field.png&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Plot the source fields impinging on gain / lens material directed in a particular projection, cut along a specific plane.</span>
+
+<span class="sd">        Plot intensity map slice material in quad1, then same thing with vector fields in quads 2-4.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            projection (str): Projection along which to demonstrate vector field. Default is &#39;z&#39;.</span>
+<span class="sd">            plane (int): Along direction of projection, which plane to bisect medium. Default is None, which uses mid-plane.</span>
+<span class="sd">            savepath (str): Filename to save image file to.</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * Vector drawing of displacement fields on particular planes.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="GRINLens.thermal_stress"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.thermal_stress.html#photonicslab.isotropy.GRINLens.thermal_stress">[docs]</a>    <span class="k">def</span> <span class="nf">thermal_stress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">aplha</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate stress tensor due to thermal expansion or the restriction thereof.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            E (float): Young&#39;s modulus of elasticity.</span>
+<span class="sd">            alpha (float): Coefficient of thermal expansion.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span></div>
+            <span class="c1">#grp[&#39;sig&#39;][...] = np.zeros([3, 3, self.nx, self.ny, self.nz])</span>
+
+
+<div class="viewcode-block" id="GRINLens.linear_displacement_strain"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.linear_displacement_strain.html#photonicslab.isotropy.GRINLens.linear_displacement_strain">[docs]</a>    <span class="k">def</span> <span class="nf">linear_displacement_strain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate infinitesimal or Cauchy&#39;s strain tensor from deformations involving displacement vectors and displacement gradients much much smaller than unity.</span>
+
+<span class="sd">        Generalized Strain-displacement equations for linearized infinitesimally small deformations.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span></div>
+            <span class="c1">#grp[&#39;eps&#39;][...] = np.zeros([3, 3, self.nx, self.ny, self.nz])</span>
+
+<div class="viewcode-block" id="GRINLens.effective_strain"><a class="viewcode-back" href="../../photonicslab.isotropy.GRINLens.effective_strain.html#photonicslab.isotropy.GRINLens.effective_strain">[docs]</a>    <span class="k">def</span> <span class="nf">effective_strain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply generalized Hook&#39;s law to determine overall effect of all stress and strain contributions for isotropic materials in terms of Young&#39;s modulus and Poisson&#39;s ratio fro the material.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            E (float): Young&#39;s modulus of elasticity. TODO: Fix these duplicates or maybe define in constructor.</span>
+<span class="sd">            v (float): Poisson&#39;s ratio.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">nx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ny</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nz</span><span class="p">])</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

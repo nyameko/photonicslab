@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.optomech.ParaxialWaveEqn &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="photonicslab.optomech.ParaxialWaveEqn.lg_mode" href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html" />
+    <link rel="prev" title="photonicslab.optomech" href="photonicslab.optomech.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html" title="photonicslab.optomech.ParaxialWaveEqn.lg_mode"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.optomech.html" title="photonicslab.optomech"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" accesskey="U">Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="photonicslab-optomech-paraxialwaveeqn">
+<h1>photonicslab.optomech.ParaxialWaveEqn<a class="headerlink" href="#photonicslab-optomech-paraxialwaveeqn" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="photonicslab.optomech.ParaxialWaveEqn">
+<em class="property">class </em><code class="sig-prename descclassname">photonicslab.optomech.</code><code class="sig-name descname">ParaxialWaveEqn</code><span class="sig-paren">(</span><em class="sig-param">wavelen=0.0001064</em>, <em class="sig-param">waist=0.01915</em>, <em class="sig-param">flens=0.5</em>, <em class="sig-param">p=0</em>, <em class="sig-param">l=0</em>, <em class="sig-param">z=0</em>, <em class="sig-param">phi=0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb12'</em>, <em class="sig-param">hdf5subgrp='tem00'</em>, <em class="sig-param">hdf5subset_intensity='intensity'</em>, <em class="sig-param">hdf5subset_field='field'</em>, <em class="sig-param">hdf5subset_gain='gain'</em>, <em class="sig-param">hdf5subset_strain='strain'</em>, <em class="sig-param">hdf5subset_stress='stress'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/optomech.html#ParaxialWaveEqn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Paraxial Wave Equations in lenslike  media.</p>
+<p>This is the pseudo steady-state single pass solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavelen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Wavelength of the incident seed beam [cm].</p></li>
+<li><p><strong>waist</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Location along z-direction of seed beam waist [cm].</p></li>
+<li><p><strong>flens</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – (Not used) Focal length of lens added after crystal [cm].</p></li>
+<li><p><strong>hdf5filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Filename of the HDF5 data object.</p></li>
+<li><p><strong>hdf5grp</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – Group name of the HDF5 group object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If no valid gain medimum given. Anisotropy modules needs to be run first.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.7)"><strong>ValueError</strong></a> – If stability criterion factor provided will not converge explicit method.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.xx">
+<code class="sig-name descname">xx</code><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.xx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional meshgrid arrays for y-coordinates used for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.yy">
+<code class="sig-name descname">yy</code><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.yy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Two-dimensional meshgrid arrays for y-coordinates used for propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.rr_sd">
+<code class="sig-name descname">rr_sd</code><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.rr_sd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meshgrid array for cross-sectional profile points along spatial-domain radial direction [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.rr_fd">
+<code class="sig-name descname">rr_fd</code><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.rr_fd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meshgrid array for cross-sectional profile points along Fourier-domain radial direction [m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarray</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.wavenum">
+<code class="sig-name descname">wavenum</code><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.wavenum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spatial frequency of seed [rad/m].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>TODO: Consolidate all __init__ method.</p></li>
+<li><p>TODO: Need to incorporate this into the resonator model.</p></li>
+<li><p>TODO: Registering material variables k0 and n0 and vector case n0x and n0y</p></li>
+<li><p>TODO: Induced stress and strain, in the same way the gain depends on the field.</p></li>
+<li><p>TODO: Double check and verify generation of initializer for Ax and Ay</p></li>
+</ul>
+</div>
+<dl class="method">
+<dt id="photonicslab.optomech.ParaxialWaveEqn.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">wavelen=0.0001064</em>, <em class="sig-param">waist=0.01915</em>, <em class="sig-param">flens=0.5</em>, <em class="sig-param">p=0</em>, <em class="sig-param">l=0</em>, <em class="sig-param">z=0</em>, <em class="sig-param">phi=0</em>, <em class="sig-param">hdf5filename='hdf5db/storage.hdf5'</em>, <em class="sig-param">hdf5grp='nb12'</em>, <em class="sig-param">hdf5subgrp='tem00'</em>, <em class="sig-param">hdf5subset_intensity='intensity'</em>, <em class="sig-param">hdf5subset_field='field'</em>, <em class="sig-param">hdf5subset_gain='gain'</em>, <em class="sig-param">hdf5subset_strain='strain'</em>, <em class="sig-param">hdf5subset_stress='stress'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/photonicslab/optomech.html#ParaxialWaveEqn.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#photonicslab.optomech.ParaxialWaveEqn.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#photonicslab.optomech.ParaxialWaveEqn.__init__" title="photonicslab.optomech.ParaxialWaveEqn.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([wavelen, waist, flens, p, l, z, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.adi_method.html#photonicslab.optomech.ParaxialWaveEqn.adi_method" title="photonicslab.optomech.ParaxialWaveEqn.adi_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adi_method</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.convolve.html#photonicslab.optomech.ParaxialWaveEqn.convolve" title="photonicslab.optomech.ParaxialWaveEqn.convolve"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convolve</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda_adi_method</span></code>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">cuda_implicit_method</span></code>()</p></td>
+<td><p>Tri-diagonal matrix solver using NVIDIA CUDA gpu-array elements objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">explicit_method</span></code>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">explicit_method_hdf</span></code>([tol_clock])</p></td>
+<td><p>Explicit forward-time, central step finite-difference method directly using HDF5.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.free_space_adi_method.html#photonicslab.optomech.ParaxialWaveEqn.free_space_adi_method" title="photonicslab.optomech.ParaxialWaveEqn.free_space_adi_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">free_space_adi_method</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.free_space_implicit.html#photonicslab.optomech.ParaxialWaveEqn.free_space_implicit" title="photonicslab.optomech.ParaxialWaveEqn.free_space_implicit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">free_space_implicit</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">implicit_cupy_method</span></code>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.implicit_method.html#photonicslab.optomech.ParaxialWaveEqn.implicit_method" title="photonicslab.optomech.ParaxialWaveEqn.implicit_method"><code class="xref py py-obj docutils literal notranslate"><span class="pre">implicit_method</span></code></a>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">implicit_pycuda_method</span></code>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">implicit_tf_method</span></code>(**kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html#photonicslab.optomech.ParaxialWaveEqn.lg_mode" title="photonicslab.optomech.ParaxialWaveEqn.lg_mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lg_mode</span></code></a>(p, l, z, phi)</p></td>
+<td><p>Generate amplitude for initial Laguerre-Gauss mode seed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.mirror_phase_factor.html#photonicslab.optomech.ParaxialWaveEqn.mirror_phase_factor" title="photonicslab.optomech.ParaxialWaveEqn.mirror_phase_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mirror_phase_factor</span></code></a>([curvature])</p></td>
+<td><p>Incorporates phase factor on beam components due to mirror.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.modulate.html#photonicslab.optomech.ParaxialWaveEqn.modulate" title="photonicslab.optomech.ParaxialWaveEqn.modulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modulate</span></code></a>(seed[, hdf5table])</p></td>
+<td><p>Calculate phase transmission function and modulate incident beam.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_field_in_medium</span></code>([savepath, z_ind])</p></td>
+<td><p>Plot the current cross-sectional source profile from the heat load object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.surface_deformation_phase_factor.html#photonicslab.optomech.ParaxialWaveEqn.surface_deformation_phase_factor" title="photonicslab.optomech.ParaxialWaveEqn.surface_deformation_phase_factor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">surface_deformation_phase_factor</span></code></a>([dz, x_0, …])</p></td>
+<td><p>Generate the surface displacement field <span class="math notranslate nohighlight">\(\delta z(x,y)\)</span> and calculate the phase factor influence on fields <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(A_y\)</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.tdma_solver.html#photonicslab.optomech.ParaxialWaveEqn.tdma_solver" title="photonicslab.optomech.ParaxialWaveEqn.tdma_solver"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tdma_solver</span></code></a>(a, b, c, d)</p></td>
+<td><p>TDMA solver, a b c d can be NumPy array type or Python list type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="photonicslab.optomech.ParaxialWaveEqn.vectorize.html#photonicslab.optomech.ParaxialWaveEqn.vectorize" title="photonicslab.optomech.ParaxialWaveEqn.vectorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vectorize</span></code></a>()</p></td>
+<td><p>Internal function used to convert 3D arrays into 1D vectors.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="photonicslab.optomech.html"
+                        title="previous chapter">photonicslab.optomech</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html"
+                        title="next chapter">photonicslab.optomech.ParaxialWaveEqn.lg_mode</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.optomech.ParaxialWaveEqn.lg_mode.html" title="photonicslab.optomech.ParaxialWaveEqn.lg_mode"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="photonicslab.optomech.html" title="photonicslab.optomech"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="methods.html" >Application Programming Interface</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>

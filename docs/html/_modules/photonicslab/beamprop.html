@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>photonicslab.beamprop &#8212; photonicslab 0.8.5 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for photonicslab.beamprop</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#!/usr/bin/env python3</span>
+
+<span class="sd">&quot;&quot;&quot;Electromagnetic beam propagation in two and three dimensions.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="k">import</span> <span class="n">genlaguerre</span>
+<span class="c1">#from scipy.signal import convolve2d</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="k">import</span> <span class="n">fftconvolve</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">from</span> <span class="nn">photonicslab.config</span> <span class="k">import</span> <span class="o">*</span>
+
+<span class="c1">#from sklearn.preprocessing import normalize</span>
+
+<span class="c1"># Seealso:</span>
+<span class="c1"># import numpy.polynomial.laguerre as lg</span>
+<span class="c1"># import scipy.special.eval_genlaguerre as eval_lg</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<div class="viewcode-block" id="BeamProp2D"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp2D.html#photonicslab.beamprop.BeamProp2D">[docs]</a><span class="k">class</span> <span class="nc">BeamProp2D</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Two-dimensional electromagnetic beam propagation code.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wavelen (float): Wavelength of the incident seed beam [cm].</span>
+<span class="sd">        waist (float): Location along z-direction of seed beam waist [cm].</span>
+<span class="sd">        flens (float): (Not used) Focal length of lens added after crystal [cm].</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If no valid gain medimum given.</span>
+<span class="sd">        ValueError: If stability criterion factor provided will not converge explicit method.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        xx (:obj:`~numpy.ndarray`): Two-dimensional meshgrid arrays for y-coordinates used for propagation.</span>
+<span class="sd">        yy (:obj:`~numpy.ndarray`): Two-dimensional meshgrid arrays for y-coordinates used for propagation.</span>
+<span class="sd">        rr_sd (:obj:`~numpy.ndarray`): Meshgrid array for cross-sectional profile points along spatial-domain radial direction [m].</span>
+<span class="sd">        rr_fd (:obj:`~numpy.ndarray`): Meshgrid array for cross-sectional profile points along Fourier-domain radial direction [m].</span>
+<span class="sd">        wavenum (:obj:`float`): Spatial frequency of seed [rad/m].</span>
+
+<span class="sd">    Todo:</span>
+<span class="sd">        * Add hg and other modes</span>
+<span class="sd">        * Overload addition operator for object oriented superposition and interaction of modes.</span>
+<span class="sd">        * Write propagation output to hdf5</span>
+<span class="sd">        * Consolidate units to SI or some other standard.</span>
+<span class="sd">        * Seed to become a class instance variable, i.e. `self.seed = gen_LG`</span>
+<span class="sd">        * Use decorator function @property to set and retrieve values</span>
+<span class="sd">        * Consolidate focal lengths, Rayleigh range and focus due to lens.</span>
+<span class="sd">        * Instantiate seed and seed_area class objects</span>
+<span class="sd">        * TODO: Note that everything&#39;s been made relative to cm</span>
+
+<span class="sd">    .. seealso::</span>
+<span class="sd">        * Module :func:`numpy.convolve` Returns the discrete, linear convolution of two one-dimensional sequences.</span>
+<span class="sd">        * Method :func:`scipy.signal.fftconvolve` Convole two N-dimensional arrays using FFT</span>
+<span class="sd">        * Method :func:`scipy.signal.convolve` Convolve two N-dimensional arrays.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BeamProp2D.__init__"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp2D.html#photonicslab.beamprop.BeamProp2D.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wavelen</span><span class="o">=</span><span class="mf">1.064e-4</span><span class="p">,</span> <span class="n">waist</span><span class="o">=</span><span class="mf">191.5e-4</span><span class="p">,</span> <span class="n">flens</span><span class="o">=</span><span class="mf">5e-1</span><span class="p">,</span> <span class="n">hdf5filename</span><span class="o">=</span><span class="s1">&#39;hdf5db/storage.hdf5&#39;</span><span class="p">,</span> \
+                 <span class="n">hdf5grp</span><span class="o">=</span><span class="s1">&#39;nb1&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">wavelen</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">waist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">waist</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5grp</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">xx</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;xx&#39;</span><span class="p">][:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">yy</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[</span><span class="s1">&#39;yy&#39;</span><span class="p">][:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dxdy</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dx&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dy&#39;</span><span class="p">)</span>
+
+        <span class="c1"># self.xx, self.yy = np.meshgrid(np.linspace(-self.Lx/2, self.Lx/2, self.nx),</span>
+        <span class="c1">#                                np.lisps(-self.Ly/2, self.Ly/2, self.ny), indexing=&#39;ij&#39;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="c1">#self.rr_sd = np.sqrt((self.xx**2 + self.yy**2)*self.dxdy)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rr_fd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span>
+                            <span class="o">+</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavenum</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">flens</span> <span class="o">=</span> <span class="n">flens</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">focus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">wavenum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">flens</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalized_LG</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="BeamProp2D.lg_mode"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp2D.lg_mode.html#photonicslab.beamprop.BeamProp2D.lg_mode">[docs]</a>    <span class="k">def</span> <span class="nf">lg_mode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">phi</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate amplitude for initial Laguerre-Gauss mode seed.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            p (int, p&gt;=0): Radial mode index denoting number of radial nodes.</span>
+<span class="sd">            l (int): Azimuthal mode index denoting number of intertwined helices.</span>
+<span class="sd">            z (float): Propagation distance along optical axis [cm].</span>
+<span class="sd">            phi (float): Vortex phase term [rad].</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of :obj:`~numpy.ndarray` of :math:`LG_p^l` modes, normalised :math:`LG_p^l` modes and normalized intensity distributions :math:`I`.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            zR (:obj:`float`): Rayleigh range.</span>
+<span class="sd">            width (:obj:`float`): Beam width :math:`w(z) = \\omega_{0}\\sqrt{1+\\left(\\frac{z}{z_R}\\right)}`.</span>
+<span class="sd">            LG (:obj:`~numpy.ndarray`): 2D cross-sectional profile for Laguerre-Gauss mode.</span>
+<span class="sd">            normalized_LG (:obj:`~numpy.ndarray`): 2D cross-sectional profile for normalized Laguerre-Gauss mode.</span>
+<span class="sd">            normalized_I (:obj:`~numpy.ndarray`): 2D cross-sectional profile for normalized intensity distribution.</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * Try / Except blocks for zerodivision or valueerror if waist=0 and for p and l indices.</span>
+<span class="sd">            * Normalise variables using sklearn.</span>
+<span class="sd">            * FIXME: Wavelength dependency of index of refraction :math:`n(\\lambda)`</span>
+
+<span class="sd">        References:</span>
+<span class="sd">            * `L. Allen, M.J. Padgett Optics Communications 184 (2000) 67-71 &lt;https://www.sciencedirect.com/science/journal/00304018/184/1-4&gt;`_</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            * method :func:`sklearn.preprocessing.normalize`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">zR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">waist</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">waist</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">LG</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span><span class="p">)))))</span> \
+              <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> \
+              <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> \
+              <span class="o">*</span> <span class="n">genlaguerre</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span><span class="p">))(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> \
+              <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">j</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">wavenum</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">z</span><span class="o">/</span><span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> \
+              <span class="c1">#* np.exp(-1j*l*phi # -1j*phi)</span>
+              <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">l</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xx</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">phi</span><span class="p">)</span> \
+              <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="p">))</span> \
+             <span class="p">)</span>
+        <span class="n">normalized_LG</span> <span class="o">=</span> <span class="n">LG</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">LG</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="c1">#self.total_I = np.sqrt(np.sum(np.absolute(LG)**2))</span>
+        <span class="n">normalized_I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normalized_LG</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normalized_LG</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">LG</span><span class="p">,</span> <span class="n">normalized_LG</span><span class="p">,</span> <span class="n">normalized_I</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="BeamProp2D.convolve"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp2D.convolve.html#photonicslab.beamprop.BeamProp2D.convolve">[docs]</a>    <span class="k">def</span> <span class="nf">convolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e0</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Two-dimensional Convolution function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            e0 (~numpy.ndarray): Incident field for convolution.</span>
+<span class="sd">            z (float): Propagation distance along z-direction [m].</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            [propagation, normalized_I] (list): The propagation function and normalized intensity profile.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            propagation (:obj:`~numpy.ndarray`): Convolution of incident field e0 and propagated field at z.</span>
+<span class="sd">            normalized_I (:obj:`~numpy.ndarray`): 2D cross-sectional profile for normalized intensity distribution.</span>
+
+<span class="sd">        References:</span>
+<span class="sd">            * PG 57 from Goodman, Fourier Optics.</span>
+<span class="sd">            * Chap 4: Fundamentals of Photonics</span>
+
+<span class="sd">        .. seealso::</span>
+<span class="sd">            * :func:`scipy.signal.convolve2d` Convolve two 2-dimensional arrays.</span>
+<span class="sd">            * :func:`scipy.signal.convolve` Convolve :math:`T_{N}` 3-dimensional :obj:`~numpy.ndarray`.</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * Consolidate class function return values into instance variables using setter</span>
+<span class="sd">              and getter decorators.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#if not np.allclose(0, z, 1e-3, 1e-3):</span>
+        <span class="c1">#    propagation = fftconvolve(e0, np.exp(-1j*np.pi/z/self.wavelen*self.rr_sd**2), mode=&#39;same&#39;)</span>
+        <span class="c1">#else:</span>
+        <span class="c1">#    propagation = e0</span>
+        <span class="n">propagation</span> <span class="o">=</span> <span class="n">fftconvolve</span><span class="p">(</span><span class="n">e0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">z</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">norm_prop</span> <span class="o">=</span> <span class="n">propagation</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">propagation</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="c1">#norm_prop = propagation/(np.sqrt(np.sum(np.absolute(e0)**2)))</span>
+        <span class="c1">#normalized_I = np.abs(norm_prop**2)/np.max(np.abs(norm_prop)**2)</span>
+        <span class="n">normalized_I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">norm_prop</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">e0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">e0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="c1">#normalized_I = np.abs(norm_prop**2)/(np.max(np.abs((norm_prop/np.sqrt(np.sum(np.absolute(e0)**2)))**2)))</span>
+        <span class="c1">#normalized_I = np.abs(propagation)**2</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">propagation</span><span class="p">,</span> <span class="n">normalized_I</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="BeamProp2D.modulate"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp2D.modulate.html#photonicslab.beamprop.BeamProp2D.modulate">[docs]</a>    <span class="k">def</span> <span class="nf">modulate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">hdf5table</span><span class="o">=</span><span class="s1">&#39;phase&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate phase transmission function and modulate incident beam.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            seed (~numpy.ndarray): Beam cross-sectional profile to modulate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (:obj:`numpy.ndarray`): Phase modulated beam.</span>
+
+<span class="sd">        Todo:</span>
+<span class="sd">            * Define seed as class instance variable `self.seed = gen_LG()`.</span>
+<span class="sd">            * FIXME: Test if e0 is 3-dimensional i.e. [t,x,y]</span>
+<span class="sd">            * TODO: Fix ordering of indices [x, y, t]</span>
+<span class="sd">            * TODO: Fix for 2D vs 3D invariant</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">phasemap</span> <span class="o">=</span> <span class="n">grp</span><span class="p">[</span><span class="n">hdf5table</span><span class="p">][:]</span>
+        <span class="c1">#    print(np.shape(seed))</span>
+        <span class="c1">#    print(np.shape(phasemap))</span>
+        <span class="c1">#return seed[None, ...]*np.exp(1j*phasemap)</span>
+        <span class="k">return</span> <span class="n">seed</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">remainder</span><span class="p">(</span><span class="n">phasemap</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span></div></div>
+
+<div class="viewcode-block" id="BeamProp3D"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp3D.html#photonicslab.beamprop.BeamProp3D">[docs]</a><span class="k">class</span> <span class="nc">BeamProp3D</span><span class="p">(</span><span class="n">BeamProp2D</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Three-dimensional electromagnetic beam propagation code.</span>
+
+<span class="sd">    Use beamprop2d for each z along axial path, and self re-seed.</span>
+
+<span class="sd">    Todo:</span>
+<span class="sd">        * TODO: Add functions for mirrors and output couplers etc.</span>
+<span class="sd">        * TODO: Note that everything&#39;s been made relative to cm</span>
+<span class="sd">        * TODO: 3D Propagation means having beam properties across crystal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BeamProp3D.__init__"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp3D.html#photonicslab.beamprop.BeamProp3D.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wavelen</span><span class="o">=</span><span class="mf">1.064e-4</span><span class="p">,</span> <span class="n">waist</span><span class="o">=</span><span class="mf">191.5e-4</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">phi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hdf5filename</span><span class="o">=</span><span class="s1">&#39;hdf5db/storage.hdf5&#39;</span><span class="p">,</span> \
+                 <span class="n">hdf5grp</span><span class="o">=</span><span class="s1">&#39;nb8&#39;</span><span class="p">,</span> <span class="n">hdf5table_phase</span><span class="o">=</span><span class="s1">&#39;phase3d&#39;</span><span class="p">,</span> <span class="n">hdf5subgrp_beam</span><span class="o">=</span><span class="s1">&#39;beam3d&#39;</span><span class="p">,</span> <span class="n">hdf5table_intensity</span><span class="o">=</span><span class="s1">&#39;intensity3d&#39;</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">wavelen</span><span class="o">=</span><span class="n">wavelen</span><span class="p">,</span> <span class="n">waist</span><span class="o">=</span><span class="n">waist</span><span class="p">,</span> <span class="n">hdf5filename</span><span class="o">=</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="n">hdf5grp</span><span class="o">=</span><span class="n">hdf5grp</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">LG</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalized_LG</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalized_I</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">lg_mode</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hdf5subgrp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5subgrp_beam</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">))</span>
+
+            <span class="n">zR_in_gain</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zR</span> <span class="o">&lt;</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Lz&#39;</span><span class="p">):</span>
+                <span class="n">zR_in_gain</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">z_ind_zR</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s1">&#39;zzz&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:][:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">())</span>
+
+            <span class="n">subgrp</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5subgrp</span><span class="p">))</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;wavelength&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;waist&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">waist</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;zR&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;phi&#39;</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+            <span class="n">subgrp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+            <span class="c1">#nt, nz, dz = grp.attrs.get(&#39;nt&#39;), grp.attrs.get(&#39;nz&#39;), grp.attrs.get(&#39;dz&#39;)</span>
+            <span class="c1"># FIXME: Complex numbers and hdf5</span>
+            <span class="c1"># if str(hdf5table_beam) not in grp:</span>
+            <span class="c1">#     grp.create_dataset(str(hdf5table_beam), shape=np.shape(grp[str(hdf5table_phase)]), \</span>
+            <span class="c1">#                        dtype=np.dtype(complex).type, maxshape=(MAX_NT, MAX_NX, MAX_NY, MAX_NZ))</span>
+            <span class="c1"># else:</span>
+            <span class="c1">#     grp[str(hdf5table_beam)].resize((np.shape(grp[str(hdf5table_phase)])))</span>
+
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">subgrp</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_phase</span><span class="p">)]),</span> \
+                                   <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NT</span><span class="p">,</span> <span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">,</span> <span class="n">MAX_NZ</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span><span class="p">)]</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_phase</span><span class="p">)])))</span>
+
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span> <span class="o">+</span> <span class="s2">&quot;zR&quot;</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">subgrp</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span> <span class="o">+</span> <span class="s2">&quot;zR&quot;</span><span class="p">),</span> \
+                                   <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)],</span> \
+                                   <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NT</span><span class="p">,</span> <span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span> <span class="o">+</span> <span class="s2">&quot;zR&quot;</span><span class="p">)]</span><span class="o">.</span><span class="n">resize</span><span class="p">(([</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)]))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">i_t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">)):</span>
+                <span class="c1">#subgrp[str(hdf5table_beam)][t, :, :, 0] = self.LG[:, :]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i_t</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LG</span><span class="p">[:,</span> <span class="p">:]</span>
+                <span class="n">normalized_beam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)])</span>
+                <span class="k">for</span> <span class="n">i_z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nz&#39;</span><span class="p">)):</span>
+                    <span class="c1"># self.temp_beam[:, :, t] = fftconvolve(subgrp[str(hdf5table_beam)][t, :, :, z,][:], \</span>
+                    <span class="c1">#                                  np.exp(-1j*np.pi/dz/self.wavelen*self.rr_sd**2), \</span>
+                    <span class="c1">#                                  mode=&#39;same&#39;)</span>
+                    <span class="c1"># FIXME: TODO: Use super().convolve() Note that there is a modulation due to the crystal</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">fftconvolve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">],</span> \
+                                                       <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dz&#39;</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelen</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">rr_sd</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> \
+                                                       <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">grp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_phase</span><span class="p">)][</span><span class="n">i_t</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">i_z</span><span class="p">][:])</span>
+                    <span class="n">normalized_beam</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                    <span class="c1">#normalized_beam = self.temp_beam[i_t, :, :] / (np.sum(np.abs(self.temp_beam[i_t, :, :])))</span>
+                    <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span><span class="p">)][</span><span class="n">i_t</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">i_z</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normalized_beam</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">normalized_beam</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+                <span class="k">if</span> <span class="n">zR_in_gain</span><span class="p">:</span>
+                    <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span> <span class="o">+</span> <span class="s2">&quot;zR&quot;</span><span class="p">)][</span><span class="n">i_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span><span class="p">)][</span><span class="n">i_t</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_ind_zR</span><span class="p">][:]</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_intensity</span> <span class="o">+</span> <span class="s2">&quot;zR&quot;</span><span class="p">)][</span><span class="n">i_t</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">zR</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="BeamProp3D.convolve"><a class="viewcode-back" href="../../photonicslab.beamprop.BeamProp3D.convolve.html#photonicslab.beamprop.BeamProp3D.convolve">[docs]</a>    <span class="k">def</span> <span class="nf">convolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">hdf5table_prop_intensity</span><span class="o">=</span><span class="s1">&#39;intensity3d_prop&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5filename</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">libver</span><span class="o">=</span><span class="s1">&#39;latest&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hf</span><span class="p">:</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">hf</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5grp</span><span class="p">)</span>
+            <span class="n">subgrp</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hdf5subgrp</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_prop_intensity</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">subgrp</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_prop_intensity</span><span class="p">),</span> \
+                                   <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)],</span> \
+                                   <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="n">MAX_NT</span><span class="p">,</span> <span class="n">MAX_NX</span><span class="p">,</span> <span class="n">MAX_NY</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_prop_intensity</span><span class="p">)]</span><span class="o">.</span><span class="n">resize</span><span class="p">(([</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nx&#39;</span><span class="p">),</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ny&#39;</span><span class="p">)]))</span>
+
+            <span class="k">for</span> <span class="n">i_t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;nt&#39;</span><span class="p">)):</span>
+                <span class="n">subgrp</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">hdf5table_prop_intensity</span><span class="p">)][</span><span class="n">i_t</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temp_beam</span><span class="p">[</span><span class="n">i_t</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">z</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div></div>
+
+            <span class="c1">#subgroup[str(hdf5table_prop_intensity + &#39;lgmode&#39;)]</span>
+
+<span class="c1">#  LocalWords:  Laguerre Seealso ndarrays</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">photonicslab 0.8.5 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, CSIR - NLC &lt;NLisa@csir.co.za&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.0.
+    </div>
+  </body>
+</html>
