@@ -1,0 +1,9 @@
+image: python:3.6.4
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+        script:
+          - pip install -r requirements.txt
+          - PYTHONPATH=. pytest --cov=photonicslab --benchmark-disable
