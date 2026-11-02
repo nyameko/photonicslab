@@ -9,9 +9,7 @@ from photonicslab import BB84Experiment, CoincidenceCounter, PhotonPairSource, S
 def test_detector_identity_and_dead_time():
     arrivals = np.array([0.1, 0.2, 0.25, 0.4])
     ideal = SinglePhotonDetector(1.0, 0.0, 0.0, 0.0)
-    np.testing.assert_array_equal(
-        ideal.detect(arrivals, 1.0, np.random.default_rng(1)), arrivals
-    )
+    np.testing.assert_array_equal(ideal.detect(arrivals, 1.0, np.random.default_rng(1)), arrivals)
     detector = SinglePhotonDetector(1.0, 0.0, 0.15, 0.0)
     np.testing.assert_allclose(
         detector.detect(arrivals, 1.0, np.random.default_rng(1)),
@@ -56,21 +54,17 @@ def test_bb84_ideal_same_basis_has_zero_errors():
 
 
 def test_bb84_intercept_resend_causes_one_quarter_qber():
-    result = BB84Experiment(intercept_resend_fraction=1.0).run(
-        100_000, np.random.default_rng(2)
-    )
+    result = BB84Experiment(intercept_resend_fraction=1.0).run(100_000, np.random.default_rng(2))
     assert 0.24 < result.qber < 0.26
 
 
 def test_bb84_loss_and_dark_clicks_do_not_claim_security():
-    result = BB84Experiment(
-        channel_transmission=0.0, dark_click_probability_per_gate=1.0
-    ).run(10_000, np.random.default_rng(9))
+    result = BB84Experiment(channel_transmission=0.0, dark_click_probability_per_gate=1.0).run(
+        10_000, np.random.default_rng(9)
+    )
     assert result.received == result.sent
     assert 0.47 < result.qber < 0.53
-    assert BB84Experiment(channel_transmission=0.0).run(
-        100, np.random.default_rng(1)
-    ).qber is None
+    assert BB84Experiment(channel_transmission=0.0).run(100, np.random.default_rng(1)).qber is None
 
 
 @pytest.mark.parametrize(
