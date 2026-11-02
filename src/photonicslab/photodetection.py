@@ -45,9 +45,7 @@ class PhotonPairSource:
         _nonnegative(self.pair_rate_hz, "pair_rate_hz")
         _nonnegative(self.relative_jitter_s, "relative_jitter_s")
 
-    def emit(
-        self, duration_s: float, rng: np.random.Generator
-    ) -> tuple[np.ndarray, np.ndarray]:
+    def emit(self, duration_s: float, rng: np.random.Generator) -> tuple[np.ndarray, np.ndarray]:
         _duration(duration_s)
         n_pairs = rng.poisson(self.pair_rate_hz * duration_s)
         a = rng.uniform(0.0, duration_s, n_pairs)
@@ -124,9 +122,7 @@ class CoincidenceCounter:
         if not np.isfinite(self.window_s) or self.window_s <= 0:
             raise ValueError("window_s must be finite and positive")
 
-    def count(
-        self, tags_a_s: np.ndarray, tags_b_s: np.ndarray, *, delay_s: float = 0.0
-    ) -> int:
+    def count(self, tags_a_s: np.ndarray, tags_b_s: np.ndarray, *, delay_s: float = 0.0) -> int:
         if not np.isfinite(delay_s):
             raise ValueError("delay_s must be finite")
         a = _tags(tags_a_s)
