@@ -97,12 +97,8 @@ class BB84Experiment:
             rng.random(pulses) < self.optical_bit_error_probability
         ).astype(np.int8)
 
-        photon_click = rng.random(pulses) < (
-            self.channel_transmission * self.detector_efficiency
-        )
-        dark_click = (~photon_click) & (
-            rng.random(pulses) < self.dark_click_probability_per_gate
-        )
+        photon_click = rng.random(pulses) < (self.channel_transmission * self.detector_efficiency)
+        dark_click = (~photon_click) & (rng.random(pulses) < self.dark_click_probability_per_gate)
         detected = photon_click | dark_click
         dark_bit = rng.integers(0, 2, pulses, dtype=np.int8)
         observed_bits = np.where(photon_click, noisy_bits, dark_bit)
