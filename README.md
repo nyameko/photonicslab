@@ -51,6 +51,23 @@ assertions, plots, exercises and the corresponding real teaching bench. It also
 demonstrates diffraction, a focusing lens and SLM beam steering. The lesson is
 development material awaiting independent teaching/science review.
 
+## Quantum Cape tabletop detectors and QKD (experimental)
+
+The new event-level module is deliberately separate from coherent Jones-field
+optics: photon arrival timestamps are not derived from laser beam power.
+The conference-inspired teaching demo explores threshold photon detectors,
+coincidence histograms and ideal single-photon BB84 (including intercept-resend).
+It does **not** produce a calibrated entangled source or secure cryptographic key.
+
+```bash
+uv run --no-sync python examples/quantum_cape_tabletop.py
+uv run --no-sync pytest -q tests/test_quantum_photonics.py
+```
+
+See [the Quantum Cape research roadmap](docs/QUANTUM-CAPE-PHOTONICS.md) for planned
+APD quenching electronics, neutral-density/weak-coherent pulsed lasers, HBT,
+HOM, FWM/SPDC, E91, CHSH and optomechanics.
+
 ## Validate
 
 ```bash

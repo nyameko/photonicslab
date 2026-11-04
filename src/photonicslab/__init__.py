@@ -1,4 +1,4 @@
-"""Small, explicit classical-optics models. Distances are metres; angles are radians."""
+"""Virtual optics laboratory: classical fields and separate event-level models."""
 
 from .bench import BenchResult, OpticalBench, PowerMeter
 from .elements import (
@@ -12,12 +12,17 @@ from .elements import (
     WavePlate,
 )
 from .fields import Field, GaussianBeam, Grid
+from .photodetection import CoincidenceCounter, PhotonPairSource, SinglePhotonDetector
+from .qkd import BB84Experiment, BB84Result
 
 __version__ = "0.6.0a1"
 
 __all__ = [
+    "BB84Experiment",
+    "BB84Result",
     "BenchResult",
     "CircularAperture",
+    "CoincidenceCounter",
     "Field",
     "FreeSpace",
     "GaussianBeam",
@@ -26,8 +31,10 @@ __all__ = [
     "LinearPolarizer",
     "OpticalBench",
     "PhaseSLM",
+    "PhotonPairSource",
     "PowerMeter",
     "QuarterWavePlate",
+    "SinglePhotonDetector",
     "ThinLens",
     "WavePlate",
 ]
