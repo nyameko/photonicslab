@@ -21,3 +21,7 @@ PhotonicsLab is a **Python virtual optics bench** for transparent, reproducible 
 | Fix errors and request help | [Troubleshooting](Troubleshooting.md) / [Contributing](Contributing.md) |
 
 Start with [README](https://github.com/nyameko/photonicslab/blob/main/README.md), [physics architecture](https://github.com/nyameko/photonicslab/blob/main/docs/ARCHITECTURE.md), [Quantum Cape photonics](https://github.com/nyameko/photonicslab/blob/main/docs/QUANTUM-CAPE-PHOTONICS.md) and [modern tests](https://github.com/nyameko/photonicslab/blob/main/docs/TESTING.md).
+
+## Guide integration
+
+[Support routing and safe scientific assistance](Guide-assistance.md) · [machine-readable Guide index](guide-index.json).

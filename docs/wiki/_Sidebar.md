@@ -12,3 +12,4 @@
 - [Ecosystem integration](Ecosystem-integration.md)
 - [Troubleshooting](Troubleshooting.md)
 - [Contributing](Contributing.md)
+- [Guide integration and support](Guide-assistance.md)

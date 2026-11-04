@@ -1,0 +1,107 @@
+{
+  "schema": "qc-guide-document-index/v1",
+  "repository": "nyameko/photonicslab",
+  "source_root": "docs/wiki",
+  "public": true,
+  "description": "Discovery index only; verify source commit, deployment and permissions before use.",
+  "pages": [
+    {
+      "slug": "BB84-and-QKD-limitations",
+      "title": "BB84 and QKD limitations",
+      "source_path": "docs/wiki/BB84-and-QKD-limitations.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/BB84-and-QKD-limitations.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/BB84-and-QKD-limitations"
+    },
+    {
+      "slug": "Contributing",
+      "title": "Contributing",
+      "source_path": "docs/wiki/Contributing.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Contributing.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Contributing"
+    },
+    {
+      "slug": "Developer-guide",
+      "title": "Developer guide",
+      "source_path": "docs/wiki/Developer-guide.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Developer-guide.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Developer-guide"
+    },
+    {
+      "slug": "Ecosystem-integration",
+      "title": "Ecosystem integration",
+      "source_path": "docs/wiki/Ecosystem-integration.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Ecosystem-integration.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Ecosystem-integration"
+    },
+    {
+      "slug": "Getting-started",
+      "title": "Getting started",
+      "source_path": "docs/wiki/Getting-started.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Getting-started.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Getting-started"
+    },
+    {
+      "slug": "Guide-assistance",
+      "title": "Guide assistance",
+      "source_path": "docs/wiki/Guide-assistance.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Guide-assistance.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Guide-assistance"
+    },
+    {
+      "slug": "Home",
+      "title": "Home",
+      "source_path": "docs/wiki/Home.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Home.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Home"
+    },
+    {
+      "slug": "Optical-bench-and-components",
+      "title": "Optical bench and components",
+      "source_path": "docs/wiki/Optical-bench-and-components.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Optical-bench-and-components.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Optical-bench-and-components"
+    },
+    {
+      "slug": "Photodetection-and-coincidences",
+      "title": "Photodetection and coincidences",
+      "source_path": "docs/wiki/Photodetection-and-coincidences.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Photodetection-and-coincidences.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Photodetection-and-coincidences"
+    },
+    {
+      "slug": "Physics-and-numerical-models",
+      "title": "Physics and numerical models",
+      "source_path": "docs/wiki/Physics-and-numerical-models.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Physics-and-numerical-models.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Physics-and-numerical-models"
+    },
+    {
+      "slug": "Roadmap-and-research",
+      "title": "Roadmap and research",
+      "source_path": "docs/wiki/Roadmap-and-research.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Roadmap-and-research.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Roadmap-and-research"
+    },
+    {
+      "slug": "Teaching-laboratories",
+      "title": "Teaching laboratories",
+      "source_path": "docs/wiki/Teaching-laboratories.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Teaching-laboratories.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Teaching-laboratories"
+    },
+    {
+      "slug": "Troubleshooting",
+      "title": "Troubleshooting",
+      "source_path": "docs/wiki/Troubleshooting.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Troubleshooting.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Troubleshooting"
+    },
+    {
+      "slug": "Validation-and-testing",
+      "title": "Validation and testing",
+      "source_path": "docs/wiki/Validation-and-testing.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Validation-and-testing.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Validation-and-testing"
+    }
+  ]
+}
