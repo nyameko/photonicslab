@@ -15,9 +15,9 @@ MPLBACKEND=Agg uv run --no-sync python examples/execute_lesson.py
 uv build
 ```
 
-The authoritative pytest configuration lives in `pyproject.toml`. Only
-`tests/test_physics.py` and `tests/test_artifacts.py` constitute the
-standalone modern test suite at this point. `integration_tests/` requires a
+The authoritative pytest configuration lives in `pyproject.toml`. The standalone modern test suite currently includes
+`tests/test_physics.py`, `tests/test_artifacts.py` and
+`tests/test_quantum_photonics.py` (event-level detection and idealized BB84). `integration_tests/` requires a
 separately installed compatible `quantum-workflows` package and is intentionally
 excluded from the standalone core suite.
 
