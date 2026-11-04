@@ -2,7 +2,7 @@
 
 PhotonicsLab is a **Python virtual optics bench** for transparent, reproducible experiments and teaching photonics, optics and introductory quantum-optics concepts.
 
-**Release/source snapshot:** 0.6.0a1 alpha on `main`, 4 November 2026. The modern `src/photonicslab/` package is a limited, working core. The 2021 source, original notebooks and generated Sphinx pages are historical materials; they do **not** define the current supported 0.6 API.
+**Published source:** reviewed `dev` documentation for the 0.6.0a1 alpha development series. The modern `src/photonicslab/` package is a limited, working core; pin a release tag or source commit for reproducibility. The 2021 source, original notebooks and generated Sphinx pages are historical material and do **not** define the supported 0.6 API.
 
 ## Find an article
 
