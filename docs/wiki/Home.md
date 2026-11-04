@@ -25,3 +25,12 @@ Start with [README](https://github.com/nyameko/photonicslab/blob/main/README.md)
 ## Guide integration
 
 [Support routing and safe scientific assistance](Guide-assistance.md) · [machine-readable Guide index](guide-index.json).
+
+
+## Detailed optical science references
+
+- [Jones and Stokes conventions](Jones-and-Stokes-conventions.md)
+- [FFT sampling and convergence](FFT-sampling-and-convergence.md)
+- [Event simulation statistics](Event-simulation-statistics.md)
+- [Teaching bench experiment design](Teaching-bench-experiment-design.md)
+- [Legacy migration](Legacy-migration.md)

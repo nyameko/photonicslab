@@ -13,3 +13,9 @@
 - [Troubleshooting](Troubleshooting.md)
 - [Contributing](Contributing.md)
 - [Guide integration and support](Guide-assistance.md)
+**Optics reference**
+- [Jones and Stokes conventions](Jones-and-Stokes-conventions.md)
+- [FFT sampling and convergence](FFT-sampling-and-convergence.md)
+- [Event simulation statistics](Event-simulation-statistics.md)
+- [Teaching bench experiment design](Teaching-bench-experiment-design.md)
+- [Legacy migration](Legacy-migration.md)

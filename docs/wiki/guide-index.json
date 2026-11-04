@@ -34,6 +34,20 @@
       "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Ecosystem-integration"
     },
     {
+      "slug": "Event-simulation-statistics",
+      "title": "Event simulation statistics",
+      "source_path": "docs/wiki/Event-simulation-statistics.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Event-simulation-statistics.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Event-simulation-statistics"
+    },
+    {
+      "slug": "FFT-sampling-and-convergence",
+      "title": "FFT sampling and convergence",
+      "source_path": "docs/wiki/FFT-sampling-and-convergence.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/FFT-sampling-and-convergence.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/FFT-sampling-and-convergence"
+    },
+    {
       "slug": "Getting-started",
       "title": "Getting started",
       "source_path": "docs/wiki/Getting-started.md",
@@ -53,6 +67,20 @@
       "source_path": "docs/wiki/Home.md",
       "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Home.md",
       "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Home"
+    },
+    {
+      "slug": "Jones-and-Stokes-conventions",
+      "title": "Jones and Stokes conventions",
+      "source_path": "docs/wiki/Jones-and-Stokes-conventions.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Jones-and-Stokes-conventions.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Jones-and-Stokes-conventions"
+    },
+    {
+      "slug": "Legacy-migration",
+      "title": "Legacy migration",
+      "source_path": "docs/wiki/Legacy-migration.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Legacy-migration.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Legacy-migration"
     },
     {
       "slug": "Optical-bench-and-components",
@@ -81,6 +109,13 @@
       "source_path": "docs/wiki/Roadmap-and-research.md",
       "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Roadmap-and-research.md",
       "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Roadmap-and-research"
+    },
+    {
+      "slug": "Teaching-bench-experiment-design",
+      "title": "Teaching bench experiment design",
+      "source_path": "docs/wiki/Teaching-bench-experiment-design.md",
+      "source_url": "https://github.com/nyameko/photonicslab/blob/main/docs/wiki/Teaching-bench-experiment-design.md",
+      "wiki_url": "https://github.com/nyameko/photonicslab/wiki/Teaching-bench-experiment-design"
     },
     {
       "slug": "Teaching-laboratories",
