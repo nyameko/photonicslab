@@ -1,5 +1,8 @@
 # PhotonicsLab
 
+> **Documentation:** [Wiki home](docs/wiki/Home.md) · [Getting started](docs/wiki/Getting-started.md) · [Optical bench](docs/wiki/Optical-bench-and-components.md) · [Photodetection](docs/wiki/Photodetection-and-coincidences.md) · [QKD scope](docs/wiki/BB84-and-QKD-limitations.md) · [Developer guide](docs/wiki/Developer-guide.md). Reviewed sources are versioned in `docs/wiki/`; [native GitHub Wiki publication](docs/WIKI_PUBLISHING.md) is a separate reviewable action.
+
+
 A Python virtual optics bench for learning, teaching and reproducible experiments.
 
 The new **0.6 alpha** starts with coherent classical light: Gaussian beams, ideal
