@@ -4,7 +4,7 @@ import math
 
 import pytest
 
-from photonicslab.visualization import OpticGlyph, OpticalPath, TabletopDiagram, wavelength_to_rgb
+from photonicslab.visualization import OpticalPath, OpticGlyph, TabletopDiagram, wavelength_to_rgb
 
 
 @pytest.mark.parametrize("wavelength, dominant", [(450, 2), (532, 1), (650, 0)])
