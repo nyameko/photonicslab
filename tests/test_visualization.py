@@ -36,12 +36,15 @@ def test_layout_model_geometry_and_units():
     assert scene.title == "A demo"
 
 
-@pytest.mark.parametrize("kwargs", [
-    {"kind": "fake", "at": (0, 0)},
-    {"kind": "lens", "at": (float("nan"), 2)},
-    {"kind": "lens", "at": (0, 0), "angle_deg": float("inf")},
-    {"kind": "lens", "at": (0, 0), "size": -1},
-])
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"kind": "fake", "at": (0, 0)},
+        {"kind": "lens", "at": (float("nan"), 2)},
+        {"kind": "lens", "at": (0, 0), "angle_deg": float("inf")},
+        {"kind": "lens", "at": (0, 0), "size": -1},
+    ],
+)
 def test_invalid_optical_element_geometry(kwargs):
     with pytest.raises(ValueError):
         OpticGlyph(**kwargs)
@@ -64,8 +67,22 @@ def test_headless_export_svg_png(tmp_path):
     from matplotlib import pyplot as plt
 
     table = TabletopDiagram("Export")
-    for kind in ["laser", "mirror", "beamsplitter", "lens", "polarizer", "hwp",
-                 "qwp", "slm", "aperture", "crystal", "fiber", "detector", "spd", "counter"]:
+    for kind in [
+        "laser",
+        "mirror",
+        "beamsplitter",
+        "lens",
+        "polarizer",
+        "hwp",
+        "qwp",
+        "slm",
+        "aperture",
+        "crystal",
+        "fiber",
+        "detector",
+        "spd",
+        "counter",
+    ]:
         table.place(kind, (len(table.optics) * 2.0, 0), label=kind)
     table.route((0, 0), (26, 0), wavelength_nm=532)
     table.route((1, 1), (4, 1), wavelength_nm=810, kind="photon")
