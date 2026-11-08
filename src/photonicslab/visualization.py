@@ -13,6 +13,12 @@ from pathlib import Path
 from typing import Literal
 
 
+def _point(value: tuple[float, float]) -> tuple[float, float]:
+    if len(value) != 2 or not all(isfinite(v) for v in value):
+        raise ValueError("points must have two finite coordinates")
+    return (float(value[0]), float(value[1]))
+
+
 Glyph = Literal[
     "laser",
     "mirror",
@@ -32,12 +38,6 @@ Glyph = Literal[
 PathKind = Literal["beam", "photon", "electrical"]
 KNOWN_GLYPHS = frozenset(Glyph.__args__)
 KNOWN_PATHS = frozenset(PathKind.__args__)
-
-
-def _point(value: tuple[float, float]) -> tuple[float, float]:
-    if len(value) != 2 or not all(isfinite(v) for v in value):
-        raise ValueError("points must have two finite coordinates")
-    return (float(value[0]), float(value[1]))
 
 
 def wavelength_to_rgb(wavelength_nm: float) -> tuple[float, float, float] | None:
