@@ -13,10 +13,21 @@ from pathlib import Path
 from typing import Literal
 
 
-
 Glyph = Literal[
-    "laser", "mirror", "beamsplitter", "lens", "polarizer", "hwp", "qwp",
-    "slm", "aperture", "crystal", "fiber", "detector", "spd", "counter",
+    "laser",
+    "mirror",
+    "beamsplitter",
+    "lens",
+    "polarizer",
+    "hwp",
+    "qwp",
+    "slm",
+    "aperture",
+    "crystal",
+    "fiber",
+    "detector",
+    "spd",
+    "counter",
 ]
 PathKind = Literal["beam", "photon", "electrical"]
 KNOWN_GLYPHS = frozenset(Glyph.__args__)
@@ -53,8 +64,9 @@ def wavelength_to_rgb(wavelength_nm: float) -> tuple[float, float, float] | None
         rgb = (1.0, -(w - 645) / 65, 0.0)
     else:
         rgb = (1.0, 0.0, 0.0)
-    strength = (0.3 + 0.7 * (w - 380) / 40 if w < 420 else
-                0.3 + 0.7 * (780 - w) / 80 if w > 700 else 1.0)
+    strength = (
+        0.3 + 0.7 * (w - 380) / 40 if w < 420 else 0.3 + 0.7 * (780 - w) / 80 if w > 700 else 1.0
+    )
     return tuple(float((channel * strength) ** 0.8) for channel in rgb)
 
 
@@ -107,16 +119,24 @@ class TabletopDiagram:
     paths: list[OpticalPath] = field(default_factory=list)
 
     def place(
-        self, kind: Glyph, at: tuple[float, float], *, label: str = "",
-        angle_deg: float = 0.0, size: float = 0.8,
+        self,
+        kind: Glyph,
+        at: tuple[float, float],
+        *,
+        label: str = "",
+        angle_deg: float = 0.0,
+        size: float = 0.8,
     ) -> OpticGlyph:
         optic = OpticGlyph(kind, at, label, angle_deg, size)
         self.optics.append(optic)
         return optic
 
     def route(
-        self, *points: tuple[float, float], wavelength_nm: float | None = None,
-        kind: PathKind = "beam", label: str = "",
+        self,
+        *points: tuple[float, float],
+        wavelength_nm: float | None = None,
+        kind: PathKind = "beam",
+        label: str = "",
     ) -> OpticalPath:
         path = OpticalPath(points, wavelength_nm, kind, label)
         self.paths.append(path)
@@ -152,12 +172,19 @@ class TabletopDiagram:
                 color = color or "#b8c3d1"
                 width = 2.4 if path.kind == "beam" else 1.9
                 legend.add((path.wavelength_nm, wavelength_to_rgb(path.wavelength_nm) is None))
-            ax.plot(xs, ys, color=color, ls=style, lw=width, zorder=2,
-                    solid_capstyle="round")
+            ax.plot(xs, ys, color=color, ls=style, lw=width, zorder=2, solid_capstyle="round")
             if path.label:
                 mid = path.points[len(path.points) // 2]
-                ax.annotate(path.label, mid, (0, 9), textcoords="offset points",
-                            ha="center", color=ink, fontsize=8, zorder=5)
+                ax.annotate(
+                    path.label,
+                    mid,
+                    (0, 9),
+                    textcoords="offset points",
+                    ha="center",
+                    color=ink,
+                    fontsize=8,
+                    zorder=5,
+                )
 
         for item in self.optics:
             x, y = item.at
@@ -171,56 +198,154 @@ class TabletopDiagram:
                 ax.add_patch(p)
 
             if item.kind in {"laser", "detector", "spd", "counter"}:
-                patch(FancyBboxPatch((x - 0.8*s, y - 0.45*s), 1.6*s, 0.9*s,
-                    boxstyle=f"round,pad=0,rounding_size={0.14*s}",
-                    facecolor=housing, edgecolor=edge, lw=1.5))
+                patch(
+                    FancyBboxPatch(
+                        (x - 0.8 * s, y - 0.45 * s),
+                        1.6 * s,
+                        0.9 * s,
+                        boxstyle=f"round,pad=0,rounding_size={0.14 * s}",
+                        facecolor=housing,
+                        edgecolor=edge,
+                        lw=1.5,
+                    )
+                )
                 if item.kind == "laser":
-                    patch(Circle((x + 0.73*s, y), 0.105*s,
-                                 facecolor="#f8fafc", edgecolor=edge, lw=0.8))
+                    patch(
+                        Circle(
+                            (x + 0.73 * s, y),
+                            0.105 * s,
+                            facecolor="#f8fafc",
+                            edgecolor=edge,
+                            lw=0.8,
+                        )
+                    )
                 elif item.kind in {"detector", "spd"}:
-                    patch(Circle((x - 0.72*s, y), 0.15*s,
-                                 facecolor="#38bdf8", edgecolor="#bae6fd", lw=0.8))
+                    patch(
+                        Circle(
+                            (x - 0.72 * s, y),
+                            0.15 * s,
+                            facecolor="#38bdf8",
+                            edgecolor="#bae6fd",
+                            lw=0.8,
+                        )
+                    )
                 else:
-                    patch(Rectangle((x-0.25*s, y-0.15*s), 0.5*s, 0.3*s,
-                                    facecolor="#0f766e", edgecolor="#5eead4"))
+                    patch(
+                        Rectangle(
+                            (x - 0.25 * s, y - 0.15 * s),
+                            0.5 * s,
+                            0.3 * s,
+                            facecolor="#0f766e",
+                            edgecolor="#5eead4",
+                        )
+                    )
             elif item.kind == "beamsplitter":
-                patch(Rectangle((x-s*0.39, y-s*0.39), s*0.78, s*0.78,
-                                facecolor="#22435e", edgecolor="#9cc8e4", lw=1.4))
-                ax.plot([x-0.37*s, x+0.37*s], [y-0.37*s, y+0.37*s],
-                        transform=transform, color="#d9f2ff", lw=2, zorder=5)
+                patch(
+                    Rectangle(
+                        (x - s * 0.39, y - s * 0.39),
+                        s * 0.78,
+                        s * 0.78,
+                        facecolor="#22435e",
+                        edgecolor="#9cc8e4",
+                        lw=1.4,
+                    )
+                )
+                ax.plot(
+                    [x - 0.37 * s, x + 0.37 * s],
+                    [y - 0.37 * s, y + 0.37 * s],
+                    transform=transform,
+                    color="#d9f2ff",
+                    lw=2,
+                    zorder=5,
+                )
             elif item.kind == "mirror":
-                patch(Rectangle((x-0.45*s, y-0.08*s), 0.9*s, 0.16*s,
-                                facecolor="#80bff0", edgecolor="#eefaff", lw=1.0))
+                patch(
+                    Rectangle(
+                        (x - 0.45 * s, y - 0.08 * s),
+                        0.9 * s,
+                        0.16 * s,
+                        facecolor="#80bff0",
+                        edgecolor="#eefaff",
+                        lw=1.0,
+                    )
+                )
             elif item.kind == "lens":
-                patch(Ellipse((x,y), width=0.3*s, height=1.35*s,
-                              facecolor="#3c89bd", edgecolor="#bde9fd", lw=1.3))
+                patch(
+                    Ellipse(
+                        (x, y),
+                        width=0.3 * s,
+                        height=1.35 * s,
+                        facecolor="#3c89bd",
+                        edgecolor="#bde9fd",
+                        lw=1.3,
+                    )
+                )
             elif item.kind in {"hwp", "qwp", "polarizer"}:
-                patch(Circle((x,y), radius=0.52*s,
-                             facecolor="#215b66", edgecolor="#b2f5ea", lw=1.5))
-                ax.plot([x-0.33*s, x+0.33*s], [y,y], transform=transform,
-                        color="#d1fae5", lw=1.5, zorder=5)
+                patch(
+                    Circle(
+                        (x, y), radius=0.52 * s, facecolor="#215b66", edgecolor="#b2f5ea", lw=1.5
+                    )
+                )
+                ax.plot(
+                    [x - 0.33 * s, x + 0.33 * s],
+                    [y, y],
+                    transform=transform,
+                    color="#d1fae5",
+                    lw=1.5,
+                    zorder=5,
+                )
             elif item.kind in {"slm", "crystal"}:
-                patch(Rectangle((x-0.29*s,y-0.57*s),0.58*s,1.14*s,
-                                facecolor="#7658a0" if item.kind == "slm" else "#b28d35",
-                                edgecolor="#ddd6fe" if item.kind == "slm" else "#fde68a"))
+                patch(
+                    Rectangle(
+                        (x - 0.29 * s, y - 0.57 * s),
+                        0.58 * s,
+                        1.14 * s,
+                        facecolor="#7658a0" if item.kind == "slm" else "#b28d35",
+                        edgecolor="#ddd6fe" if item.kind == "slm" else "#fde68a",
+                    )
+                )
             elif item.kind == "aperture":
-                patch(Rectangle((x-0.12*s,y-0.65*s),0.24*s,1.30*s,
-                                facecolor="#475569", edgecolor=ink))
-                patch(Circle((x,y),0.12*s,facecolor="#0b1324",edgecolor=muted))
+                patch(
+                    Rectangle(
+                        (x - 0.12 * s, y - 0.65 * s),
+                        0.24 * s,
+                        1.30 * s,
+                        facecolor="#475569",
+                        edgecolor=ink,
+                    )
+                )
+                patch(Circle((x, y), 0.12 * s, facecolor="#0b1324", edgecolor=muted))
             elif item.kind == "fiber":
-                patch(Polygon([(x-0.5*s,y-0.18*s),(x+0.5*s,y-0.18*s),
-                               (x+0.5*s,y+0.18*s),(x-0.5*s,y+0.18*s)],
-                               facecolor="#1d4ed8",edgecolor="#93c5fd"))
+                patch(
+                    Polygon(
+                        [
+                            (x - 0.5 * s, y - 0.18 * s),
+                            (x + 0.5 * s, y - 0.18 * s),
+                            (x + 0.5 * s, y + 0.18 * s),
+                            (x - 0.5 * s, y + 0.18 * s),
+                        ],
+                        facecolor="#1d4ed8",
+                        edgecolor="#93c5fd",
+                    )
+                )
             if item.label:
-                ax.annotate(item.label, (x,y), (0, -item.size*23-9),
-                            textcoords="offset points", ha="center", va="top",
-                            color=ink, fontsize=8, zorder=6)
+                ax.annotate(
+                    item.label,
+                    (x, y),
+                    (0, -item.size * 23 - 9),
+                    textcoords="offset points",
+                    ha="center",
+                    va="top",
+                    color=ink,
+                    fontsize=8,
+                    zorder=6,
+                )
         if extents:
             left, right = min(p[0] for p in extents), max(p[0] for p in extents)
             bottom, top = min(p[1] for p in extents), max(p[1] for p in extents)
-            dx, dy = max(1, right-left), max(1, top-bottom)
-            ax.set_xlim(left-0.12*dx-0.4, right+0.12*dx+0.4)
-            ax.set_ylim(bottom-0.22*dy-0.3, top+0.20*dy+0.3)
+            dx, dy = max(1, right - left), max(1, top - bottom)
+            ax.set_xlim(left - 0.12 * dx - 0.4, right + 0.12 * dx + 0.4)
+            ax.set_ylim(bottom - 0.22 * dy - 0.3, top + 0.20 * dy + 0.3)
         ax.set_title(self.title, color=ink, fontsize=14, loc="left", pad=16)
         ax.tick_params(colors=muted)
         if grid:
@@ -234,13 +359,19 @@ class TabletopDiagram:
             color = wavelength_to_rgb(w) or "#b8c3d1"
             ax.plot([], [], label=label, color=color, ls="--" if invisible else "-")
         if legend:
-            ax.legend(loc="upper right", facecolor="#17243a", edgecolor="#44546b",
-                      labelcolor=ink, fontsize=8)
+            ax.legend(
+                loc="upper right",
+                facecolor="#17243a",
+                edgecolor="#44546b",
+                labelcolor=ink,
+                fontsize=8,
+            )
         return fig
 
     def savefig(self, filename: str | Path, **kwargs) -> None:
         """Save headless-compatible PNG/SVG/PDF and close the created Figure."""
         import matplotlib.pyplot as plt
+
         fig = self.plot()
         try:
             fig.savefig(filename, bbox_inches="tight", **kwargs)
