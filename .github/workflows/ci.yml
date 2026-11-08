@@ -20,6 +20,8 @@ jobs:
           version: '0.12.23'
           python-version: ${{ matrix.python }}
       - run: uv sync --frozen --extra dev --extra notebooks --python '${{ matrix.python }}'
+      - run: uv run --no-sync ruff check --diff src tests examples || true
+      - run: uv run --no-sync ruff format --diff src tests examples || true
       - run: uv run --no-sync ruff check src tests examples
       - run: uv run --no-sync ruff format --check src tests examples
       - run: uv run --no-sync pytest --cov=photonicslab
