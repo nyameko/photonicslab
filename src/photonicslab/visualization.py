@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Literal
 
 
+
 Glyph = Literal[
     "laser", "mirror", "beamsplitter", "lens", "polarizer", "hwp", "qwp",
     "slm", "aperture", "crystal", "fiber", "detector", "spd", "counter",
@@ -84,7 +85,7 @@ class OpticalPath:
 
     def __post_init__(self) -> None:
         points = tuple(_point(point) for point in self.points)
-        if len(points) < 2 or all(a == b for a, b in zip(points, points[1:])):
+        if len(points) < 2 or all(a == b for a, b in zip(points, points[1:], strict=False)):
             raise ValueError("a path needs at least two distinct points")
         object.__setattr__(self, "points", points)
         if self.kind not in KNOWN_PATHS:
@@ -141,7 +142,7 @@ class TabletopDiagram:
         extents = []
         legend = set()
         for path in self.paths:
-            xs, ys = zip(*path.points)
+            xs, ys = zip(*path.points, strict=True)
             extents.extend(path.points)
             if path.kind == "electrical":
                 color, style, width = muted, ":", 1.8
@@ -164,7 +165,7 @@ class TabletopDiagram:
             extents.extend(((x - s, y - s), (x + s, y + s)))
             transform = Affine2D().rotate_deg_around(x, y, item.angle_deg) + ax.transData
 
-            def patch(p):
+            def patch(p, *, transform=transform):
                 p.set_transform(transform)
                 p.set_zorder(4)
                 ax.add_patch(p)
