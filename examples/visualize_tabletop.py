@@ -16,9 +16,13 @@ def mach_zehnder() -> TabletopDiagram:
     table.place("beamsplitter", (8, 4), label="BS2", size=1.0)
     table.place("detector", (12, 4), label="D0", size=0.9)
     table.place("detector", (8, 7.3), label="D1", angle_deg=-90, size=0.9)
-    for route in [((-3.1, 0), (0, 0)), ((0, 0), (0, 4), (8, 4)),
-                  ((0, 0), (8, 0), (8, 4)), ((8, 4), (11.2, 4)),
-                  ((8, 4), (8, 6.5))]:
+    for route in [
+        ((-3.1, 0), (0, 0)),
+        ((0, 0), (0, 4), (8, 4)),
+        ((0, 0), (8, 0), (8, 4)),
+        ((8, 4), (11.2, 4)),
+        ((8, 4), (8, 6.5)),
+    ]:
         table.route(*route, wavelength_nm=532)
     return table
 
