@@ -164,3 +164,15 @@ The same notebook should request a logical validated execution capability; the
 platform resolves placement and releases scarce resources after each stage. Public
 lessons should not hardcode cluster partitions, node addresses or credentials.
 Hardware-control drivers use a separate explicit capability and calibration record.
+
+## Notebook-first teaching and independently scheduled acceleration (M5)
+
+> **Scientific preparation is cheap; expensive execution is scheduled.**
+
+PhotonicsLab stays the **authoritative source of validated optics and photonics numerical models**. Quantum Workflows owns notebook lessons, reviewed experiment runners and result contracts, while Quantum Platform retains the existing authenticated JupyterHub/KubeSpawner portal. A notebook workbench uses small CPU resources to build optical benches, tune components, visualise interferometers or demonstrate idealised QKD. Large wave-optics grids, beam propagation, GPU arrays or parameter sweeps, **if scientifically justified and implemented**, become independent Slurm CPU/GPU batch jobs with explicit user allocations rather than long-lived interactive GPU notebooks.
+
+Do not equate coherent Jones-field simulation, classical photonics GPU compute, a quantum photonic source/measurement model and a physical quantum processor. The tutorial/runner must specify the physical approximation, boundary conditions, measurement model, independent numerical reference, error tolerance and provenance. H200 is a **remote site**: stage inputs and reduced results through an approved transfer path, never rely on an SSHFS symlink or remote NFS mount for large compute I/O. Use small immutable purpose-built images derived from the validated model's dependencies, not a universal CUDA/PennyLane/Qiskit/Pulser environment.
+
+The exact initial quantum-computing notebook sequence 00–07 is maintained by [Quantum Workflows](https://github.com/nyameko/quantum-workflows/tree/dev/labs/01-intro-quantum-computing/batch-first); PhotonicsLab-specific waveplates, detectors, coincidences, interferometry, tabletop optical components and pedagogical QKD become a *subsequent* focused track, without claiming unimplemented high-fidelity SPDC/Fock/Gaussian models or H200 GPU acceleration.
+
+Cross-project gate: P0 native authenticated per-user Slurm; P1 verified science GPU isolation; P2 real A100 batch; P3 remote H200 staged results; P4 unchanged Quantum Platform Runs; P5 dedicated backend/correctness test suite (including validated photonics when ready); P6 optional ACP Guide assistance. Documentation is a plan, not evidence of deployed photonics GPU kernels or live facility acceptance.
